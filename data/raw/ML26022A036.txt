@@ -1,0 +1,335 @@
+
+Constellation 
+
+January 15, 2026 
+
+SVPL TR 26-0001 
+
+U.S. Nuclear Regulatory Commission 
+ATTN : Document Control Desk 
+Washington , DC 20555-0001 
+
+Dresden Nuclear Power Station , Units 2 
+Renewed Facility Operating License Nos. DPR-19 
+NRC Docket Nos. 50-237 
+
+Dresden Nuclear Power Station 
+6500 North Dresden Road 
+Morris, IL 60450 
+
+10 CFR 50.73 
+
+Subject: Licensee Event Report 237/2025-003-00, High Pressure Coolant Injection Inoperable 
+Due to Failed Indicating Light and Blown Fuse 
+
+Enclosed is Licensee Event Report 237/2025-003-00, High Pressure Coolant Injection 
+Inoperable Due to Failed Indicating Light and Blown Fuse. This report describes an event being 
+reported in accordance with 10 CFR 50.73(a)(2)(v)(D) for an event or condition that could have 
+prevented the fulfillment of a safety function needed to mitigate the consequences of an 
+accident. 
+
+There are no regulatory commitments contained in this submittal. 
+
+Should you have any questions concerning this letter, please contact Tara Noah, acting 
+Regulatory Assurance Manager, at (779) 231-7447. 
+
+Respectfully , 
+
+Hardik Patel 
+Site Vice President 
+Dresden Nuclear Power Station 
+
+Enclosure: Licensee Event Report 237/2025-003-00 
+
+
+
+NRC FORM 366 
+(04-02-2024) 
+
+U.S. NUCLEAR REGULATORY COMMISSION APPROVED BY 0MB: NO. 3150-0104 EXPIRES: 04/30/2027 
+
+,·· .. 
+{ :. 
+
+\ ?j .. .... 
+LICENSEE EVENT REPORT (LER) 
+
+(See Page 2 for required number of digits/characters for each block) 
+(See NUREG-1022, R 3 for instruction and guidance for completing this form 
+
+http .//www.nrc qov/read1nq-rm/doc-collect1ons/nuregs/staff/sr1022/r3/) 
+
+1. Facility Name 
+
+Dresden Nuclear Power Station , Unit 2 
+
+4. Title 
+
+Esbmated burden per response to COITl)/y with this mandatory collecbon request 80 hou-s Rep<><Ed lessons 
+learned are incllfJ)orated In10 the licensmg process and fed back 10 industry Send comments regarding burden 
+esnmate to the FOIi'- Library and lnformabon Colecbons Branch [r-6 A 1 OM). U S Noclear Regulatory 
+Corrmss10n, Washington DC 20555-0001 , or by email to lnfocollects Resource@rvc gov and the OMS reviewer 
+al OMS Office of lnformabon and Regulamry Affars (3150-0104). Attn Desk Officer for the Nuclear Regulatory 
+Conmss10n. 725 17th S~eet WM. Washington. OC 20503 The NRC may not condoct or sponsor and a person ~ 
+not required 10 respond 10 a collecboo of mformabon unless the document requesbng or requrmg the collecllOn 
+displays a currently v.-1d OMS control number 
+
+[g) 050 2. Docket Number 3. Page 
+
+0 052 00237 1 OF 3 
+
+High Pressure Coolant Injection Inoperable Due to Failed Indicating Light and Blown Fuse 
+
+5. Event Date 6. LER Number 7. Report Date 8. Other Facilities Involved 
+
+Month Day Year Year Sequential Revision Month Day Year 
+Facility Name 
+
+Number No. 0 050 
+Docket Number 
+
+11 17 2025 2025 003 00 01 15 2026 
+Facility Name - - 0 052 
+
+Docket Number 
+
+9. Operating Mode 
+2, Startup 
+
+110. Power Level 
+002 
+
+11 . This Report is Submitted Pursuant to the Requirements of 10 CFR §: (Check all that apply) 
+
+10 CFR Part 20 □ 20.2203(a)(2)(vi) 10 CFR Part 50 □ 50.73(a)(2)(ii)(A) □ 50. 73(a)(2)(viii)(A) □ 73.1200(a) 
+
+□ 20.2201(b) □ 20.2203(a)(3)(i) □ 50.36(c)(1 )(i)(A) □ 50. 73(a)(2)(ii)(B) □ 50. 73(a)(2)(viii)(B) □ 73.1200(b) 
+
+□ 20.2201 (d) □ 20.2203(a)(3)(ii) □ 50.36(c)(1 )(ii)(A) □ 50. 73(a)(2)(iii) □ 50. 73(a)(2)(ix)(A) □ 73.1200(c) 
+
+□ 20.2203(a)(1) □ 20.2203(a)(4) □ 50.36(c)(2) □ 50. 73(a)(2)(iv)(A) □ 50. 73(a)(2)(x) □ 73.1200(d) 
+
+□ 20.2203(a)(2)(i) 10 CFR Part 21 □ 50.46(a)(3)(ii) □ 50. 73(a)(2)(v)(A) 10 CFR Part 73 □ 73.1200(e) 
+
+□ 20.2203(a)(2)(ii) 0 21.2(c) □ 50.69(9) □ 50.73(a)(2)(v)(B) □ 73.77(a)(1) □ 73.1200(f) 
+
+□ 20.2203(a)(2)(ii i) □ 50.73(a)(2)(i)(A) □ 50.73(a)(2)(v)(C) □ 73.77(a)(2)(i) □ 73.1200(9) 
+
+□ 20.2203(a)(2)(iv) □ 50.73(a)(2)(i)(B) [g] 50.73(a)(2)(v)(D) □ 73.77(a)(2)(ii) □ 73.1200(h) 
+
+□ 20.2203(a)(2)(v) □ 50. 73(a)(2)(i)(C) □ 50. 73(a)(2)(vii) 
+
+0 OTHER (Specify here, in abstract, or NRG 366A) 
+
+12. Licensee Contact for this LER 
+
+Licensee Contact Phone Number (Include area code) 
+
+Tara Noah, Acting Manager Site Regulatory Assurance 779-231-7 44 7 
+
+13. Complete One Line for each Component Failure Described in this Report 
+
+Cause System Component Manufacturer Reportable to IRIS Cause System Component Manufacturer Reportable to IRIS 
+
+TBD BJ TBD TBD y TBD BJ TBD TBD y 
+
+14. Supplemental Report Expected Month Day Year 
+
+□ No I [g] 
+15. Expected Submission Date 
+
+Yes (If yes, complete 15. Expected Subm1ss1on Date) 03 13 2026 
+
+16. Abstract (L1m1t to 1326 spaces, 1e , approximately 13 single-spaced typewri tten Imes) 
+
+At 1613 CST on 11 /17 /25 1 with Unit 2 in Mode 2, Startup, at 2 percent power, it was discovered that the single train of high 
+pressure coolant injection (HPCI) was inoperable. The cause of the HPCI inoperability was a damaged stop valve closed 
+indicating light socket and an opened negative 125 VDC fuse that occurred when the Unit 2 HPCI Turbine Turning Gear 
+engaged . The turning gear motor turned off without operator action. The stop valve closed indicating circuit was isolated and 
+the fuse was replaced in accordance with station procedures and HPCI operability was restored at 2253 CST. An evaluation of 
+the event is in progress and a supplemental report will be submitted with the conclusions of the evaluation. 
+
+This report is being submitted in accordance with 10 CFR 50. 73(a)(2)(v)(D) for an event or condition that could have prevented 
+the fulfillment of a safety function needed to mitigate the consequences of an accident. 
+
+
+
+NRC FORM 366A 
+(04--02-2024) 
+
+U.S. NUCLEAR REGULATORY COMMISSION APPROVED BY 0MB: NO. 3150-0104 EXPIRES: 04/30/2027 
+
+$ •• 
+F •• . •. 
+
+..... 
+LICENSEE EVENT REPORT (LER) 
+
+CONTINUATION SHEET 
+
+(See NUREG-1022, R.3 for instruction and guidance for completing th is form 
+http://www. n rc.qov/reading-rm/doc-collections/n uregs/staff/sr1022/r30 
+
+Estimated burden per response to comply with this mandatory collection request 80 hours. Reported 
+lessons learned are incorporated into the licensing process and fed back to industry. Send comments 
+regarding burden estimate to the FOIA Library. and Information Collections Branch (T-6 A10M). U S 
+Nuclear Regulatory Commission, Washington, DC 20555-0001 or by email to 
+lnfocollects Resource@nrc.gov, and the 0MB reviewer at 0MB Office of Information and Regulatory 
+Affalfs. (3150-0104), Attn Desk Officer for the Nuclear Regulatory Commission 725 17th Street NW 
+Washington, DC 20503 The NRC may not conduct or sponsor, and a person is not required to 
+respond to. a collection of information unless the document requesting or requmng the collection 
+displays a currently valid 0MB control number 
+
+1. FACILITY NAME 2. DOCKET NUMBER 
+■ 050 YEAR 
+
+Dresden Nuclear Power Station , Unit 2 
+□ 
+
+00237 
+052 2025 
+
+NARRATIVE 
+
+PLANT AND SYSTEM IDENTIFICATION - UNIT 2 
+
+General Electric - Boiling Water Reactor, 2957 megawatts thermal rated core power 
+
+Energy Industry Identification System (EIIS) codes are identified in the text as [XX] 
+
+A. CONDITIONS PRIOR TO EVENT 
+
+3. LER NUMBER 
+SEQUENTIAL 
+
+NUMBER 
+
+- 003 
+
+Unit: 2 
+Reactor Mode: 2 
+Pressure level : 185 psig 
+
+Event Date: November 17, 2025 
+Mode Name: Startup 
+Temperature: 376 °F 
+
+Event Time: 1613 CST 
+Power Level : 2% 
+
+-
+
+No systems, structures, or components that were inoperable at the start of the event contributed to the 
+event. 
+
+B. DESCRIPTION OF EVENT 
+
+REV 
+NO. 
+
+00 
+
+At 1613 CST on 11/17/25, with Unit 2 in Mode 2, Startup, at 2 percent power, it was discovered that the 
+single train of high pressure coolant injection (HPCI) [BJ] was inoperable. The cause of the HPCI 
+inoperability was a failed stop valve indicating light [IL] circuit and a blown negative 125 VDC fuse [FU] that 
+occurred when the Unit 2 HPCI Turbine [TRB] Turning Gear [TGR] engaged. The turning gear motor [MO] 
+turned off without operator action . The indicating light circuit was isolated and the negative 125 VDC fuse 
+was replaced in accordance with station procedures and HPCI operability was restored at 2253 CST on 
+11/17/25. 
+
+Event Notification System (ENS) report number 58043 was transmitted to the NRC at 2328 CST on 
+11/17/25. 
+
+This event is being reported in accordance with 1 O CFR 50. 73(a)(2)(v)(D) . 
+
+C. CAUSE OF EVENT 
+
+The cause of the event was a damaged indicating light socket and a blown negative 125 VDC fuse when 
+the HPCI Turbine Turning Gear was engaged. The negative 125 VDC fuse in question is required for the 
+initiation of the steam turbine. An evaluation of the event is currently in progress. A supplemental report will 
+be submitted with the conclusions of this evaluation. 
+
+D. SAFETY ANALYSIS 
+
+System Design 
+
+The HPCI system is designed to ensure that adequate core cooling takes place for all break sizes less than 
+those for which Low Pressure Coolant Injection (LPCI) [BO] or Core Spray [BM] systems can adequately 
+protect the core without assistance from other engineered safety features. The negative 125 VDC fuse in 
+
+NRC FORM 366A (04--02-2024) Page_2_ of _3_ 
+
+
+
+NRC FORM 366A 
+(04-02-2024) 
+
+U.S. NUCLEAR REGULATORY COMMISSION APPROVED BY 0MB: NO. 3150-0104 EXPIRES: 04/30/2027 
+
+LICENSEE EVENT REPORT (LER) 
+CONTINUATION SHEET 
+
+(See NUREG-1022, R.3 for instruction and guidance for completing th is form 
+http://www.nrc.gov/reading-rm/doc-collections/nuregs/staff/sr1022/r3/} 
+
+1. FACILITY NAME 
+■ 050 
+
+Dresden Nuclear Power Station, Unit 2 
+□ 052 
+
+NARRATIVE 
+
+Estimated burden per response to comply with this mandatory collection request: 80 hours. Reported 
+lessons learned are incorporated into the licensing process and fed back to industry Send comments 
+regarding burden estimate to the FOIA, Library, and Information Collections Branch (T-6 A 10M), U S 
+Nuclear Regulatory Comm1ss1on, Washington DC 20555-0001 , or by email to 
+lnfocollects.Resource@nrc.gov. and the 0MB reviewer at 0MB Office of Information and Regulatory 
+Affairs, (3150-0104) . Attn Desk Officer for the Nuclear Regulatory Commission, 725 17th Street NW, 
+Washington DC 20503. The NRG may not conduct or sponsor, and a person Is not required to 
+respond to. a collection of information unless the document requesting or requinng the collection 
+displays a currently val id 0MB control number 
+
+2. DOCKET NUMBER 3. LER NUMBER 
+SEQUENTIAL REV YEAR NUMBER NO. 
+
+00237 
+2025 - 003 - 00 
+
+question is required for the initiation of the steam turbine. Without this turbine driving the HPCI pumps [P] , 
+the system is not capable of injection. 
+
+Safety Impact 
+
+The safety significance of this event is minimal. At the time of the event, Unit 2 was at two percent power in 
+a normal electric plant lineup with all other means of Reactor Coolant Injection available. The Unit 2 
+Isolation Condenser (IC) [BL] system and the Unit 2 Automatic Depressurization System (ADS) remained 
+Operable throughout the event. There was no impact on the health and safety of the public or plant 
+personnel. This event was within the analysis of Updated Final Safety Analysis Report (UFSAR) Chapter 
+15, Accident and Transient Analysis . 
+
+There was no radioactive release associated with this event. 
+
+E. CORRECTIVE ACTIONS 
+
+At 2253 CST on 11/17/2025, HPCI operability was restored following the isolation of the indicating light 
+circuit and replacing the blown negative 125 VDC fuse. Additional corrective actions will be determined by 
+the evaluation currently in progress . 
+
+F. PREVIOUS OCCURENCES 
+
+A 5-year internal corrective action program and Licensee Event Report (LER) database review was 
+performed for Dresden Nuclear Power Station (DNPS) . No previous occurrences of HPCI inoperability 
+were found at DNPS within the 5-year review timeline due to indicator light socket damage or blown 
+negative 125 VDC fuse . Other events identified during the evaluation in progress will be discussed in the 
+supplemental report . 
+
+G. COMPONENT FAILURE DATA 
+
+Causal investigation is ongoing , component failure data will be updated in supplemental LER. 
+
+NRC FORM 366A (04-02-2024) Page_3_ of _3_ 
+
+
+
+

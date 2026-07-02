@@ -1,0 +1,96 @@
+docket,plant_name,unit,reactor_type,nss_vendor,thermal_power_mwt,license_number,location,owner_operator,nrc_region
+05000313,Arkansas Nuclear,1,PWR,,,DPR-51,"6 mi WNW of Russellville, AR","Entergy Nuclear Operations, Inc.",4
+05000368,Arkansas Nuclear,2,PWR,,,NPF-6,"6 mi WNW of Russellville, AR","Entergy Nuclear Operations, Inc.",4
+05000334,Beaver Valley,1,PWR,,,DPR-66,"17 mi W of McCandless, PA","Vistra Corporation",1
+05000412,Beaver Valley,2,PWR,,,NPF-73,"17 mi W of McCandless, PA","Vistra Corporation",1
+05000456,Braidwood,1,PWR,,,NPF-72,"20 mi SSW of Joliet, IL","Constellation Energy Generation, LLC",3
+05000457,Braidwood,2,PWR,,,NPF-77,"20 mi SSW of Joliet, IL","Constellation Energy Generation, LLC",3
+05000259,Browns Ferry,1,BWR,General Electric,,DPR-33,"32 mi W of Huntsville, AL","Tennessee Valley Authority",2
+05000260,Browns Ferry,2,BWR,General Electric,,DPR-52,"32 mi W of Huntsville, AL","Tennessee Valley Authority",2
+05000296,Browns Ferry,3,BWR,General Electric,,DPR-68,"32 mi W of Huntsville, AL","Tennessee Valley Authority",2
+05000325,Brunswick,1,BWR,General Electric,,DPR-71,"30 mi S of Wilmington, NC","Duke Energy Progress, LLC",2
+05000324,Brunswick,2,BWR,General Electric,,DPR-62,"30 mi S of Wilmington, NC","Duke Energy Progress, LLC",2
+05000454,Byron,1,PWR,,,NPF-37,"17 mi SW of Rockford, IL","Constellation Energy Generation, LLC",3
+05000455,Byron,2,PWR,,,NPF-66,"17 mi SW of Rockford, IL","Constellation Energy Generation, LLC",3
+05000483,Callaway,1,PWR,,,NPF-30,"25 mi ENE of Jefferson City, MO","Ameren UE",4
+05000317,Calvert Cliffs,1,PWR,,,DPR-53,"40 mi S of Annapolis, MD","Constellation Energy Generation, LLC",1
+05000318,Calvert Cliffs,2,PWR,,,DPR-69,"40 mi S of Annapolis, MD","Constellation Energy Generation, LLC",1
+05000413,Catawba,1,PWR,,,NPF-35,"18 mi S of Charlotte, NC","Duke Energy Carolinas, LLC",2
+05000414,Catawba,2,PWR,,,NPF-52,"18 mi S of Charlotte, NC","Duke Energy Carolinas, LLC",2
+05000461,Clinton,1,BWR,General Electric,,NPF-62,"23 mi SSE of Bloomington, IL","Constellation Energy Generation, LLC",3
+05000397,Columbia Generating Station,1,BWR,General Electric,,NPF-21,"20 mi NNE of Pasco, WA","Energy Northwest",4
+05000445,Comanche Peak,1,PWR,,,NPF-87,"40 mi SW of Fort Worth, TX","Vistra Operations Company, LLC",4
+05000446,Comanche Peak,2,PWR,,,NPF-89,"40 mi SW of Fort Worth, TX","Vistra Operations Company, LLC",4
+05000298,Cooper,1,BWR,General Electric,,DPR-46,"23 mi S of Nebraska City, NE","Nebraska Public Power District",4
+05000315,D.C. Cook,1,PWR,,,DPR-58,"13 mi S of Benton Harbor, MI","Indiana/Michigan Power Co.",3
+05000316,D.C. Cook,2,PWR,,,DPR-74,"13 mi S of Benton Harbor, MI","Indiana/Michigan Power Co.",3
+05000346,Davis-Besse,1,PWR,,,NPF-3,"21 mi ESE of Toledo, OH","Energy Harbor Nuclear Corp.",3
+05000275,Diablo Canyon,1,PWR,,,DPR-80,"12 mi WSW of San Luis Obispo, CA","Pacific Gas & Electric Co.",4
+05000323,Diablo Canyon,2,PWR,,,DPR-82,"12 mi WSW of San Luis Obispo, CA","Pacific Gas & Electric Co.",4
+05000237,Dresden,2,BWR,General Electric,2957,DPR-19,"25 mi SW of Joliet, IL","Constellation Energy Generation, LLC",3
+05000249,Dresden,3,BWR,General Electric,,DPR-25,"25 mi SW of Joliet, IL","Constellation Energy Generation, LLC",3
+05000348,Farley,1,PWR,,,NPF-2,"18 mi E of Dothan, AL","Southern Nuclear Operating Co.",2
+05000364,Farley,2,PWR,,,NPF-8,"18 mi E of Dothan, AL","Southern Nuclear Operating Co.",2
+05000341,Fermi,2,BWR,General Electric,,NPF-43,"25 mi NE of Toledo, OH","DTE Electric Company",3
+05000333,FitzPatrick,1,BWR,General Electric,,DPR-59,"6 mi NE of Oswego, NY","Constellation Energy Generation, LLC",1
+05000244,Ginna,1,PWR,,,DPR-18,"20 mi NE of Rochester, NY","Constellation Energy Generation, LLC",1
+05000416,Grand Gulf,1,BWR,General Electric,,NPF-29,"20 mi S of Vicksburg, MS","Entergy Nuclear Operations, Inc.",4
+05000321,Hatch,1,BWR,General Electric,,DPR-57,"20 mi S of Vidalia, GA","Southern Nuclear Operating Co., Inc.",2
+05000366,Hatch,2,BWR,General Electric,,NPF-5,"20 mi S of Vidalia, GA","Southern Nuclear Operating Co., Inc.",2
+05000354,Hope Creek,1,BWR,General Electric,,NPF-57,"18 mi SE of Wilmington, DE","PSEG Nuclear, LLC",1
+05000373,La Salle,1,BWR,General Electric,,NPF-11,"11 mi SE of Ottawa, IL","Constellation Energy Generation, LLC",3
+05000374,La Salle,2,BWR,General Electric,,NPF-18,"11 mi SE of Ottawa, IL","Constellation Energy Generation, LLC",3
+05000352,Limerick,1,BWR,General Electric,,NPF-39,"21 mi NW of Philadelphia, PA","Constellation Energy Generation, LLC",1
+05000353,Limerick,2,BWR,General Electric,,NPF-85,"21 mi NW of Philadelphia, PA","Constellation Energy Generation, LLC",1
+05000369,McGuire,1,PWR,,,NPF-9,"17 mi N of Charlotte, NC","Duke Energy Carolinas, LLC",2
+05000370,McGuire,2,PWR,,,NPF-17,"17 mi N of Charlotte, NC","Duke Energy Carolinas, LLC",2
+05000336,Millstone,2,PWR,,,DPR-65,"3.2 mi WSW of New London, CT","Dominion Generation",1
+05000423,Millstone,3,PWR,,,NPF-49,"3.2 mi WSW of New London, CT","Dominion Generation",1
+05000263,Monticello,1,BWR,General Electric,,DPR-22,"35 mi NW of Minneapolis, MN","Northern States Power Company - Minnesota",3
+05000220,Nine Mile Point,1,BWR,General Electric,,DPR-63,"6 mi NE of Oswego, NY","Constellation Energy Generation, LLC",1
+05000410,Nine Mile Point,2,BWR,General Electric,,NPF-69,"6 mi NE of Oswego, NY","Constellation Energy Generation, LLC",1
+05000338,North Anna,1,PWR,,,NPF-4,"40 mi NW of Richmond, VA","Dominion Generation",2
+05000339,North Anna,2,PWR,,,NPF-7,"40 mi NW of Richmond, VA","Dominion Generation",2
+05000269,Oconee,1,PWR,,,DPR-38,"30 mi W of Greenville, SC","Duke Energy Carolinas, LLC",2
+05000270,Oconee,2,PWR,,,DPR-47,"30 mi W of Greenville, SC","Duke Energy Carolinas, LLC",2
+05000287,Oconee,3,PWR,,,DPR-55,"30 mi W of Greenville, SC","Duke Energy Carolinas, LLC",2
+05000255,Palisades,1,PWR,,,DPR-20,"5 mi S of South Haven, MI","Holtec Palisades, LLC",3
+05000528,Palo Verde,1,PWR,,,NPF-41,"50 mi W of Phoenix, AZ","Arizona Public Service Co.",4
+05000529,Palo Verde,2,PWR,,,NPF-51,"50 mi W of Phoenix, AZ","Arizona Public Service Co.",4
+05000530,Palo Verde,3,PWR,,,NPF-74,"50 mi W of Phoenix, AZ","Arizona Public Service Co.",4
+05000277,Peach Bottom,2,BWR,General Electric,,DPR-44,"17.9 mi S of Lancaster, PA","Constellation Energy Generation, LLC",1
+05000278,Peach Bottom,3,BWR,General Electric,,DPR-56,"17.9 mi S of Lancaster, PA","Constellation Energy Generation, LLC",1
+05000440,Perry,1,BWR,General Electric,,NPF-58,"35 mi NE of Cleveland, OH","FirstEnergy Nuclear Operating Co.",3
+05000266,Point Beach,1,PWR,,,DPR-24,"13 mi NNW of Manitowoc, WI","NextEra Energy Point Beach, LLC",3
+05000301,Point Beach,2,PWR,,,DPR-27,"13 mi NNW of Manitowoc, WI","NextEra Energy Point Beach, LLC",3
+05000282,Prairie Island,1,PWR,,,DPR-42,"28 mi SE of Minneapolis, MN","Northern States Power Company - Minnesota",3
+05000306,Prairie Island,2,PWR,,,DPR-60,"28 mi SE of Minneapolis, MN","Northern States Power Company - Minnesota",3
+05000254,Quad Cities,1,BWR,General Electric,2957,DPR-29,"20 mi NE of Moline, IL","Constellation Energy Generation, LLC",3
+05000265,Quad Cities,2,BWR,General Electric,,DPR-30,"20 mi NE of Moline, IL","Constellation Energy Generation, LLC",3
+05000458,River Bend,1,BWR,General Electric,,NPF-47,"24 mi NNW of Baton Rouge, LA","Entergy Nuclear Operations, Inc.",4
+05000261,Robinson,2,PWR,,,DPR-23,"26 mi NW of Florence, SC","Duke Energy Progress, LLC",2
+05000335,Saint Lucie,1,PWR,,,DPR-67,"10 mi SE of Ft. Pierce, FL","Florida Power & Light Co.",2
+05000389,Saint Lucie,2,PWR,,,NPF-16,"10 mi SE of Ft. Pierce, FL","Florida Power & Light Co.",2
+05000272,Salem,1,PWR,,,DPR-70,"18 mi S of Wilmington, DE","PSEG Nuclear, LLC",1
+05000311,Salem,2,PWR,,,DPR-75,"18 mi S of Wilmington, DE","PSEG Nuclear, LLC",1
+05000443,Seabrook,1,PWR,,,NPF-86,"13 mi S of Portsmouth, NH","NextEra Energy Seabrook, LLC",1
+05000327,Sequoyah,1,PWR,,,DPR-77,"16 mi NE of Chattanooga, TN","Tennessee Valley Authority",2
+05000328,Sequoyah,2,PWR,,,DPR-79,"16 mi NE of Chattanooga, TN","Tennessee Valley Authority",2
+05000400,Shearon Harris,1,PWR,,,NPF-63,"20 mi SW of Raleigh, NC","Duke Energy Progress, LLC",2
+05000498,South Texas,1,PWR,,,NPF-76,"90 mi SW of Houston, TX","STP Nuclear Operating Co.",4
+05000499,South Texas,2,PWR,,,NPF-80,"90 mi SW of Houston, TX","STP Nuclear Operating Co.",4
+05000395,Summer,1,PWR,,,NPF-12,"26 mi NW of Columbia, SC","South Carolina Electric & Gas Co.",2
+05000280,Surry,1,PWR,,,DPR-32,"17 mi NW of Newport News, VA","Dominion Generation",2
+05000281,Surry,2,PWR,,,DPR-37,"17 mi NW of Newport News, VA","Dominion Generation",2
+05000387,Susquehanna,1,BWR,General Electric,,NPF-14,"70 mi NE of Harrisburg, PA","Susquehanna Nuclear, LLC",1
+05000388,Susquehanna,2,BWR,General Electric,,NPF-22,"70 mi NE of Harrisburg, PA","Susquehanna Nuclear, LLC",1
+05000250,Turkey Point,3,PWR,,,DPR-31,"20 mi S of Miami, FL","Florida Power & Light Co.",2
+05000251,Turkey Point,4,PWR,,,DPR-41,"20 mi S of Miami, FL","Florida Power & Light Co.",2
+05000424,Vogtle,1,PWR,,,NPF-68,"26 mi SE of Augusta, GA","Southern Nuclear Operating Co.",2
+05000425,Vogtle,2,PWR,,,NPF-81,"26 mi SE of Augusta, GA","Southern Nuclear Operating Co.",2
+05200025,Vogtle,3,PWR,Westinghouse,,NPF-91,"26 mi SE of Augusta, GA","Southern Nuclear Operating Co.",2
+05200026,Vogtle,4,PWR,Westinghouse,,NPF-92,"26 mi SE of Augusta, GA","Southern Nuclear Operating Co.",2
+05000382,Waterford,3,PWR,,,NPF-38,"25 mi W of New Orleans, LA","Entergy Nuclear Operations, Inc.",4
+05000390,Watts Bar,1,PWR,,,NPF-90,"60 mi SW of Knoxville, TN","Tennessee Valley Authority",2
+05000391,Watts Bar,2,PWR,,,NPF-96,"60 mi SW of Knoxville, TN","Tennessee Valley Authority",2
+05000482,Wolf Creek,1,PWR,,,NPF-42,"3.5 mi NE of Burlington, KS","Wolf Creek Nuclear Operating Corp.",4

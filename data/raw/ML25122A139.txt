@@ -1,0 +1,282 @@
+
+Constellation 
+
+10 CFR 50.73 
+
+LG-25-082 
+
+May 2, 2025 
+
+U.S. Nuclear Regulatory Commission 
+ATTN: Document Control Desk 
+Washington, DC 20555-0001 
+
+Limerick Generating Station, Unit 2 
+Renewed Facility Operating License No. NPF-85 
+NRC Docket No. 50-353 
+
+Subject: LER 2025-001-00 HPCI Valve Isolated During a Surveillance Test Due to a Degraded 
+Test Connector 
+
+In accordance with the requirements of 10 CFR 50.73(a)(2)(v)(D), Limerick Generating Station 
+hereby submits the enclosed Licensee Event Report. 
+
+There are no commitments contained in this letter. 
+
+If you have any questions, please contact Jordan Rajan at (610) 718-3400. 
+
+Respectfully, 
+
+Michael F. Gillin 
+Vice President - Limerick Generating Station 
+Constellation Energy Generation, LLC 
+
+cc: Administrator Region I, USNRC 
+USNRC Senior Resident Inspector, Limerick Generating Station 
+
+
+
+NRC FORM366 U.S. NUCLEAR REGULATORY COMMISSION APPROVED BY 0MB: NO. 3150-0104 EXPIRES: 04130/2027 
+(04-02-2024) 
+
+Eslirnatsd bunion p0< rOS!)OOse lo "'"'II~ will! this mandatory ool!oclion request ao hoo1$. Reported loosoll• 
+
+✓---- LICENSEE EVENT REPORT (LER) 
+loamed on, 11corpcnted into Ille ,...,,.,g pr...,.. and fed bacl< to indust,y. Send comments regarding bu,dan 
+
+, ~ J,.. osirnat& ti the FOIA, li>r"')', and lnformalion Coll&ctiona &anclr (T-6 A10M}, U. S. Nlrd .. , Ragulalay , i Comnission, Wa<hinglon, DC iom-0001, or by email lo lnfoooleclsRo..,.rr;e@nrc.gOY, and tho OM! ,..,._ 
+\ I !See Page 2 for required number of d lg Its/characters for each block► at 0MB OOoa ol ln1or....u,n and Regulolory Affair>, (3150-0104), Al!n: Deal. Officer for 1ho Nuclrlar Regulalay ..... (See NUREG-1O22, R.3 for Instruction and guidance for completing thiS form Comnissia1, 725 17th S1nlel NW, Wuhinglon, DC 20503. The NRC may not a,nduct o, sponsor, and a po!W1 Is 
+
+btt,.rl.ll/il/J'.lll ari;.g2:.-tc1:s1di09-cm/dgc-collec§ga:ilauc1:g:il~t.1fl~cl Q22LQO not required lo respond 1o, • coloclion of infonoation uni... th• document requesting 01 n,quinng the oollaction 
+di,plays a ournwrtly valid 0MB a,nfrol number. 
+
+1. Facility Name [!] 050 2. Docket Number 3. Page 
+
+Limerick Generating Station, Unit 2 □ 052 353 1 OF 3 
+
+4. Title 
+
+HPCI Valve Isolated During a Surveillance Test Due to a Degraded Test Connector 
+
+5. Event Date 6. LER Number 7. Report Date 8. Other Facilities Involved 
+
+Month D■y Year Year 
+Sequential Revision 
+
+Month Day Year 
+Faelllly Nam• 
+
+□ 
+Docket Number 
+
+Number No. 050 
+
+03 03 2025 2025 - 001 - 00 05 02 2025 Faeillly Nam• 
+
+□ 
+Docket Number 
+
+052 
+
+9. Operating Mode 110. Power Level 
+1 100 
+
+11. This Report is Submitted Pursuant to the Requirements of 10 CFR §: (Check. all that apply) 
+
+10 CFR Part 20 □ 20.2203(a)(2)(vi) 10 CFR Part SO □ 50. 73(a)(2)( ll)(A) □ 50.73(a)(2)(vlll)(A) □ 73.1200(a) 
+
+□ 20.2201(b) □ 20.2203{a)(3)(i) □ 50. 36( Cl(1 )(l)(A) □ 50.73(a)(2)1ll)(B) □ 50.73(a)(2)(Vlli}(B) □ 73.1200(b) 
+
+□ 20.22D1(d) □ 20.2203(a)(3)(1i) □ 50. 36(CI( 1 Jlil)(AJ □ so. 73(a)(2)( Iii) □ 50.73(a)(2}(ix)(A) □ 73.1200(C) 
+
+□ 20.2203(a)(1) □ 20.2203(a)(4) □ 50.36(cl(2) □ 50.73(a)(2)(1v)(A) □ 50. 73(a)(2)(x) □ 73.1200(d) 
+
+□ 20.2203(a)(2)(i) 10 CFR Part 21 □ 50.46(a)(3J(IIJ □ 50.73(a)(2)(v)(A) 10 CFR Part 73 □ 73.1200(8) 
+
+□ 20. 2203(a)(2)(1i) □ 21.2(cl □ 50.69(g) □ 50.73(a)(2)(v)(B) □ 73.77(a)(1) □ 73.1200(f) 
+
+□ 20.2203(a)(2)(i ii) □ 50.73(al(2)(i)(A) □ 50. 73(a)(2)M(C) □ 73.77(a)(2)(i) □ 73.1200(g) 
+
+□ 20.2203(a)(2)(iv) □ 50.73(al(2)(i)(B) [Z] 50.73(a)(2)(v)(D) □ 73. 77(a)(2)(ii) □ 73.1200(h) 
+
+□ 20.2203(a)(2}(v) □ 50.73(a)(2J(i)(C) □ 50.73(a)(2)(vii) 
+
+□ OTHER (Specify here, in abstract. or NRC 366A}. 
+
+12. Licensee Contact for this LER 
+
+Licensee Contact Phone Number (Include area code) 
+
+Jordan Rajan 610-718-3400 
+
+13. Complete One Line for each Component Failure Described in this Report 
+
+Cause System Component Manufacturer Reportable to IRIS Cause System Component Manufacturer Reportable to IRIS 
+
+B BJ Yes 
+
+14. Supplemental Report Expected Month Cay Year 
+
+□ 
+16. Expected Submission Date 
+
+0 No Yes (If yes, complete 15. Expected Submission Date) 
+
+16. Abstract (Limit to 1326 spaces, i.e., appro~imately 13 singl&-spaced typewritten lines) 
+
+On March 03, 2025, at 10:44 during planned surveillance testing, the High Pressure Coolant Injection (HPCI) system Turbine 
+Exhaust Line Vacuum Breaker Outboard primary containment isolation valve (PCIV) closed. The valve closed due to a 
+degraded cannon plug connector that caused a short within the Emergency Core Cooling System (ECCS) Contact Test Unit 
+being used for the test. The test equipment was removed, and the valve was re-opened. This event is being reported because it 
+resulted in an unplanned inoperability of a single train safety system that could have prevented fulfillment of a safety function. 
+An eight (8) hour ENS notification was completed on March 03, 2025, at 18:09 (ENS 57582). 
+
+
+
+NRC FORM 366A 
+(04-02-2024> 
+
+U.S. NUCLEAR REGULATORY COMMISSION APPROVED BY 0MB: NO. 3150-0104 EXPIRES: 04/30/2027 
+
+LICENSEE EVENT REPORT (LER) 
+CONTINUATION SHEET 
+
+(See NUREG-1022, R.3 for instruction and guidance for completing this form 
+http:l/www.nrc govtreadjng-rmtdoc-collectionslnuregs/staff/sr10221r3/l 
+
+1. FACILITY NAME ~------------~oo 050 
+
+Limerick Generating Station, Unit 2 
+□ 052 
+
+NARRATIVE 
+
+Unit Condition Prior to the Event 
+
+I 
+
+Estimated burden per response to oomply with this mandatory collection request: 00 tiours. Reported 
+lesso11S learned are incorporated into the licensing process and red back to industry. Send comments 
+regarding burden estimate to Ille FOIA, Library, and lnfonmatioo Collecllons Brandl (T-6 A 10Ml, U. S. 
+Nuclear Regulatory Commission, Washington, DC 20555-0001, or by email to 
+lnfocollects.Resourte@nrc.gov, and the 0MB reviewer al: 0MB Office of Information and Regulatory 
+Affairs, (3150-0104), Attn: Desk Officer for the Nudear Regulatory Commission, 72517th Street NW, 
+Washington, DC 20503. The NRC may not conduct or sponsor. and a person is not required lo 
+respond to, a collection of information unless the document requesting or requiring Ille collection 
+displays a C1Jrrenlly valid 0MB conlrol number. 
+
+2. DOCKET NUMBER 3. LER NUMBER 
+
+353 
+
+r::::7 NUMBER NO. 
+
+I 
+
+YEAR SEQUENTIAL REV 
+
+~-I 001 1-0 
+
+Prior to the event, Unit 2 was in Operational Condition (OPCON) 1 (Power Operation) at approximately 100% power. There 
+were no other structures, systems, or components out of service that contributed to this event. 
+
+Description of the Event 
+
+On March 03, 2025, a surveillance test was being conducted for Unit 2 High Pressure Coolant Injection (HPCI) System (BJ] 
+to verify that the HPCI logic circuit actuated on a simulated HPCI Steam Supply Pressure- Low signal. At 10:44, the HPCI 
+Turbine Exhaust Line Vacuum Breaker Outboard primary containment isolation valve (PCIV) closed and the HPCI system 
+was declared inoperable. 
+
+The test was aborted by removing the ECCS Contact Test Unit (test box), resetting the isolation, and restoring operability of 
+the system. The HPCI System was returned to service on March 03, 2025, at 13:51. An eight (8) hour ENS notification 
+(57582) was completed on March 03, 2025, at 18:09 hours. 
+
+Analysis of the Event 
+
+The HPCI System was operable during the performance of the instrument testing. The Limerick Technical Specifications 
+allows the system to remain operable for up to eight hours during the instrument testing provided at least one operable 
+channel in the same trip system is monitoring that parameter. 
+
+During the instrument testing, when the isolation signal was actuated (Low Steam Line Pressure) the HPCI Turbine Exhaust 
+Line Vacuum Breaker Outboard PCIV closed rendering HPCI inoperable. Immediately following the isolation, the ECCS 
+Contact Test Unit was removed from the HPCI System circuit by unplugging the cannon plug from the panel. Resistance 
+checks were performed of the unit and one electrical short circuit was found. This electrical short circuit resulted in the 
+closure of HPCI Turbine Exhaust Line Vacuum Breaker Outboard PCIV. 
+
+Safety Consequence 
+
+There was no actual safety consequences associated with this event and the potential safety consequences of this event 
+were minimal. The Reactor Core Isolation {RCIC) System, Automatic Depressurization System (ADS), Residual Heat 
+Removal (RHR) System, and Core Spray (CS) System remained operable during the period that HPCI was inoperable. 
+
+This condition resulted in a loss of safety function for the HPCI System and is reportable per 10 CFT 50. 73(a)(2)(v)(D). 
+
+Cause of the Event 
+
+The cannon plug connector was degraded resulting in a short within the ECCS Contact Test Unit. 
+
+NRC FORM 366A (04-02-2024) Page 2 of 3 
+
+
+
+NRC FORM 366A 
+(01-02-2024) 
+
+U.S. NUCLEAR REGULATORY COMMISSION APPROVED BY 0MB: NO. 3150-0104 EXPIRES: 04/30/2027 
+
+LICENSEE EVENT REPORT (LER) 
+CONTINUATION SHEET 
+
+(See NUREG-1022, R.3 for instruction and guidance for completing this fonn 
+bl1o:flwww,nrc gov/reading-rmldoc-collections/nuregs/stafftsr1 0221r3/) 
+
+1. FACILITY NAME 
+050 
+
+Limerick Generating Station, Unit 2 
+□ 052 
+
+NARRATIVE 
+
+Corrective Actions Completed 
+
+Estimated burden per response to oompl')' willl lllis mandatory oolleclion request: 80 hour... Reported 
+lessons learned are incorpora!Bd into the licens/lYJ process and fed back lo industry. Send comments 
+regarding burden estimate 10 the FOIA, Library, and Information Collections Branch (T-6 At0MJ. U.S. 
+Nuclear Regulato,y Commission, Washington. DC 20555-0001, or by emal to 
+lnfocollects.Resource@nrc.gov, and the 0MB reviewer at 0MB Office of Information and Regulati:uy 
+Affairs. (3150-0104), Attn: Desk Officer for Ille Nuclear Regulatory Commission, 725 17th Street NW. 
+Washington. DC 20503. The NRG may not conduct or sponsor. and a person is not required to 
+resi;ond to, a collection of information unless Ille document requesting or requiring lhe collection 
+displays a currentty valid 0MB control number. 
+
+2. DOCKET NUMBER 3. LER NUMBER 
+
+353 
+
+C::7 NUMBER NO. 
+
+I 
+
+YEAR SEQUENTIAL REV 
+
+~-, 001 1-0 
+
+The ECCS Contact Test Unit was immediately quarantined and the cannon plug connector was replaced. 
+
+Corrective Actions Planned 
+
+- Replace cannon plug connectors on all ECCS Contact Test Units. 
+- Evaluate change in PM strategy/testing on ECCS Contact Test Units. 
+
+Previous Similar Occurrences 
+
+LER 1-2022-001 Unit 1 HPCI Inoperable Due to Inadvertent Isolation Signal 
+
+Component Data: 
+
+System: BJ High Pressure Coolant Injection System 
+
+NRC FORM 366A (04-02-2024) Page 3 of 3 
+
+

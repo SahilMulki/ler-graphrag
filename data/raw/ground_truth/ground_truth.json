@@ -1,0 +1,980 @@
+{
+  "schema_version": "v4.1",
+  "description": "Ground-truth oracle for the three hand-marked LERs. Each record's shape mirrors the intended per-LER extraction output.",
+  "matching_notes": [
+    "Match coded System/Component nodes on match_key = 'Type:eiis_code[|identifier]'.",
+    "Match un-coded nodes (FailureMode/Consequence/CorrectiveAction/Cause) on match_key = 'Type:name-slug'; scorer should allow fuzzy/semantic name matching for these.",
+    "Match edges as (source.match_key, relation, target.match_key) triples.",
+    "Dresden cause/block-13 are provisional (TBD): do not penalize missing codes there.",
+    "Limerick PCIV code ISV vs V: accept either."
+  ],
+  "lers": [
+    {
+      "ler_number": "254-2025-006-00",
+      "identity": {
+        "accession_number": "ML25308A004",
+        "docket": "05000254",
+        "plant_name": "Quad Cities Nuclear Power Station",
+        "unit": 1,
+        "reactor_type": "BWR",
+        "nss_vendor": "General Electric",
+        "event_date": "2025-09-05",
+        "report_date": "2025-11-04",
+        "operating_mode": "1",
+        "power_level": 100,
+        "discovery_context": "operability test",
+        "status": "final",
+        "revision": "00",
+        "ens_number": "57905",
+        "ens_date": "2025-09-05",
+        "ens_time": null,
+        "title": "HPCI Inoperable Due to Turbine Inlet Valve Failure to Open"
+      },
+      "reporting_basis": {
+        "reported_under": [
+          "10 CFR 50.73(a)(2)(v)(D)"
+        ],
+        "ssff": "Y"
+      },
+      "block_13": [
+        {
+          "cause": "A",
+          "system": "BJ",
+          "component": "BKR",
+          "manufacturer": "C770",
+          "reportable": "Y"
+        }
+      ],
+      "cause": {
+        "proximate_text": "inadequate maintenance strategy applied to the breaker; a PM task that inspected/cleaned/lubricated the breaker contactors was retired, allowing contactor lubrication to degrade",
+        "cause_code": "A",
+        "category": "Personnel Error",
+        "theme": "PM-program weakness",
+        "provisional": false
+      },
+      "nodes": [
+        {
+          "id": "ler",
+          "type": "LER",
+          "key": "254-2025-006-00",
+          "display_name": "LER 254-2025-006-00",
+          "match_key": "LER:254-2025-006-00"
+        },
+        {
+          "id": "unit",
+          "type": "Unit",
+          "key": "05000254",
+          "display_name": "Quad Cities Unit 1",
+          "match_key": "Unit:05000254"
+        },
+        {
+          "id": "cause",
+          "type": "Cause",
+          "display_name": "Personnel Error (A)",
+          "cause_code": "A",
+          "category": "Personnel Error",
+          "theme": "PM-program weakness",
+          "provisional": false,
+          "match_key": "Cause:Personnel Error"
+        },
+        {
+          "id": "sys_bj",
+          "type": "System",
+          "display_name": "High Pressure Coolant Injection",
+          "eiis_code": "BJ",
+          "properties": {
+            "note": "steam-driven ECCS"
+          },
+          "match_key": "System:BJ"
+        },
+        {
+          "id": "sys_bn",
+          "type": "System",
+          "display_name": "Reactor Core Isolation Cooling",
+          "eiis_code": "BN",
+          "properties": {
+            "role": "backup; operable"
+          },
+          "match_key": "System:BN"
+        },
+        {
+          "id": "sys_ads",
+          "type": "System",
+          "display_name": "Automatic Depressurization System",
+          "eiis_code": null,
+          "properties": {
+            "role": "backup; operable",
+            "non_eiis": true,
+            "provisional": true
+          },
+          "match_key": "System:automatic-depressurization-system"
+        },
+        {
+          "id": "c_mov",
+          "type": "Component",
+          "display_name": "Turbine Inlet MOV 1-2301-3",
+          "eiis_code": "V",
+          "identifier": "1-2301-3",
+          "match_key": "Component:V|1-2301-3"
+        },
+        {
+          "id": "c_bkr",
+          "type": "Component",
+          "display_name": "Electrical breaker (feeds MOV)",
+          "eiis_code": "BKR",
+          "properties": {
+            "manufacturer_code": "C770"
+          },
+          "match_key": "Component:BKR"
+        },
+        {
+          "id": "c_coil",
+          "type": "Component",
+          "display_name": "Opening coil",
+          "eiis_code": "CL",
+          "match_key": "Component:CL"
+        },
+        {
+          "id": "c_roll",
+          "type": "Component",
+          "display_name": "Roller assembly",
+          "eiis_code": null,
+          "match_key": "Component:roller-assembly"
+        },
+        {
+          "id": "c_tor",
+          "type": "Component",
+          "display_name": "Thermal overload relay / overload coil",
+          "eiis_code": null,
+          "properties": {
+            "model": "H1029"
+          },
+          "match_key": "Component:thermal-overload-relay-overload-coil"
+        },
+        {
+          "id": "fm_contactor",
+          "type": "FailureMode",
+          "display_name": "Contactor lubrication degraded",
+          "match_key": "FailureMode:contactor-lubrication-degraded"
+        },
+        {
+          "id": "fm_coilfail",
+          "type": "FailureMode",
+          "display_name": "Opening coil failed / rollers binding",
+          "match_key": "FailureMode:opening-coil-failed-rollers-binding"
+        },
+        {
+          "id": "fm_movfail",
+          "type": "FailureMode",
+          "display_name": "MOV failed to open",
+          "match_key": "FailureMode:mov-failed-to-open"
+        },
+        {
+          "id": "cons_hpci",
+          "type": "Consequence",
+          "display_name": "HPCI inoperable / unable to inject",
+          "properties": {
+            "start": "2025-09-04T18:45",
+            "end": "2025-09-05T22:28",
+            "duration": "27:43"
+          },
+          "match_key": "Consequence:hpci-inoperable-unable-to-inject"
+        },
+        {
+          "id": "ca_coil",
+          "type": "CorrectiveAction",
+          "display_name": "Replace coil",
+          "properties": {
+            "status": "completed"
+          },
+          "match_key": "CorrectiveAction:replace-coil"
+        },
+        {
+          "id": "ca_relube",
+          "type": "CorrectiveAction",
+          "display_name": "Clean & relubricate rollers",
+          "properties": {
+            "status": "completed"
+          },
+          "match_key": "CorrectiveAction:clean-relubricate-rollers"
+        },
+        {
+          "id": "ca_maint",
+          "type": "CorrectiveAction",
+          "display_name": "Revise breaker maintenance strategy",
+          "properties": {
+            "status": "planned"
+          },
+          "match_key": "CorrectiveAction:revise-breaker-maintenance-strategy"
+        },
+        {
+          "id": "ca_teach",
+          "type": "CorrectiveAction",
+          "display_name": "Engineering teaching/learning",
+          "properties": {
+            "status": "planned"
+          },
+          "match_key": "CorrectiveAction:engineering-teaching-learning"
+        },
+        {
+          "id": "mfr_eaton",
+          "type": "Manufacturer",
+          "display_name": "Eaton / QualTech NP",
+          "code": "C770",
+          "match_key": "Manufacturer:C770"
+        },
+        {
+          "id": "rr_5073",
+          "type": "RegulatoryReference",
+          "display_name": "10 CFR 50.73(a)(2)(v)(D)",
+          "properties": {
+            "type": "reporting-criterion"
+          },
+          "match_key": "RegulatoryReference:10-cfr-50-73-a-2-v-d"
+        },
+        {
+          "id": "rr_ufsar",
+          "type": "RegulatoryReference",
+          "display_name": "UFSAR Ch 15",
+          "properties": {
+            "type": "analysis-basis"
+          },
+          "match_key": "RegulatoryReference:ufsar-ch-15"
+        },
+        {
+          "id": "rr_nei",
+          "type": "RegulatoryReference",
+          "display_name": "NEI 99-02 Rev 8",
+          "properties": {
+            "type": "standard/guidance"
+          },
+          "match_key": "RegulatoryReference:nei-99-02-rev-8"
+        }
+      ],
+      "edges": [
+        {
+          "source": "ler",
+          "relation": "OCCURRED_AT",
+          "target": "unit"
+        },
+        {
+          "source": "ler",
+          "relation": "REPORTED_UNDER",
+          "target": "rr_5073"
+        },
+        {
+          "source": "ler",
+          "relation": "INVOLVES",
+          "target": "sys_bj"
+        },
+        {
+          "source": "c_mov",
+          "relation": "PART_OF",
+          "target": "sys_bj"
+        },
+        {
+          "source": "fm_contactor",
+          "relation": "CAUSED_BY",
+          "target": "cause"
+        },
+        {
+          "source": "fm_contactor",
+          "relation": "LEADS_TO",
+          "target": "fm_coilfail"
+        },
+        {
+          "source": "fm_coilfail",
+          "relation": "LEADS_TO",
+          "target": "fm_movfail"
+        },
+        {
+          "source": "fm_movfail",
+          "relation": "LEADS_TO",
+          "target": "cons_hpci"
+        },
+        {
+          "source": "cons_hpci",
+          "relation": "BACKED_UP_BY",
+          "target": "sys_bn"
+        },
+        {
+          "source": "cons_hpci",
+          "relation": "BACKED_UP_BY",
+          "target": "sys_ads"
+        },
+        {
+          "source": "ler",
+          "relation": "MITIGATED_BY",
+          "target": "ca_coil"
+        },
+        {
+          "source": "ler",
+          "relation": "MITIGATED_BY",
+          "target": "ca_relube"
+        },
+        {
+          "source": "ler",
+          "relation": "MITIGATED_BY",
+          "target": "ca_maint"
+        },
+        {
+          "source": "ler",
+          "relation": "MITIGATED_BY",
+          "target": "ca_teach"
+        },
+        {
+          "source": "c_tor",
+          "relation": "MANUFACTURED_BY",
+          "target": "mfr_eaton"
+        }
+      ],
+      "chain": "inadequate maintenance strategy [cause A] -> contactor lubrication degraded -> opening coil fails / rollers bind -> breaker can't power MOV -> MOV won't open -> HPCI inoperable (27h43m) [backups RCIC, ADS available]",
+      "golden_questions": [
+        "Q1",
+        "Q3",
+        "Q4",
+        "Q14"
+      ],
+      "notes": "Event-date discrepancy: form block 5 = 2025-09-05 used over abstract's Sept 4. Cause code A governs category despite maintenance-heavy narrative (theme captures PM angle). Breaker->MOV is a power relationship, not containment -> no PART_OF. H1029 overload coil likely same subsystem as breaker opening coil. QC source LER not yet reviewed against text; this record is from the hand-marked answer key."
+    },
+    {
+      "ler_number": "237-2025-003-00",
+      "identity": {
+        "accession_number": "ML26022A036",
+        "docket": "05000237",
+        "plant_name": "Dresden Nuclear Power Station",
+        "unit": 2,
+        "reactor_type": "BWR",
+        "nss_vendor": "General Electric",
+        "event_date": "2025-11-17",
+        "report_date": "2026-01-15",
+        "operating_mode": "2",
+        "power_level": 2,
+        "discovery_context": "normal operation",
+        "status": "supplement-expected",
+        "revision": "00",
+        "ens_number": "58043",
+        "ens_date": "2025-11-17",
+        "ens_time": "2328 CST",
+        "title": "High Pressure Coolant Injection Inoperable Due to Failed Indicating Light and Blown Fuse"
+      },
+      "reporting_basis": {
+        "reported_under": [
+          "10 CFR 50.73(a)(2)(v)(D)"
+        ],
+        "ssff": "not stated"
+      },
+      "block_13": [
+        {
+          "cause": "TBD",
+          "system": "BJ",
+          "component": "TBD",
+          "manufacturer": "TBD",
+          "reportable": "Y"
+        },
+        {
+          "cause": "TBD",
+          "system": "BJ",
+          "component": "TBD",
+          "manufacturer": "TBD",
+          "reportable": "Y"
+        }
+      ],
+      "cause": {
+        "proximate_text": "damaged indicating-light socket and a blown negative 125 VDC fuse occurring when the HPCI Turbine Turning Gear engaged; the fuse is required for steam-turbine initiation",
+        "cause_code": "TBD",
+        "category": "provisional",
+        "theme": null,
+        "provisional": true
+      },
+      "nodes": [
+        {
+          "id": "ler",
+          "type": "LER",
+          "key": "237-2025-003-00",
+          "display_name": "LER 237-2025-003-00",
+          "match_key": "LER:237-2025-003-00"
+        },
+        {
+          "id": "unit",
+          "type": "Unit",
+          "key": "05000237",
+          "display_name": "Dresden Unit 2",
+          "match_key": "Unit:05000237"
+        },
+        {
+          "id": "cause",
+          "type": "Cause",
+          "display_name": "Provisional (TBD)",
+          "cause_code": "TBD",
+          "category": "provisional",
+          "provisional": true,
+          "match_key": "Cause:provisional"
+        },
+        {
+          "id": "sys_bj",
+          "type": "System",
+          "display_name": "High Pressure Coolant Injection",
+          "eiis_code": "BJ",
+          "match_key": "System:BJ"
+        },
+        {
+          "id": "sys_bl",
+          "type": "System",
+          "display_name": "Isolation Condenser",
+          "eiis_code": "BL",
+          "properties": {
+            "role": "backup; operable"
+          },
+          "match_key": "System:BL"
+        },
+        {
+          "id": "sys_ads",
+          "type": "System",
+          "display_name": "Automatic Depressurization System",
+          "eiis_code": null,
+          "properties": {
+            "role": "backup; operable",
+            "non_eiis": true,
+            "provisional": true
+          },
+          "match_key": "System:automatic-depressurization-system"
+        },
+        {
+          "id": "c_il",
+          "type": "Component",
+          "display_name": "Stop valve indicating light",
+          "eiis_code": "IL",
+          "match_key": "Component:IL"
+        },
+        {
+          "id": "c_fu",
+          "type": "Component",
+          "display_name": "Negative 125 VDC fuse",
+          "eiis_code": "FU",
+          "properties": {
+            "note": "required for steam-turbine initiation"
+          },
+          "match_key": "Component:FU"
+        },
+        {
+          "id": "c_trb",
+          "type": "Component",
+          "display_name": "HPCI Turbine",
+          "eiis_code": "TRB",
+          "match_key": "Component:TRB"
+        },
+        {
+          "id": "c_tgr",
+          "type": "Component",
+          "display_name": "Turning Gear",
+          "eiis_code": "TGR",
+          "match_key": "Component:TGR"
+        },
+        {
+          "id": "c_mo",
+          "type": "Component",
+          "display_name": "Turning Gear Motor",
+          "eiis_code": "MO",
+          "properties": {
+            "note": "turned off without operator action"
+          },
+          "match_key": "Component:MO"
+        },
+        {
+          "id": "c_p",
+          "type": "Component",
+          "display_name": "HPCI pumps",
+          "eiis_code": "P",
+          "match_key": "Component:P"
+        },
+        {
+          "id": "fm_tgeng",
+          "type": "FailureMode",
+          "display_name": "Turning gear engaged",
+          "match_key": "FailureMode:turning-gear-engaged"
+        },
+        {
+          "id": "fm_ilfail",
+          "type": "FailureMode",
+          "display_name": "Indicating-light circuit failed",
+          "match_key": "FailureMode:indicating-light-circuit-failed"
+        },
+        {
+          "id": "fm_fublown",
+          "type": "FailureMode",
+          "display_name": "Negative 125 VDC fuse blown",
+          "match_key": "FailureMode:negative-125-vdc-fuse-blown"
+        },
+        {
+          "id": "cons_notcap",
+          "type": "Consequence",
+          "display_name": "HPCI not capable of injection",
+          "match_key": "Consequence:hpci-not-capable-of-injection"
+        },
+        {
+          "id": "cons_hpci",
+          "type": "Consequence",
+          "display_name": "HPCI inoperable",
+          "properties": {
+            "start": "2025-11-17T16:13",
+            "end": "2025-11-17T22:53",
+            "duration": "06:40",
+            "tz": "CST"
+          },
+          "match_key": "Consequence:hpci-inoperable"
+        },
+        {
+          "id": "ca_isolate",
+          "type": "CorrectiveAction",
+          "display_name": "Isolate failed IL circuit",
+          "properties": {
+            "status": "completed"
+          },
+          "match_key": "CorrectiveAction:isolate-failed-il-circuit"
+        },
+        {
+          "id": "ca_fuse",
+          "type": "CorrectiveAction",
+          "display_name": "Replace blown fuse",
+          "properties": {
+            "status": "completed"
+          },
+          "match_key": "CorrectiveAction:replace-blown-fuse"
+        },
+        {
+          "id": "ca_addl",
+          "type": "CorrectiveAction",
+          "display_name": "Additional CAs from evaluation",
+          "properties": {
+            "status": "planned",
+            "provisional": true
+          },
+          "match_key": "CorrectiveAction:additional-cas-from-evaluation"
+        },
+        {
+          "id": "rr_5073",
+          "type": "RegulatoryReference",
+          "display_name": "10 CFR 50.73(a)(2)(v)(D)",
+          "properties": {
+            "type": "reporting-criterion"
+          },
+          "match_key": "RegulatoryReference:10-cfr-50-73-a-2-v-d"
+        },
+        {
+          "id": "rr_ufsar",
+          "type": "RegulatoryReference",
+          "display_name": "UFSAR Ch 15",
+          "properties": {
+            "type": "analysis-basis"
+          },
+          "match_key": "RegulatoryReference:ufsar-ch-15"
+        }
+      ],
+      "edges": [
+        {
+          "source": "ler",
+          "relation": "OCCURRED_AT",
+          "target": "unit"
+        },
+        {
+          "source": "ler",
+          "relation": "REPORTED_UNDER",
+          "target": "rr_5073"
+        },
+        {
+          "source": "ler",
+          "relation": "INVOLVES",
+          "target": "sys_bj"
+        },
+        {
+          "source": "c_tgr",
+          "relation": "PART_OF",
+          "target": "c_trb"
+        },
+        {
+          "source": "c_mo",
+          "relation": "PART_OF",
+          "target": "c_tgr"
+        },
+        {
+          "source": "fm_tgeng",
+          "relation": "LEADS_TO",
+          "target": "fm_fublown"
+        },
+        {
+          "source": "fm_tgeng",
+          "relation": "LEADS_TO",
+          "target": "fm_ilfail"
+        },
+        {
+          "source": "fm_fublown",
+          "relation": "LEADS_TO",
+          "target": "cons_notcap"
+        },
+        {
+          "source": "fm_ilfail",
+          "relation": "LEADS_TO",
+          "target": "cons_hpci"
+        },
+        {
+          "source": "cons_notcap",
+          "relation": "LEADS_TO",
+          "target": "cons_hpci"
+        },
+        {
+          "source": "fm_fublown",
+          "relation": "CAUSED_BY",
+          "target": "cause"
+        },
+        {
+          "source": "cons_hpci",
+          "relation": "BACKED_UP_BY",
+          "target": "sys_bl"
+        },
+        {
+          "source": "cons_hpci",
+          "relation": "BACKED_UP_BY",
+          "target": "sys_ads"
+        },
+        {
+          "source": "ler",
+          "relation": "MITIGATED_BY",
+          "target": "ca_isolate"
+        },
+        {
+          "source": "ler",
+          "relation": "MITIGATED_BY",
+          "target": "ca_fuse"
+        }
+      ],
+      "chain": "HPCI turbine turning gear engaged -> [indicating-light socket damaged + 125 VDC fuse blown] -> HPCI not capable of injection -> HPCI inoperable (6h40m) [backups Isolation Condenser, ADS available] - root cause under investigation",
+      "golden_questions": [
+        "Q3",
+        "Q13",
+        "Q14"
+      ],
+      "notes": "Provisional LER (supplement due 2026-03-13 will REVISE). Block 13, cause code, component-failure data, final CAs are TBD - do not penalize extraction for null codes here. Verified against source LER: Dresden brackets EIIS codes as [XX]; LPCI [BO] and Core Spray [BM] are design-context only, correctly excluded from BACKED_UP_BY; IC [BL] and ADS are the stated-operable backups. Answer-key nodes table collapses 'not capable of injection' + 'inoperable' into one Consequence; edges (and this oracle) keep them distinct."
+    },
+    {
+      "ler_number": "353-2025-001-00",
+      "identity": {
+        "accession_number": "ML25122A139",
+        "docket": "05000353",
+        "plant_name": "Limerick Generating Station",
+        "unit": 2,
+        "reactor_type": "BWR",
+        "nss_vendor": "General Electric",
+        "event_date": "2025-03-03",
+        "report_date": "2025-05-02",
+        "operating_mode": "1",
+        "power_level": 100,
+        "discovery_context": "surveillance test",
+        "status": "final",
+        "revision": "00",
+        "ens_number": "57582",
+        "ens_date": "2025-03-03",
+        "ens_time": "18:09",
+        "title": "HPCI Valve Isolated During a Surveillance Test Due to a Degraded Test Connector"
+      },
+      "reporting_basis": {
+        "reported_under": [
+          "10 CFR 50.73(a)(2)(v)(D)"
+        ],
+        "ssff": "Y"
+      },
+      "block_13": [
+        {
+          "cause": "B",
+          "system": "BJ",
+          "component": null,
+          "manufacturer": null,
+          "reportable": "Y"
+        }
+      ],
+      "cause": {
+        "proximate_text": "the cannon plug connector was degraded resulting in a short within the ECCS Contact Test Unit",
+        "cause_code": "B",
+        "category": "Design/Manufacturing/Installation",
+        "theme": "test-equipment connector degradation",
+        "provisional": false
+      },
+      "nodes": [
+        {
+          "id": "ler",
+          "type": "LER",
+          "key": "353-2025-001-00",
+          "display_name": "LER 353-2025-001-00",
+          "match_key": "LER:353-2025-001-00"
+        },
+        {
+          "id": "unit",
+          "type": "Unit",
+          "key": "05000353",
+          "display_name": "Limerick Unit 2",
+          "match_key": "Unit:05000353"
+        },
+        {
+          "id": "cause",
+          "type": "Cause",
+          "display_name": "Design/Manufacturing/Installation (B)",
+          "cause_code": "B",
+          "category": "Design/Manufacturing/Installation",
+          "theme": "test-equipment connector degradation",
+          "provisional": false,
+          "match_key": "Cause:Design/Manufacturing/Installation"
+        },
+        {
+          "id": "sys_bj",
+          "type": "System",
+          "display_name": "High Pressure Coolant Injection",
+          "eiis_code": "BJ",
+          "match_key": "System:BJ"
+        },
+        {
+          "id": "sys_bn",
+          "type": "System",
+          "display_name": "Reactor Core Isolation Cooling",
+          "eiis_code": "BN",
+          "properties": {
+            "role": "backup; operable"
+          },
+          "match_key": "System:BN"
+        },
+        {
+          "id": "sys_ads",
+          "type": "System",
+          "display_name": "Automatic Depressurization System",
+          "eiis_code": null,
+          "properties": {
+            "role": "backup; operable",
+            "non_eiis": true,
+            "provisional": true
+          },
+          "match_key": "System:automatic-depressurization-system"
+        },
+        {
+          "id": "sys_bo",
+          "type": "System",
+          "display_name": "Residual Heat Removal",
+          "eiis_code": "BO",
+          "properties": {
+            "role": "backup; operable"
+          },
+          "match_key": "System:BO"
+        },
+        {
+          "id": "sys_bm",
+          "type": "System",
+          "display_name": "Core Spray",
+          "eiis_code": "BM",
+          "properties": {
+            "role": "backup; operable"
+          },
+          "match_key": "System:BM"
+        },
+        {
+          "id": "c_pciv",
+          "type": "Component",
+          "display_name": "Turbine Exhaust Line Vacuum Breaker Outboard PCIV",
+          "eiis_code": "ISV",
+          "properties": {
+            "note": "primary containment isolation valve; code resolver-inferred from description, generic V also acceptable"
+          },
+          "match_key": "Component:ISV"
+        },
+        {
+          "id": "c_cannon",
+          "type": "Component",
+          "display_name": "Cannon plug connector",
+          "eiis_code": null,
+          "properties": {
+            "note": "degraded"
+          },
+          "match_key": "Component:cannon-plug-connector"
+        },
+        {
+          "id": "c_ecctu",
+          "type": "Component",
+          "display_name": "ECCS Contact Test Unit",
+          "eiis_code": null,
+          "properties": {
+            "note": "test equipment"
+          },
+          "match_key": "Component:eccs-contact-test-unit"
+        },
+        {
+          "id": "fm_degraded",
+          "type": "FailureMode",
+          "display_name": "Degraded cannon plug connector",
+          "match_key": "FailureMode:degraded-cannon-plug-connector"
+        },
+        {
+          "id": "fm_short",
+          "type": "FailureMode",
+          "display_name": "Electrical short in ECCS Contact Test Unit",
+          "match_key": "FailureMode:electrical-short-in-eccs-contact-test-unit"
+        },
+        {
+          "id": "fm_pciv",
+          "type": "FailureMode",
+          "display_name": "Turbine Exhaust Line Vacuum Breaker Outboard PCIV closed",
+          "properties": {
+            "note": "spurious isolation"
+          },
+          "match_key": "FailureMode:turbine-exhaust-line-vacuum-breaker-outboard-pciv-closed"
+        },
+        {
+          "id": "cons_hpci",
+          "type": "Consequence",
+          "display_name": "HPCI inoperable",
+          "properties": {
+            "start": "2025-03-03T10:44",
+            "end": "2025-03-03T13:51",
+            "duration": "03:07"
+          },
+          "match_key": "Consequence:hpci-inoperable"
+        },
+        {
+          "id": "ca_quar",
+          "type": "CorrectiveAction",
+          "display_name": "Quarantine test unit & replace cannon plug connector",
+          "properties": {
+            "status": "completed"
+          },
+          "match_key": "CorrectiveAction:quarantine-test-unit-replace-cannon-plug-connector"
+        },
+        {
+          "id": "ca_all",
+          "type": "CorrectiveAction",
+          "display_name": "Replace cannon plug connectors on all ECCS Contact Test Units",
+          "properties": {
+            "status": "planned"
+          },
+          "match_key": "CorrectiveAction:replace-cannon-plug-connectors-on-all-eccs-contact-test-units"
+        },
+        {
+          "id": "ca_pm",
+          "type": "CorrectiveAction",
+          "display_name": "Evaluate change in PM strategy/testing on ECCS Contact Test Units",
+          "properties": {
+            "status": "planned"
+          },
+          "match_key": "CorrectiveAction:evaluate-change-in-pm-strategy-testing-on-eccs-contact-test-units"
+        },
+        {
+          "id": "rr_5073",
+          "type": "RegulatoryReference",
+          "display_name": "10 CFR 50.73(a)(2)(v)(D)",
+          "properties": {
+            "type": "reporting-criterion"
+          },
+          "match_key": "RegulatoryReference:10-cfr-50-73-a-2-v-d"
+        },
+        {
+          "id": "ler_sim",
+          "type": "LER",
+          "key": "352-2022-001-00",
+          "display_name": "LER 352-2022-001-00",
+          "properties": {
+            "stub": true,
+            "plant": "Limerick 1",
+            "title": "HPCI Inoperable Due to Inadvertent Isolation Signal",
+            "outside_corpus": true
+          },
+          "match_key": "LER:352-2022-001-00"
+        }
+      ],
+      "edges": [
+        {
+          "source": "ler",
+          "relation": "OCCURRED_AT",
+          "target": "unit"
+        },
+        {
+          "source": "ler",
+          "relation": "REPORTED_UNDER",
+          "target": "rr_5073"
+        },
+        {
+          "source": "ler",
+          "relation": "INVOLVES",
+          "target": "sys_bj"
+        },
+        {
+          "source": "c_cannon",
+          "relation": "PART_OF",
+          "target": "c_ecctu"
+        },
+        {
+          "source": "fm_degraded",
+          "relation": "CAUSED_BY",
+          "target": "cause"
+        },
+        {
+          "source": "fm_degraded",
+          "relation": "LEADS_TO",
+          "target": "fm_short"
+        },
+        {
+          "source": "fm_short",
+          "relation": "LEADS_TO",
+          "target": "fm_pciv"
+        },
+        {
+          "source": "fm_pciv",
+          "relation": "LEADS_TO",
+          "target": "cons_hpci"
+        },
+        {
+          "source": "cons_hpci",
+          "relation": "BACKED_UP_BY",
+          "target": "sys_bn"
+        },
+        {
+          "source": "cons_hpci",
+          "relation": "BACKED_UP_BY",
+          "target": "sys_ads"
+        },
+        {
+          "source": "cons_hpci",
+          "relation": "BACKED_UP_BY",
+          "target": "sys_bo"
+        },
+        {
+          "source": "cons_hpci",
+          "relation": "BACKED_UP_BY",
+          "target": "sys_bm"
+        },
+        {
+          "source": "ler",
+          "relation": "MITIGATED_BY",
+          "target": "ca_quar"
+        },
+        {
+          "source": "ler",
+          "relation": "MITIGATED_BY",
+          "target": "ca_all"
+        },
+        {
+          "source": "ler",
+          "relation": "MITIGATED_BY",
+          "target": "ca_pm"
+        },
+        {
+          "source": "ler",
+          "relation": "SIMILAR_TO",
+          "target": "ler_sim"
+        }
+      ],
+      "chain": "degraded cannon plug connector [cause B] -> electrical short in ECCS Contact Test Unit -> spurious isolation signal -> Turbine Exhaust Line Vacuum Breaker Outboard PCIV closes -> HPCI inoperable (3h07m) [backups RCIC, ADS, RHR, Core Spray available]",
+      "golden_questions": [
+        "Q3",
+        "Q4",
+        "Q13",
+        "Q14"
+      ],
+      "notes": "Verified against source LER: Limerick uses NO [XX] brackets - systems appear as full name + parenthetical acronym (RCIC),(ADS),(RHR),(CS); resolution must handle this surface form. 'CS' -> BM and 'RCIC' -> BN are acronym-resolutions to add to systems_components.csv acronyms (grow-as-encountered). Cause is B (defective component), NOT E (maintenance) - PM item is a planned CA, not the cause. KNOWN ANSWER-KEY GAP: the PCIV component node is present but has no edge (no INVOLVES/PART_OF); consider adding 'ler INVOLVES c_pciv'. PCIV code ISV is resolver-inferred (block 13 component blank); V acceptable."
+    }
+  ]
+}
