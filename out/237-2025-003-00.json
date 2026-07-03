@@ -1,0 +1,450 @@
+{
+  "ler_number": "237-2025-003-00",
+  "identity": {
+    "accession_number": "ML26022A036",
+    "docket": "05000237",
+    "plant_name": "Dresden",
+    "unit": 2,
+    "reactor_type": "BWR",
+    "nss_vendor": "General Electric",
+    "event_date": "2025-11-17",
+    "report_date": "2026-01-15",
+    "operating_mode": "2",
+    "power_level": 2,
+    "discovery_context": "normal operation",
+    "status": "supplement-expected",
+    "revision": "00",
+    "ens_number": "58043",
+    "ens_date": "2025-11-17",
+    "ens_time": "2328 CST",
+    "title": "High Pressure Coolant Injection Inoperable Due to Failed Indicating Light and Blown Fuse"
+  },
+  "reporting_basis": {
+    "reported_under": [
+      "10 CFR 50.73(a)(2)(v)(D)"
+    ],
+    "ssff": "not stated"
+  },
+  "block_13": [
+    {
+      "cause": "TBD",
+      "system": "BJ",
+      "component": "TBD",
+      "manufacturer": "TBD",
+      "reportable": "Y"
+    },
+    {
+      "cause": "TBD",
+      "system": "BJ",
+      "component": "TBD",
+      "manufacturer": "TBD",
+      "reportable": "Y"
+    }
+  ],
+  "cause": {
+    "proximate_text": "The cause of the event was a damaged indicating light socket and a blown negative 125 VDC fuse when the HPCI Turbine Turning Gear was engaged.",
+    "cause_code": "TBD",
+    "category": "provisional",
+    "theme": "turning gear engagement damaged indicating light socket and blew fuse",
+    "provisional": true
+  },
+  "nodes": [
+    {
+      "id": "ler",
+      "display_name": "LER 237-2025-003-00",
+      "properties": {
+        "match_key": "LER:237-2025-003-00"
+      },
+      "type": "LER",
+      "key": "237-2025-003-00",
+      "stub": false,
+      "title": null,
+      "plant": null,
+      "match_key": "LER:237-2025-003-00"
+    },
+    {
+      "id": "unit",
+      "display_name": "Dresden Unit 2",
+      "properties": {
+        "match_key": "Unit:05000237",
+        "reactor_type": "BWR",
+        "nss_vendor": "General Electric",
+        "thermal_power_mwt": "2957"
+      },
+      "type": "Unit",
+      "key": "05000237",
+      "match_key": "Unit:05000237"
+    },
+    {
+      "id": "cause",
+      "display_name": "Cause TBD (evaluation in progress)",
+      "properties": {
+        "match_key": "Cause:provisional"
+      },
+      "type": "Cause",
+      "cause_code": "TBD",
+      "category": "provisional",
+      "theme": "turning gear engagement damaged indicating light socket and blew fuse",
+      "proximate_text": "The cause of the event was a damaged indicating light socket and a blown negative 125 VDC fuse when the HPCI Turbine Turning Gear was engaged.",
+      "provisional": true,
+      "match_key": "Cause:provisional"
+    },
+    {
+      "id": "sys_bj",
+      "display_name": "High Pressure Coolant Injection",
+      "properties": {
+        "match_key": "System:BJ"
+      },
+      "type": "System",
+      "eiis_code": "BJ",
+      "non_eiis": false,
+      "provisional": false,
+      "role": "affected system; single train",
+      "match_key": "System:BJ"
+    },
+    {
+      "id": "sys_bl",
+      "display_name": "Isolation Condenser",
+      "properties": {
+        "match_key": "System:BL"
+      },
+      "type": "System",
+      "eiis_code": "BL",
+      "non_eiis": false,
+      "provisional": false,
+      "role": "backup; operable",
+      "match_key": "System:BL"
+    },
+    {
+      "id": "sys_ads",
+      "display_name": "Automatic Depressurization System",
+      "properties": {
+        "match_key": "System:automatic-depressurization-system"
+      },
+      "type": "System",
+      "eiis_code": null,
+      "non_eiis": true,
+      "provisional": false,
+      "role": "backup; operable",
+      "match_key": "System:automatic-depressurization-system"
+    },
+    {
+      "id": "sys_bo",
+      "display_name": "Low Pressure Coolant Injection",
+      "properties": {
+        "match_key": "System:BO"
+      },
+      "type": "System",
+      "eiis_code": "BO",
+      "non_eiis": false,
+      "provisional": false,
+      "role": "design context only",
+      "match_key": "System:BO"
+    },
+    {
+      "id": "sys_bm",
+      "display_name": "Core Spray",
+      "properties": {
+        "match_key": "System:BM"
+      },
+      "type": "System",
+      "eiis_code": "BM",
+      "non_eiis": false,
+      "provisional": false,
+      "role": "design context only",
+      "match_key": "System:BM"
+    },
+    {
+      "id": "c_trb",
+      "display_name": "HPCI Turbine",
+      "properties": {
+        "match_key": "Component:TRB"
+      },
+      "type": "Component",
+      "eiis_code": "TRB",
+      "identifier": null,
+      "model": null,
+      "manufacturer_code": null,
+      "inferred_code": false,
+      "match_key": "Component:TRB"
+    },
+    {
+      "id": "c_tgr",
+      "display_name": "Turning Gear",
+      "properties": {
+        "match_key": "Component:TGR"
+      },
+      "type": "Component",
+      "eiis_code": "TGR",
+      "identifier": null,
+      "model": null,
+      "manufacturer_code": null,
+      "inferred_code": false,
+      "match_key": "Component:TGR"
+    },
+    {
+      "id": "c_mo",
+      "display_name": "Turning Gear Motor",
+      "properties": {
+        "match_key": "Component:MO"
+      },
+      "type": "Component",
+      "eiis_code": "MO",
+      "identifier": null,
+      "model": null,
+      "manufacturer_code": null,
+      "inferred_code": false,
+      "match_key": "Component:MO"
+    },
+    {
+      "id": "c_il",
+      "display_name": "Stop Valve Indicating Light",
+      "properties": {
+        "match_key": "Component:IL"
+      },
+      "type": "Component",
+      "eiis_code": "IL",
+      "identifier": null,
+      "model": null,
+      "manufacturer_code": null,
+      "inferred_code": false,
+      "match_key": "Component:IL"
+    },
+    {
+      "id": "c_fu",
+      "display_name": "Negative 125 VDC Fuse",
+      "properties": {
+        "match_key": "Component:FU"
+      },
+      "type": "Component",
+      "eiis_code": "FU",
+      "identifier": null,
+      "model": null,
+      "manufacturer_code": null,
+      "inferred_code": false,
+      "match_key": "Component:FU"
+    },
+    {
+      "id": "c_p",
+      "display_name": "HPCI Pumps",
+      "properties": {
+        "match_key": "Component:P"
+      },
+      "type": "Component",
+      "eiis_code": "P",
+      "identifier": null,
+      "model": null,
+      "manufacturer_code": null,
+      "inferred_code": false,
+      "match_key": "Component:P"
+    },
+    {
+      "id": "fm_tgr_engage",
+      "display_name": "HPCI Turbine Turning Gear engaged unexpectedly",
+      "properties": {
+        "match_key": "FailureMode:turning-gear-engaged-unexpectedly"
+      },
+      "type": "FailureMode",
+      "description": "Turning gear motor turned off without operator action after turning gear engaged.",
+      "match_key": "FailureMode:hpci-turbine-turning-gear-engaged-unexpectedly"
+    },
+    {
+      "id": "fm_il_fu",
+      "display_name": "Indicating light socket damaged and 125VDC fuse blown",
+      "properties": {
+        "match_key": "FailureMode:indicating-light-fuse-damaged"
+      },
+      "type": "FailureMode",
+      "description": "Turning gear engagement damaged the stop valve indicating light socket and blew the negative 125 VDC fuse required for steam turbine initiation.",
+      "match_key": "FailureMode:indicating-light-socket-damaged-and-125vdc-fuse-blown"
+    },
+    {
+      "id": "fm_turbine_unavail",
+      "display_name": "HPCI steam turbine unable to initiate",
+      "properties": {
+        "match_key": "FailureMode:turbine-unable-to-initiate"
+      },
+      "type": "FailureMode",
+      "description": "Loss of the negative 125 VDC fuse prevented steam turbine initiation, rendering the HPCI pumps incapable of injection.",
+      "match_key": "FailureMode:hpci-steam-turbine-unable-to-initiate"
+    },
+    {
+      "id": "cons_hpci",
+      "display_name": "HPCI inoperable / single train unavailable",
+      "properties": {
+        "match_key": "Consequence:hpci-inoperable-single-train"
+      },
+      "type": "Consequence",
+      "start": "2025-11-17T16:13",
+      "end": "2025-11-17T22:53",
+      "duration": "6:40",
+      "tz": "CST",
+      "match_key": "Consequence:hpci-inoperable-single-train-unavailable"
+    },
+    {
+      "id": "ca_isolate",
+      "display_name": "Isolate stop valve indicating light circuit",
+      "properties": {
+        "match_key": "CorrectiveAction:isolate-indicating-light-circuit"
+      },
+      "type": "CorrectiveAction",
+      "status": "completed",
+      "provisional": false,
+      "match_key": "CorrectiveAction:isolate-stop-valve-indicating-light-circuit"
+    },
+    {
+      "id": "ca_fuse",
+      "display_name": "Replace blown negative 125 VDC fuse",
+      "properties": {
+        "match_key": "CorrectiveAction:replace-fuse"
+      },
+      "type": "CorrectiveAction",
+      "status": "completed",
+      "provisional": false,
+      "match_key": "CorrectiveAction:replace-blown-negative-125-vdc-fuse"
+    },
+    {
+      "id": "ca_eval",
+      "display_name": "Complete evaluation and determine additional corrective actions",
+      "properties": {
+        "match_key": "CorrectiveAction:complete-evaluation"
+      },
+      "type": "CorrectiveAction",
+      "status": "planned",
+      "provisional": false,
+      "match_key": "CorrectiveAction:complete-evaluation-and-determine-additional-corrective-actions"
+    },
+    {
+      "id": "rr_5073",
+      "display_name": "10 CFR 50.73(a)(2)(v)(D)",
+      "properties": {
+        "match_key": "RegulatoryReference:10-cfr-50-73-a-2-v-d"
+      },
+      "type": "RegulatoryReference",
+      "ref_type": "reporting-criterion",
+      "match_key": "RegulatoryReference:10-cfr-50-73-a-2-v-d"
+    },
+    {
+      "id": "rr_ufsar",
+      "display_name": "UFSAR Chapter 15, Accident and Transient Analysis",
+      "properties": {
+        "match_key": "RegulatoryReference:ufsar-ch-15"
+      },
+      "type": "RegulatoryReference",
+      "ref_type": "analysis-basis",
+      "match_key": "RegulatoryReference:ufsar-chapter-15-accident-and-transient-analysis"
+    }
+  ],
+  "edges": [
+    {
+      "source": "ler",
+      "relation": "OCCURRED_AT",
+      "target": "unit",
+      "evidence": null
+    },
+    {
+      "source": "ler",
+      "relation": "REPORTED_UNDER",
+      "target": "rr_5073",
+      "evidence": null
+    },
+    {
+      "source": "ler",
+      "relation": "INVOLVES",
+      "target": "sys_bj",
+      "evidence": null
+    },
+    {
+      "source": "c_trb",
+      "relation": "PART_OF",
+      "target": "sys_bj",
+      "evidence": null
+    },
+    {
+      "source": "c_tgr",
+      "relation": "PART_OF",
+      "target": "c_trb",
+      "evidence": null
+    },
+    {
+      "source": "c_mo",
+      "relation": "PART_OF",
+      "target": "c_tgr",
+      "evidence": null
+    },
+    {
+      "source": "c_p",
+      "relation": "PART_OF",
+      "target": "sys_bj",
+      "evidence": null
+    },
+    {
+      "source": "fm_tgr_engage",
+      "relation": "CAUSED_BY",
+      "target": "cause",
+      "evidence": null
+    },
+    {
+      "source": "fm_tgr_engage",
+      "relation": "LEADS_TO",
+      "target": "fm_il_fu",
+      "evidence": null
+    },
+    {
+      "source": "fm_il_fu",
+      "relation": "LEADS_TO",
+      "target": "fm_turbine_unavail",
+      "evidence": null
+    },
+    {
+      "source": "fm_turbine_unavail",
+      "relation": "LEADS_TO",
+      "target": "cons_hpci",
+      "evidence": null
+    },
+    {
+      "source": "cons_hpci",
+      "relation": "BACKED_UP_BY",
+      "target": "sys_bl",
+      "evidence": null
+    },
+    {
+      "source": "cons_hpci",
+      "relation": "BACKED_UP_BY",
+      "target": "sys_ads",
+      "evidence": null
+    },
+    {
+      "source": "ler",
+      "relation": "MITIGATED_BY",
+      "target": "ca_isolate",
+      "evidence": null
+    },
+    {
+      "source": "ler",
+      "relation": "MITIGATED_BY",
+      "target": "ca_fuse",
+      "evidence": null
+    },
+    {
+      "source": "ler",
+      "relation": "MITIGATED_BY",
+      "target": "ca_eval",
+      "evidence": null
+    },
+    {
+      "source": "ler",
+      "relation": "REPORTED_UNDER",
+      "target": "rr_ufsar",
+      "evidence": null
+    }
+  ],
+  "chain": "turning gear engaged unexpectedly [cause TBD] -> indicating light socket damaged & 125VDC fuse blown -> HPCI steam turbine unable to initiate -> HPCI inoperable (single train, ~6h40m) [backups Isolation Condenser, ADS available]",
+  "golden_questions": [
+    "Q1",
+    "Q3",
+    "Q4",
+    "Q14"
+  ],
+  "notes": "Cause code is TBD; supplemental report expected with root-cause evaluation conclusions. Category left as 'provisional' per FORM-366 fields. LPCI (BO) and Core Spray (BM) systems mentioned only as design-basis context in Safety Analysis section, not as available backups during the event, so no BACKED_UP_BY edges for them per Rule 6; only Isolation Condenser and ADS are explicitly stated as Operable throughout the event. No previous similar occurrences were found within the 5-year review, so no SIMILAR_TO stub LER emitted. Component failure data explicitly deferred to supplemental LER."
+}

@@ -1,0 +1,371 @@
+{
+  "ler_number": "353-2025-001-00",
+  "identity": {
+    "accession_number": "ML25122A139",
+    "docket": "05000353",
+    "plant_name": "Limerick",
+    "unit": 2,
+    "reactor_type": "BWR",
+    "nss_vendor": "General Electric",
+    "event_date": "2025-03-03",
+    "report_date": "2025-05-02",
+    "operating_mode": "1",
+    "power_level": 100,
+    "discovery_context": "surveillance test",
+    "status": "final",
+    "revision": "00",
+    "ens_number": "57582",
+    "ens_date": "2025-03-03",
+    "ens_time": "18:09",
+    "title": "HPCI Valve Isolated During a Surveillance Test Due to a Degraded Test Connector"
+  },
+  "reporting_basis": {
+    "reported_under": [
+      "10 CFR 50.73(a)(2)(v)(D)"
+    ],
+    "ssff": "Y"
+  },
+  "block_13": [
+    {
+      "cause": "B",
+      "system": "BJ",
+      "component": null,
+      "manufacturer": null,
+      "reportable": "Y"
+    }
+  ],
+  "cause": {
+    "proximate_text": "The cannon plug connector was degraded resulting in a short within the ECCS Contact Test Unit.",
+    "cause_code": "B",
+    "category": "Design/Manufacturing/Installation",
+    "theme": "degraded test-equipment connector causing spurious isolation",
+    "provisional": false
+  },
+  "nodes": [
+    {
+      "id": "ler",
+      "display_name": "LER 353-2025-001-00",
+      "properties": {},
+      "type": "LER",
+      "key": "353-2025-001-00",
+      "stub": false,
+      "title": null,
+      "plant": null,
+      "match_key": "LER:353-2025-001-00"
+    },
+    {
+      "id": "unit",
+      "display_name": "Limerick Unit 2",
+      "properties": {
+        "reactor_type": "BWR",
+        "nss_vendor": "General Electric"
+      },
+      "type": "Unit",
+      "key": "05000353",
+      "match_key": "Unit:05000353"
+    },
+    {
+      "id": "cause",
+      "display_name": "Design/Manufacturing/Installation (B)",
+      "properties": {},
+      "type": "Cause",
+      "cause_code": "B",
+      "category": "Design/Manufacturing/Installation",
+      "theme": "degraded test-equipment connector causing spurious isolation",
+      "proximate_text": null,
+      "provisional": false,
+      "match_key": "Cause:Design/Manufacturing/Installation"
+    },
+    {
+      "id": "sys_bj",
+      "display_name": "High Pressure Coolant Injection",
+      "properties": {
+        "note": "steam-driven ECCS"
+      },
+      "type": "System",
+      "eiis_code": "BJ",
+      "non_eiis": false,
+      "provisional": false,
+      "role": null,
+      "match_key": "System:BJ"
+    },
+    {
+      "id": "sys_rcic",
+      "display_name": "Reactor Core Isolation Cooling",
+      "properties": {
+        "acronym": "RCIC",
+        "full_name": "Reactor Core Isolation Cooling System"
+      },
+      "type": "System",
+      "eiis_code": "BN",
+      "non_eiis": false,
+      "provisional": false,
+      "role": "backup; operable",
+      "match_key": "System:BN"
+    },
+    {
+      "id": "sys_ads",
+      "display_name": "Automatic Depressurization System",
+      "properties": {},
+      "type": "System",
+      "eiis_code": null,
+      "non_eiis": true,
+      "provisional": false,
+      "role": "backup; operable",
+      "match_key": "System:automatic-depressurization-system"
+    },
+    {
+      "id": "sys_rhr",
+      "display_name": "Residual Heat Removal",
+      "properties": {
+        "acronym": "RHR",
+        "full_name": "Residual Heat Removal System"
+      },
+      "type": "System",
+      "eiis_code": "BO",
+      "non_eiis": false,
+      "provisional": false,
+      "role": "backup; operable",
+      "match_key": "System:BO"
+    },
+    {
+      "id": "sys_cs",
+      "display_name": "Core Spray",
+      "properties": {
+        "acronym": "CS",
+        "full_name": "Core Spray System"
+      },
+      "type": "System",
+      "eiis_code": "BM",
+      "non_eiis": false,
+      "provisional": false,
+      "role": "backup; operable",
+      "match_key": "System:BM"
+    },
+    {
+      "id": "c_pciv",
+      "display_name": "HPCI Turbine Exhaust Line Vacuum Breaker Outboard PCIV",
+      "properties": {},
+      "type": "Component",
+      "eiis_code": "ISV",
+      "identifier": null,
+      "model": null,
+      "manufacturer_code": null,
+      "inferred_code": true,
+      "match_key": "Component:ISV"
+    },
+    {
+      "id": "c_testunit",
+      "display_name": "ECCS Contact Test Unit (test box)",
+      "properties": {},
+      "type": "Component",
+      "eiis_code": null,
+      "identifier": null,
+      "model": null,
+      "manufacturer_code": null,
+      "inferred_code": false,
+      "match_key": "Component:eccs-contact-test-unit-test-box"
+    },
+    {
+      "id": "c_cannonplug",
+      "display_name": "Cannon plug connector",
+      "properties": {},
+      "type": "Component",
+      "eiis_code": null,
+      "identifier": null,
+      "model": null,
+      "manufacturer_code": null,
+      "inferred_code": false,
+      "match_key": "Component:cannon-plug-connector"
+    },
+    {
+      "id": "fm_degraded",
+      "display_name": "Cannon plug connector degraded",
+      "properties": {},
+      "type": "FailureMode",
+      "description": null,
+      "match_key": "FailureMode:cannon-plug-connector-degraded"
+    },
+    {
+      "id": "fm_short",
+      "display_name": "Electrical short within ECCS Contact Test Unit",
+      "properties": {},
+      "type": "FailureMode",
+      "description": null,
+      "match_key": "FailureMode:electrical-short-within-eccs-contact-test-unit"
+    },
+    {
+      "id": "fm_valveclose",
+      "display_name": "Spurious isolation signal closes HPCI Turbine Exhaust Line Vacuum Breaker Outboard PCIV",
+      "properties": {},
+      "type": "FailureMode",
+      "description": null,
+      "match_key": "FailureMode:spurious-isolation-signal-closes-hpci-turbine-exhaust-line-vacuum-breaker-outboard-pciv"
+    },
+    {
+      "id": "cons_hpci",
+      "display_name": "HPCI inoperable / loss of safety function",
+      "properties": {},
+      "type": "Consequence",
+      "start": "2025-03-03T10:44",
+      "end": "2025-03-03T13:51",
+      "duration": "3:07",
+      "tz": null,
+      "match_key": "Consequence:hpci-inoperable-loss-of-safety-function"
+    },
+    {
+      "id": "ca_quarantine",
+      "display_name": "Quarantine ECCS Contact Test Unit and replace cannon plug connector",
+      "properties": {},
+      "type": "CorrectiveAction",
+      "status": "completed",
+      "provisional": false,
+      "match_key": "CorrectiveAction:quarantine-eccs-contact-test-unit-and-replace-cannon-plug-connector"
+    },
+    {
+      "id": "ca_replace_all",
+      "display_name": "Replace cannon plug connectors on all ECCS Contact Test Units",
+      "properties": {},
+      "type": "CorrectiveAction",
+      "status": "planned",
+      "provisional": false,
+      "match_key": "CorrectiveAction:replace-cannon-plug-connectors-on-all-eccs-contact-test-units"
+    },
+    {
+      "id": "ca_pm_eval",
+      "display_name": "Evaluate change in PM strategy/testing on ECCS Contact Test Units",
+      "properties": {},
+      "type": "CorrectiveAction",
+      "status": "planned",
+      "provisional": false,
+      "match_key": "CorrectiveAction:evaluate-change-in-pm-strategy-testing-on-eccs-contact-test-units"
+    },
+    {
+      "id": "rr_5073",
+      "display_name": "10 CFR 50.73(a)(2)(v)(D)",
+      "properties": {
+        "type": "reporting-criterion"
+      },
+      "type": "RegulatoryReference",
+      "ref_type": null,
+      "match_key": "RegulatoryReference:10-cfr-50-73-a-2-v-d"
+    },
+    {
+      "id": "ler_prev",
+      "display_name": "LER 1-2022-001 (Unit 1 HPCI Inoperable Due to Inadvertent Isolation Signal)",
+      "properties": {},
+      "type": "LER",
+      "key": "1-2022-001",
+      "stub": true,
+      "title": null,
+      "plant": null,
+      "match_key": "LER:1-2022-001"
+    }
+  ],
+  "edges": [
+    {
+      "source": "ler",
+      "relation": "OCCURRED_AT",
+      "target": "unit",
+      "evidence": null
+    },
+    {
+      "source": "ler",
+      "relation": "REPORTED_UNDER",
+      "target": "rr_5073",
+      "evidence": null
+    },
+    {
+      "source": "ler",
+      "relation": "INVOLVES",
+      "target": "sys_bj",
+      "evidence": null
+    },
+    {
+      "source": "c_pciv",
+      "relation": "PART_OF",
+      "target": "sys_bj",
+      "evidence": null
+    },
+    {
+      "source": "fm_degraded",
+      "relation": "CAUSED_BY",
+      "target": "cause",
+      "evidence": null
+    },
+    {
+      "source": "fm_degraded",
+      "relation": "LEADS_TO",
+      "target": "fm_short",
+      "evidence": null
+    },
+    {
+      "source": "fm_short",
+      "relation": "LEADS_TO",
+      "target": "fm_valveclose",
+      "evidence": null
+    },
+    {
+      "source": "fm_valveclose",
+      "relation": "LEADS_TO",
+      "target": "cons_hpci",
+      "evidence": null
+    },
+    {
+      "source": "cons_hpci",
+      "relation": "BACKED_UP_BY",
+      "target": "sys_rcic",
+      "evidence": null
+    },
+    {
+      "source": "cons_hpci",
+      "relation": "BACKED_UP_BY",
+      "target": "sys_ads",
+      "evidence": null
+    },
+    {
+      "source": "cons_hpci",
+      "relation": "BACKED_UP_BY",
+      "target": "sys_rhr",
+      "evidence": null
+    },
+    {
+      "source": "cons_hpci",
+      "relation": "BACKED_UP_BY",
+      "target": "sys_cs",
+      "evidence": null
+    },
+    {
+      "source": "ler",
+      "relation": "MITIGATED_BY",
+      "target": "ca_quarantine",
+      "evidence": null
+    },
+    {
+      "source": "ler",
+      "relation": "MITIGATED_BY",
+      "target": "ca_replace_all",
+      "evidence": null
+    },
+    {
+      "source": "ler",
+      "relation": "MITIGATED_BY",
+      "target": "ca_pm_eval",
+      "evidence": null
+    },
+    {
+      "source": "ler",
+      "relation": "SIMILAR_TO",
+      "target": "ler_prev",
+      "evidence": null
+    }
+  ],
+  "chain": "degraded cannon plug connector [cause B] -> electrical short in ECCS Contact Test Unit -> spurious isolation signal closes HPCI Turbine Exhaust Line Vacuum Breaker Outboard PCIV -> HPCI inoperable / loss of safety function (~3h07m) [backups RCIC, ADS, RHR, CS available]",
+  "golden_questions": [
+    "Q1",
+    "Q3",
+    "Q4",
+    "Q14"
+  ],
+  "notes": "Test equipment (ECCS Contact Test Unit) fault caused a spurious HPCI containment isolation during surveillance instrument testing; not an actual HPCI hardware degradation. RCIC/ADS/RHR/CS explicitly stated operable throughout inoperability, supporting BACKED_UP_BY edges. Previous occurrence cited is a Unit 1 LER at the same station/docket family; modeled as stub LER node with distinct key '1-2022-001' since full docket not given in narrative."
+}
