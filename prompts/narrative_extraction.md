@@ -1,4 +1,10 @@
-# narrative_extraction.md — prompt template (v1)
+# narrative_extraction.md — prompt template (v2)
+
+**v2 changes** (driven by scorecard misses on Dresden + Limerick): added an explicit PART_OF rule
+(explicit-only, never inferred); sharpened the backups rule to exclude design-context systems
+entirely (no node or edge); directed distinct parallel failures to be split into separate
+FailureMode nodes; and preserved the raw SIMILAR_TO stub key (unit digit intact) for the resolver
+to canonicalize.
 
 Versioned prompt for the LLM stage (`extract_narrative.py`). It is a **template**:
 `extract_narrative.py` fills the `{{...}}` placeholders at runtime and sends SYSTEM + USER to
@@ -34,7 +40,8 @@ INPUTS (all describe the SAME single event):
   timing, corrective actions, backups, and previous occurrences.
 
 CORE RULES:
-1. One event, one graph. Do not duplicate nodes across the abstract and narrative.
+1. One event, one graph. Do not duplicate nodes across the abstract and narrative — but do not
+   merge two genuinely distinct entities or failures into one node either (see rule 5).
 2. EIIS surface forms vary between reports. A system or component may appear as a bracket code
    ("[BJ]"), a parenthetical acronym ("(RCIC)"), or a full name only. Record the bracket code in
    `eiis_code` when it is present in the text. When only an acronym/name is given, leave
@@ -48,15 +55,35 @@ CORE RULES:
    is "TBD", set the cause node `provisional: true`.
 5. Causal chain: link failure modes with LEADS_TO (earlier -> later); the terminal step LEADS_TO
    the Consequence. Emit exactly one CAUSED_BY, from the chain's origin failure mode to the Cause
-   node.
-6. Backups: a system is BACKED_UP_BY the Consequence ONLY if the narrative states it was
-   operable/available DURING the inoperability. Systems named only as design context are NOT
-   backups.
-7. Corrective actions: one CorrectiveAction node each, with `status` "completed" or "planned".
-8. Previous similar occurrence: emit a stub LER node (`stub: true`) and a SIMILAR_TO edge to it.
-9. Node ids: use exactly "ler", "unit", and "cause" for those three anchor nodes; invent short
-   readable ids for everything else. Every edge's source/target must be an id in your nodes list.
-10. Populate `chain` with a one-line arrow summary
+   node. Model each physically distinct failure or defect as its OWN FailureMode node — do NOT
+   merge two failures into a single node joined by "and" (e.g. a damaged indicating-light socket
+   and a blown 125 VDC fuse are two separate FailureModes, not one). When a single trigger
+   produces two failures in parallel, that trigger LEADS_TO each of them separately, and each may
+   in turn LEADS_TO the same downstream consequence.
+6. Backups (BACKED_UP_BY) and design context. Assert BACKED_UP_BY ONLY for systems the narrative
+   explicitly states were operable or available DURING the inoperability window ("remained operable
+   throughout the event", "was available"). A system named only to describe plant or HPCI design or
+   capability — typically in a "System Design" / "Safety Analysis" passage ("HPCI is designed for
+   break sizes less than those for which LPCI or Core Spray can protect...") — is DESIGN CONTEXT:
+   do NOT model it at all (no System node and no edge), even if it is itself an ECCS system. Only
+   create a System node when the event INVOLVES that system, it is a stated-operable backup, or it
+   otherwise participates in the failure chain. If it is unclear whether a system was operable
+   during the event, omit the BACKED_UP_BY edge.
+7. PART_OF is explicit-only — never inferred. Assert PART_OF ONLY when the narrative literally
+   states one thing is contained in / a subcomponent of another (e.g. "the turning gear motor" ->
+   motor PART_OF turning gear). Do NOT emit a PART_OF edge from a component to its system just
+   because they are related — component-to-system membership is carried by the LER-level INVOLVES
+   edge and the LEADS_TO chain, not PART_OF. A breaker feeding a valve, or a pump driven by a
+   turbine, is a functional/power relationship, not containment — no PART_OF.
+8. Corrective actions: one CorrectiveAction node each, with `status` "completed" or "planned".
+9. Previous similar occurrence: emit a stub LER node (`stub: true`), capturing the referenced
+   plant, unit, and title as node fields/properties, plus a SIMILAR_TO edge to it. Set its `key`
+   to the LER number EXACTLY as the report states it (e.g. "1-2022-001", keeping the leading unit
+   digit) — do NOT invent, derive, or substitute a docket number for it. The resolver canonicalizes
+   the key from the plant and unit.
+10. Node ids: use exactly "ler", "unit", and "cause" for those three anchor nodes; invent short
+    readable ids for everything else. Every edge's source/target must be an id in your nodes list.
+11. Populate `chain` with a one-line arrow summary
     (root cause -> A -> B -> consequence [backups ...]).
 
 Output must validate against this JSON schema:

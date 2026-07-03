@@ -38,7 +38,7 @@
     "proximate_text": "The cannon plug connector was degraded resulting in a short within the ECCS Contact Test Unit.",
     "cause_code": "B",
     "category": "Design/Manufacturing/Installation",
-    "theme": "degraded test-equipment connector causing spurious isolation",
+    "theme": "degraded test-equipment connector",
     "provisional": false
   },
   "nodes": [
@@ -71,17 +71,15 @@
       "type": "Cause",
       "cause_code": "B",
       "category": "Design/Manufacturing/Installation",
-      "theme": "degraded test-equipment connector causing spurious isolation",
+      "theme": "degraded test-equipment connector",
       "proximate_text": null,
       "provisional": false,
       "match_key": "Cause:Design/Manufacturing/Installation"
     },
     {
       "id": "sys_bj",
-      "display_name": "High Pressure Coolant Injection",
-      "properties": {
-        "note": "steam-driven ECCS"
-      },
+      "display_name": "High Pressure Coolant Injection System",
+      "properties": {},
       "type": "System",
       "eiis_code": "BJ",
       "non_eiis": false,
@@ -92,10 +90,7 @@
     {
       "id": "sys_rcic",
       "display_name": "Reactor Core Isolation Cooling",
-      "properties": {
-        "acronym": "RCIC",
-        "full_name": "Reactor Core Isolation Cooling System"
-      },
+      "properties": {},
       "type": "System",
       "eiis_code": "BN",
       "non_eiis": false,
@@ -116,11 +111,8 @@
     },
     {
       "id": "sys_rhr",
-      "display_name": "Residual Heat Removal",
-      "properties": {
-        "acronym": "RHR",
-        "full_name": "Residual Heat Removal System"
-      },
+      "display_name": "Residual Heat Removal System",
+      "properties": {},
       "type": "System",
       "eiis_code": "BO",
       "non_eiis": false,
@@ -130,11 +122,8 @@
     },
     {
       "id": "sys_cs",
-      "display_name": "Core Spray",
-      "properties": {
-        "acronym": "CS",
-        "full_name": "Core Spray System"
-      },
+      "display_name": "Core Spray System",
+      "properties": {},
       "type": "System",
       "eiis_code": "BM",
       "non_eiis": false,
@@ -183,7 +172,7 @@
       "display_name": "Cannon plug connector degraded",
       "properties": {},
       "type": "FailureMode",
-      "description": null,
+      "description": "The cannon plug connector was degraded, allowing a short within the ECCS Contact Test Unit.",
       "match_key": "FailureMode:cannon-plug-connector-degraded"
     },
     {
@@ -191,16 +180,16 @@
       "display_name": "Electrical short within ECCS Contact Test Unit",
       "properties": {},
       "type": "FailureMode",
-      "description": null,
+      "description": "Resistance checks found one electrical short circuit within the test unit.",
       "match_key": "FailureMode:electrical-short-within-eccs-contact-test-unit"
     },
     {
       "id": "fm_valveclose",
-      "display_name": "Spurious isolation signal closes HPCI Turbine Exhaust Line Vacuum Breaker Outboard PCIV",
+      "display_name": "HPCI Turbine Exhaust Line Vacuum Breaker Outboard PCIV closed",
       "properties": {},
       "type": "FailureMode",
-      "description": null,
-      "match_key": "FailureMode:spurious-isolation-signal-closes-hpci-turbine-exhaust-line-vacuum-breaker-outboard-pciv"
+      "description": "The electrical short caused the isolation signal to actuate, closing the PCIV.",
+      "match_key": "FailureMode:hpci-turbine-exhaust-line-vacuum-breaker-outboard-pciv-closed"
     },
     {
       "id": "cons_hpci",
@@ -223,7 +212,7 @@
       "match_key": "CorrectiveAction:quarantine-eccs-contact-test-unit-and-replace-cannon-plug-connector"
     },
     {
-      "id": "ca_replace_all",
+      "id": "ca_replaceall",
       "display_name": "Replace cannon plug connectors on all ECCS Contact Test Units",
       "properties": {},
       "type": "CorrectiveAction",
@@ -232,7 +221,7 @@
       "match_key": "CorrectiveAction:replace-cannon-plug-connectors-on-all-eccs-contact-test-units"
     },
     {
-      "id": "ca_pm_eval",
+      "id": "ca_pmeval",
       "display_name": "Evaluate change in PM strategy/testing on ECCS Contact Test Units",
       "properties": {},
       "type": "CorrectiveAction",
@@ -243,23 +232,21 @@
     {
       "id": "rr_5073",
       "display_name": "10 CFR 50.73(a)(2)(v)(D)",
-      "properties": {
-        "type": "reporting-criterion"
-      },
+      "properties": {},
       "type": "RegulatoryReference",
-      "ref_type": null,
+      "ref_type": "reporting-criterion",
       "match_key": "RegulatoryReference:10-cfr-50-73-a-2-v-d"
     },
     {
       "id": "ler_prev",
-      "display_name": "LER 1-2022-001 (Unit 1 HPCI Inoperable Due to Inadvertent Isolation Signal)",
+      "display_name": "LER 352-2022-001-00",
       "properties": {},
       "type": "LER",
-      "key": "1-2022-001",
+      "key": "352-2022-001-00",
       "stub": true,
-      "title": null,
-      "plant": null,
-      "match_key": "LER:1-2022-001"
+      "title": "HPCI Inoperable Due to Inadvertent Isolation Signal",
+      "plant": "Limerick Generating Station Unit 1",
+      "match_key": "LER:352-2022-001-00"
     }
   ],
   "edges": [
@@ -344,13 +331,13 @@
     {
       "source": "ler",
       "relation": "MITIGATED_BY",
-      "target": "ca_replace_all",
+      "target": "ca_replaceall",
       "evidence": null
     },
     {
       "source": "ler",
       "relation": "MITIGATED_BY",
-      "target": "ca_pm_eval",
+      "target": "ca_pmeval",
       "evidence": null
     },
     {
@@ -360,12 +347,12 @@
       "evidence": null
     }
   ],
-  "chain": "degraded cannon plug connector [cause B] -> electrical short in ECCS Contact Test Unit -> spurious isolation signal closes HPCI Turbine Exhaust Line Vacuum Breaker Outboard PCIV -> HPCI inoperable / loss of safety function (~3h07m) [backups RCIC, ADS, RHR, CS available]",
+  "chain": "degraded cannon plug connector [cause B] -> electrical short in ECCS Contact Test Unit -> HPCI Turbine Exhaust Line Vacuum Breaker Outboard PCIV closes -> HPCI inoperable (3h07m) [backups RCIC, ADS, RHR, CS available]",
   "golden_questions": [
     "Q1",
     "Q3",
     "Q4",
     "Q14"
   ],
-  "notes": "Test equipment (ECCS Contact Test Unit) fault caused a spurious HPCI containment isolation during surveillance instrument testing; not an actual HPCI hardware degradation. RCIC/ADS/RHR/CS explicitly stated operable throughout inoperability, supporting BACKED_UP_BY edges. Previous occurrence cited is a Unit 1 LER at the same station/docket family; modeled as stub LER node with distinct key '1-2022-001' since full docket not given in narrative."
+  "notes": "Test equipment (ECCS Contact Test Unit, cannon plug) modeled as Components even though not part of the HPCI system itself, since they are the physical origin of the failure chain; no PART_OF edge asserted from test unit to HPCI system since narrative describes it as connected test equipment, not a subcomponent. Cause code B (Design/Manufacturing/Installation) governs category per official code despite maintenance/testing narrative flavor."
 }

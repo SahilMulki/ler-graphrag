@@ -257,6 +257,33 @@ def resolve_manufacturer(node: dict, refs: RefData, logs: GrowLogs) -> None:
 
 
 # --------------------------------------------------------------------------- #
+# previous-occurrence (SIMILAR_TO stub) LER-number normalization
+# --------------------------------------------------------------------------- #
+# LERs cite a prior occurrence by a short form the LLM can't fully canonicalize —
+# e.g. Limerick's "LER 1-2022-001 Unit 1" means Limerick *Unit 1*, whose docket
+# (05000352) the narrative never states. A docket-short prefix is 3 digits
+# (237/352/353); a 1-2 digit prefix is a unit number of the *same plant*, which we
+# resolve to its docket via plants.csv.
+_STUB_LER_RE = re.compile(r"^(\d{1,4})-(\d{4})-(\d{1,3})(?:-(\d{1,2}))?$")
+
+
+def normalize_stub_ler_key(key: str, plant_name: str, refs: RefData) -> str:
+    m = _STUB_LER_RE.match((key or "").strip())
+    if not m:
+        return key
+    lead, year, seq, rev = m.groups()
+    rev = rev or "00"
+    short = lead
+    if len(lead) <= 2 and plant_name:                # a same-plant unit number
+        unit = str(int(lead))
+        for docket, row in refs.plants.items():
+            if row.get("plant_name") == plant_name and str(row.get("unit")) == unit:
+                short = str(int(docket[3:]))          # 05000352 -> 352
+                break
+    return f"{short}-{year}-{int(seq):03d}-{int(rev):02d}"
+
+
+# --------------------------------------------------------------------------- #
 # merge + resolve + validate
 # --------------------------------------------------------------------------- #
 def resolve(
@@ -308,6 +335,16 @@ def resolve(
             n["cause_code"] = parse.cause.cause_code
             n["category"] = parse.cause.category
             n["provisional"] = parse.cause.provisional
+        elif t == "LER":
+            if n.get("id") == "ler":                  # primary — authoritative key
+                n["key"] = parse.ler_number
+            else:                                     # previous-occurrence stub
+                new_key = normalize_stub_ler_key(
+                    n.get("key", ""), (prow or {}).get("plant_name", ""), refs
+                )
+                n["key"] = new_key
+                if (n.get("display_name") or "").upper().startswith("LER"):
+                    n["display_name"] = f"LER {new_key}"
         elif t == "Unit" and prow:
             n["key"] = parse.identity.docket
             n["display_name"] = f"{prow.get('plant_name','').strip()} Unit {prow.get('unit','')}".strip()
