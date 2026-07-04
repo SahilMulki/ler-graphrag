@@ -117,9 +117,10 @@ Return the LERRecord JSON only.
 ## Assembly notes (`extract_narrative.py`)
 - Fill `{{JSON_SCHEMA}}` from `LERRecord.model_json_schema()` so the prompt and validator never
   drift.
-- `include_abstract` config flag: when `False`, drop the entire `[ABSTRACT block 16]` section
-  (this is the A/B ablation from `phase_4.md` — run both, score on Dresden + Limerick, keep the
-  winner).
+- `include_abstract` config flag: when `False`, drop the entire `[ABSTRACT block 16]` section.
+  The A/B ablation is **decided — narrative-only won** (equal node F1, higher/more-stable edge F1
+  over 3 runs each on Dresden + Limerick), so `pipeline.py` defaults to `include_abstract=False`;
+  the `[ABSTRACT block 16]` block stays in this template only so `--abstract` can re-enable it.
 - Call with temperature 0 and JSON/tool output mode; validate the response with
   `LERRecord.model_validate`; on `ValidationError`, resend with the error text appended and ask for
   a corrected JSON (cap retries, e.g. 2).

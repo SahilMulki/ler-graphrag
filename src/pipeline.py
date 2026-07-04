@@ -13,9 +13,14 @@ For each LER:
 Quad Cities is the few-shot exemplar and is deliberately NOT in the eval set
 (keeping it held out); the default corpus is Dresden + Limerick.
 
-    python src/pipeline.py                     # Dresden + Limerick, live Sonnet
-    python src/pipeline.py --no-abstract       # the abstract A/B ablation
+    python src/pipeline.py                     # Dresden + Limerick, narrative-only (locked)
+    python src/pipeline.py --abstract          # opt back into the block-16 abstract
     python src/pipeline.py --docs ML26022A036  # one document
+
+Abstract A/B (locked): narrative-only beats narrative+abstract — equal node F1 and
+higher, more stable edge F1 across 3 runs each on Dresden + Limerick (the abstract
+carries nothing absent from the narrative and only adds chaining variance). So the
+default is include_abstract=False; `--abstract` re-enables it for experiments.
 """
 from __future__ import annotations
 
@@ -126,7 +131,7 @@ def extract_one(
 # --------------------------------------------------------------------------- #
 def run(
     accessions: list[str],
-    include_abstract: bool = True,
+    include_abstract: bool = False,          # A/B locked: narrative-only wins
     model: str = "claude-sonnet-5",
     out_dir: Path = REPO_ROOT / "out",
     raw_dir: Path = REPO_ROOT / "data" / "raw",
@@ -166,15 +171,16 @@ def main(argv=None) -> int:
     p = argparse.ArgumentParser(description="Phase-4 LER extraction pipeline.")
     p.add_argument("--docs", nargs="*", default=DEFAULT_DOCS,
                    help="accession numbers to extract (default: Dresden + Limerick)")
-    p.add_argument("--no-abstract", action="store_true",
-                   help="drop block-16 abstract from the prompt (the A/B ablation)")
+    p.add_argument("--abstract", action="store_true",
+                   help="include the block-16 abstract in the prompt "
+                        "(default: narrative-only; the A/B ablation locked narrative-only)")
     p.add_argument("--model", default="claude-sonnet-5")
     p.add_argument("--out", default=str(REPO_ROOT / "out"))
     args = p.parse_args(argv)
 
     run(
         accessions=args.docs,
-        include_abstract=not args.no_abstract,
+        include_abstract=args.abstract,
         model=args.model,
         out_dir=Path(args.out),
     )

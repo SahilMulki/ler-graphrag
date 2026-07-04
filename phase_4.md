@@ -200,7 +200,11 @@ clean text first (prefer APS `content` over PDF OCR — the sample PDFs OCR'd `[
 ## Open items
 - Pull QC (and Browns Ferry 1, Hatch 1) raw text via APS API to widen the Phase-4 sample and move
   QC from few-shot into the eval set.
-- Run the abstract A/B once the pipeline runs end-to-end; lock the decision.
+- Abstract A/B — **DONE (locked: narrative-only).** 3 runs per arm on Dresden + Limerick:
+  node F1 tied (~0.87), edge F1 higher and more stable without the abstract (0.73 vs 0.70; the
+  abstract-off arm hit Limerick edge-F1 0.94 in all 3 runs vs the abstract-on arm bouncing
+  0.81–0.94). The abstract carries nothing absent from the narrative and only added chaining
+  variance, so it is dropped — `pipeline.py` defaults to `include_abstract=False`.
 - Consider adding `ler INVOLVES <PCIV>` to the Limerick oracle (known answer-key gap: the PCIV
   component node is currently unconnected).
 

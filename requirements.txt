@@ -2,3 +2,4 @@ anthropic>=0.40
 pydantic>=2.5
 pandas>=2.0
 rapidfuzz>=3.0
+neo4j==5.28.4          # Phase 5 — official driver, pinned; compatible with Neo4j 5 Community
