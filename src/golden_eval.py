@@ -25,6 +25,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from load_graph import load_records
+from retrieve import Clarification
 
 HPCI_LERS = {"254-2025-006-00", "237-2025-003-00", "353-2025-001-00"}
 
@@ -118,6 +119,33 @@ def golden(expected: dict) -> list[dict]:
          "note": "no such pair exists at N=3; the join is built into the schema and "
                  "surfaces once the corpus is scaled."},
 
+        # --- abstain / clarify: >1 candidate event -> ASK, don't guess ----------
+        {"id": "CLARIFY", "kind": "clarify", "intent": "failure_chain",
+         "provenance": "mixed",
+         "q": "What caused HPCI inoperability?",
+         "exp_candidates": set(HPCI_LERS), "exp_nodes": set(), "exp_lers": set(),
+         "note": "single-subject question with no plant: 3 HPCI-inoperability events match, "
+                 "so the system must ASK which one (candidate set asserted) instead of "
+                 "silently answering one. Mechanism test — same-plant ambiguity gets "
+                 "realistic at scale (Phase 8); do not over-tune to this no-plant case."},
+
+        {"id": "CLARIFY-RESOLVED", "kind": "showcase", "intent": "failure_chain",
+         "provenance": "oracle",
+         "q": "What caused HPCI inoperability at Quad Cities?",
+         "exp_nodes": expected["chain_qc"], "exp_lers": {"254-2025-006-00"},
+         "note": "the disambiguated re-ask (adds a plant): exactly one Quad Cities HPCI "
+                 "event matches, so it ANSWERS — no clarification. Pairs with CLARIFY."},
+
+        # --- adversarial intent: the clarify feature's linchpin -----------------
+        # A misclassified aggregate -> wrongly clarifies; a misclassified single-subject
+        # -> silently answers over many events. Assert the ROUTED INTENT near the boundary.
+        {"id": "ADV-AGG", "kind": "intent", "intent": "system_failure_modes",
+         "provenance": "mixed",
+         "q": "Across all the reports, what failure modes has the HPCI system had?",
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "aggregate phrasing near the single/aggregate boundary: must route to "
+                 "system_failure_modes and span events, NOT be read as one event and clarify."},
+
         # --- negative / out-of-corpus: the no-hallucination test (note 4) -------
         {"id": "NEG", "kind": "negative", "intent": "out_of_corpus",
          "provenance": "none",
@@ -149,6 +177,19 @@ def score_retrieval(ev, spec) -> dict:
         "surfaced_nodes": sorted(surfaced_nodes),
         "surfaced_lers": sorted(surfaced_lers),
         "empty": ev.empty,
+    }
+
+
+def score_clarify(outcome: Clarification, spec) -> dict:
+    offered = outcome.candidate_keys()
+    exp = spec.get("exp_candidates", set())
+    return {
+        "routed_intent": outcome.intent,
+        "intent_ok": outcome.intent == spec["intent"],
+        "offered": sorted(offered),
+        "total": outcome.total,
+        "candidate_recall": (len(exp & offered) / len(exp)) if exp else None,
+        "missing": sorted(exp - offered),
     }
 
 
@@ -195,3 +236,42 @@ def decide_pass(spec, rscore, ascore) -> tuple[bool, str]:
     if not ans_ok:
         bits.append("answer ungrounded/missing citations")
     return ok, ("retrieval + grounded answer OK" if ok else "; ".join(bits))
+
+
+# --------------------------------------------------------------------------- #
+# judge — one entry point over both outcome types (Evidence | Clarification)
+# --------------------------------------------------------------------------- #
+def judge(spec, outcome, ans) -> tuple[bool, str, dict]:
+    """Decide PASS/FAIL for a spec given the retriever outcome and (for Evidence)
+    the answer. Returns (ok, why, detail); detail carries {"clar": ...} for a
+    Clarification or {"rs":..., "as":...} for Evidence, for the printers."""
+    kind = spec["kind"]
+
+    if isinstance(outcome, Clarification):
+        cs = score_clarify(outcome, spec)
+        detail = {"clar": cs}
+        if kind != "clarify":
+            return False, "unexpectedly asked to disambiguate", detail
+        if not cs["intent_ok"]:
+            return False, f"clarified but routed to {cs['routed_intent']}", detail
+        if cs["candidate_recall"] not in (1.0, None):
+            return False, f"clarified but candidates miss {cs['missing']}", detail
+        return True, (f"asked to disambiguate across {cs['total']} events; "
+                      "candidate set covers the expected events"), detail
+
+    # Evidence outcome
+    rs = score_retrieval(outcome, spec)
+    as_ = (score_answer(ans, spec) if ans is not None
+           else {"answerable": False, "citations": [], "citations_cover_expected": None,
+                 "unexpected_citations": []})
+    detail = {"rs": rs, "as": as_}
+
+    if kind == "clarify":
+        return False, "expected a disambiguation prompt; got a single answer/refusal", detail
+    if kind == "intent":                       # adversarial: assert routing, no false clarify
+        ok = rs["intent_ok"]
+        return ok, ("routed to the expected aggregate intent; no false clarification" if ok
+                    else f"wrong intent {rs['routed_intent']} (expected {spec['intent']})"), detail
+
+    ok, why = decide_pass(spec, rs, as_)
+    return ok, why, detail

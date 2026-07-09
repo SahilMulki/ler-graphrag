@@ -15,7 +15,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from llm import LLM
-from retrieve import Evidence
+from retrieve import Evidence, SINGLE_SUBJECT_INTENTS
 
 ANSWER_SYSTEM = """You answer questions about U.S. NRC Licensee Event Reports (LERs) using
 ONLY the EVIDENCE provided (a subgraph retrieved from a knowledge graph). Return JSON only.
@@ -31,12 +31,21 @@ Rules:
 
 Return: {"answerable": true/false, "answer": "...", "citations": ["...", ...]}"""
 
+# Backstop for single-event intents: the retriever already asks to disambiguate when
+# several events match, so the answerer should never see multi-event evidence here — but
+# if it somehow does, refuse-and-ask rather than merge or pick one (the guessing we prevent).
+SINGLE_SUBJECT_BACKSTOP = (
+    "\n\nThis is a SINGLE-EVENT question. If the EVIDENCE describes more than one distinct "
+    "LER, do NOT merge them or pick one — set answerable=false and ask the user to specify a "
+    "single LER number.")
+
 
 def answer(question: str, ev: Evidence, llm: LLM | None = None) -> dict:
     llm = llm or LLM()
+    backstop = SINGLE_SUBJECT_BACKSTOP if ev.intent in SINGLE_SUBJECT_INTENTS else ""
     user = (f"QUESTION:\n{question}\n\n"
             f"EVIDENCE (retrieval intent = {ev.intent}):\n{ev.text}\n\n"
-            "Return the answer JSON.")
+            f"Return the answer JSON.{backstop}")
     obj = llm.complete_json(ANSWER_SYSTEM, user, tag="answer")
     obj.setdefault("answerable", not ev.empty)
     obj.setdefault("answer", "")

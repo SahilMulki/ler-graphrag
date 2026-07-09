@@ -37,11 +37,16 @@ from load_graph import _connect
 # --------------------------------------------------------------------------- #
 INTENTS = {
     "failure_chain":
-        "the ordered chain of failures for ONE event (needs a plant or LER anchor)",
+        "the cause / ordered failure chain of a SINGLE event — a 'what caused' or "
+        "'what led to X' question. Anchor on plant and/or system and/or LER number; "
+        "use this even when only a system is named. If several events match, the "
+        "system asks the user to disambiguate rather than guessing.",
     "system_components":
         "components that failed in/on a given system across the corpus (needs a system)",
     "system_failure_modes":
-        "failure modes for a given system, grouped across the corpus (needs a system)",
+        "AGGREGATE: failure modes for a given system grouped ACROSS the corpus — "
+        "phrasings like 'group all events', 'most common failure mode', 'what failure "
+        "modes across all reports' (needs a system)",
     "mitigating_backups":
         "events where a redundant/backup safety system was available",
     "cause_distribution":
@@ -55,6 +60,14 @@ INTENTS = {
     "out_of_corpus":
         "the question is not answerable from this corpus of LERs",
 }
+
+# Intents that address ONE event, so a match against several distinct events is
+# ambiguous and must trigger a Clarification (not a silent guess). Aggregate intents
+# (system_components, cause_distribution, ...) are MEANT to span events -> exempt.
+SINGLE_SUBJECT_INTENTS = {"failure_chain"}
+
+# Most candidates we list in a Clarification before telling the user to narrow instead.
+CANDIDATE_CAP = 8
 
 
 # --------------------------------------------------------------------------- #
@@ -71,6 +84,27 @@ class Evidence:
 
     def ler_keys(self) -> set[str]:
         return {l["key"] for l in self.lers}
+
+
+# --------------------------------------------------------------------------- #
+# Clarification — the third outcome besides answer / refuse
+# --------------------------------------------------------------------------- #
+@dataclass
+class Clarification:
+    """A single-subject question matched MULTIPLE candidate events, so we ask the user
+    to disambiguate instead of silently picking one. Detected structurally in the
+    retriever by candidate cardinality (>1) — never by letting the answer LLM guess.
+    Single-shot: we return the candidates and the user re-asks (primary re-ask path is
+    by LER number, which is unambiguous)."""
+    intent: str
+    anchors: dict
+    question: str                                        # disambiguation prompt to show
+    candidates: list[dict] = field(default_factory=list) # capped, sorted by event_date desc
+    total: int = 0                                       # candidate count before the cap
+    overflow: bool = False                               # total > CANDIDATE_CAP (some hidden)
+
+    def candidate_keys(self) -> set[str]:
+        return {c["key"] for c in self.candidates}
 
 
 # --------------------------------------------------------------------------- #
@@ -156,7 +190,7 @@ class GraphRetriever:
         self.driver.close()
 
     # -- public ------------------------------------------------------------- #
-    def retrieve(self, question: str) -> Evidence:
+    def retrieve(self, question: str) -> "Evidence | Clarification":
         r = route(question, self.vocab, self.llm)
         intent, anchors = r["intent"], r["anchors"]
         with self.driver.session() as s:
@@ -170,15 +204,46 @@ class GraphRetriever:
         return Evidence(intent=intent, anchors=anchors,
                         text="(no matching evidence in the corpus)", empty=True)
 
-    def _resolve_ler(self, s, anchors) -> str | None:
+    def _candidate_lers(self, s, anchors) -> list[dict]:
+        """The candidate set for a single-subject intent: every non-stub LER matching
+        ALL pinned anchors (LER number exact; plant substring; system membership).
+        Sorted by event_date descending so the most recent events show first. This is
+        what the cardinality branch counts — 0 refuse / 1 answer / >1 clarify."""
         if anchors.get("ler_key"):
-            return anchors["ler_key"]
-        plant = anchors.get("plant")
-        if plant:
-            row = s.run("MATCH (l:LER) WHERE NOT l.stub AND toLower(l.plant_name) "
-                        "CONTAINS toLower($p) RETURN l.key AS ler LIMIT 1", p=plant).single()
-            return row["ler"] if row else None
-        return None
+            preds, params = ["l.key = $ler_key"], {"ler_key": anchors["ler_key"]}
+        else:
+            preds, params = [], {}
+            if anchors.get("plant"):
+                preds.append("toLower(l.plant_name) CONTAINS toLower($plant)")
+                params["plant"] = anchors["plant"]
+            code = (anchors.get("system_code") or "").strip()
+            if code:
+                if code.upper() == "ADS":
+                    preds.append("EXISTS { (l)-[:INVOLVES]->(:System "
+                                 "{match_key:'System:automatic-depressurization-system'}) }")
+                else:
+                    preds.append("EXISTS { (l)-[:INVOLVES]->(:System {eiis_code:$system_code}) }")
+                    params["system_code"] = code
+        where = " AND ".join(preds) if preds else "true"
+        rows = s.run(
+            f"MATCH (l:LER) WHERE NOT l.stub AND {where} "
+            "OPTIONAL MATCH (l)-[:INVOLVES]->(sys:System) "
+            "WITH l, collect(DISTINCT coalesce(sys.eiis_code, sys.display_name)) AS systems "
+            "RETURN l.key AS key, l.plant_name AS plant, l.event_date AS event_date, "
+            "  l.title AS title, l.source AS source, systems "
+            "ORDER BY l.event_date DESC, l.key", **params)
+        return [dict(r) for r in rows]
+
+    def _clarify(self, intent, anchors, cands) -> Clarification:
+        total = len(cands)
+        shown = cands[:CANDIDATE_CAP]
+        overflow = total > CANDIDATE_CAP
+        q = (f"That matches {total} events in the corpus — which one do you mean? "
+             "Re-ask with a specific LER number"
+             + (", or narrow it down by adding an event year (some matches are not shown)."
+                if overflow else " from the list below."))
+        return Clarification(intent=intent, anchors=anchors, question=q,
+                             candidates=shown, total=total, overflow=overflow)
 
     @staticmethod
     def _sys_match(anchors) -> tuple[str, dict]:
@@ -189,10 +254,15 @@ class GraphRetriever:
         return ("s.eiis_code = $code", {"code": code})
 
     # -- templates ---------------------------------------------------------- #
-    def _t_failure_chain(self, s, anchors) -> Evidence:
-        ler = self._resolve_ler(s, anchors)
-        if not ler:
+    def _t_failure_chain(self, s, anchors) -> "Evidence | Clarification":
+        # Single-subject: resolve the candidate set, then branch on cardinality.
+        # 0 -> refuse (empty); >1 -> clarify (don't guess which event); 1 -> answer.
+        cands = self._candidate_lers(s, anchors)
+        if not cands:
             return self._empty("failure_chain", anchors)
+        if len(cands) > 1:
+            return self._clarify("failure_chain", anchors, cands)
+        ler = cands[0]["key"]
         rows = list(s.run(
             "MATCH (l:LER {key:$ler})-[:HAS_CAUSE]->(cause:Cause) "
             "MATCH (cause)<-[:CAUSED_BY]-(origin:FailureMode) "
