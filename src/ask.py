@@ -125,18 +125,20 @@ def _print_full(spec, outcome, ans, ok, why, detail, prov) -> None:
         cs = detail["clar"]
         print("  --- clarification ---")
         print(f"    prompt      : {outcome.question}")
-        print(f"    candidates  : {_fmt_lers(cs['offered'], prov)}"
-              + (f"   MISSING: {cs['missing']}" if cs["missing"] else ""))
+        print(f"    candidates  : {cs['total']} events"
+              + ("  (capped — overflow, narrow by year/LER#)" if cs["overflow"] else ""))
         for c in outcome.candidates:
             print(_fmt_candidate(c))
     else:                                           # Evidence outcome
         rs, as_ = detail["rs"], detail["as"]
         print("  --- retrieval ---")
         print(f"    node recall : {_rec(rs['node_recall'])}"
-              + (f"   missing: {rs['missing_nodes']}" if rs["missing_nodes"] else ""))
-        print(f"    LER  recall : {_rec(rs['ler_recall'])}"
+              + (f"   missing: {rs['missing_nodes'][:6]}" if rs["missing_nodes"] else ""))
+        print(f"    LER  recall : {_rec(rs['ler_recall'])} (known subset)"
               + (f"   missing: {rs['missing_lers']}" if rs["missing_lers"] else ""))
-        print(f"    surfaced LERs: {_fmt_lers(rs['surfaced_lers'], prov)}")
+        sl = rs["surfaced_lers"]
+        more_l = "" if len(sl) <= 8 else f"   (+{len(sl) - 8} more, {len(sl)} total)"
+        print(f"    surfaced LERs: {_fmt_lers(sl[:8], prov)}{more_l}")
         if rs["surfaced_nodes"]:
             shown = rs["surfaced_nodes"][:8]
             more = "" if len(rs["surfaced_nodes"]) <= 8 else f"  (+{len(rs['surfaced_nodes']) - 8} more)"
@@ -144,8 +146,7 @@ def _print_full(spec, outcome, ans, ok, why, detail, prov) -> None:
         print("  --- answer ---")
         print(f"    answerable  : {as_['answerable']}")
         print(f"    answer      : {ans['answer'] if ans else '(skipped — clarification)'}")
-        print(f"    citations   : {_fmt_lers(as_['citations'], prov)}"
-              + (f"   UNEXPECTED: {as_['unexpected_citations']}" if as_["unexpected_citations"] else ""))
+        print(f"    citations   : {_fmt_lers(as_['citations'], prov)}")
     print(f"  {'PASS' if ok else 'FAIL'}: {why}")
     print(f"  note: {spec['note']}")
 
@@ -177,12 +178,13 @@ def _print_summary(results) -> int:
         if by_kind[kind]:
             print(f"  {kind:12}: {pass_kind[kind]}/{by_kind[kind]} pass")
     print(f"  {'TOTAL':12}: {npass}/{len(results)} pass")
-    print("\n  Interpretation: showcase/aggregation prove the graph answers multi-hop and")
-    print("  cross-document questions now; the clarify row asks-not-guesses when several")
-    print("  events match a single-subject question, and the intent row guards the router")
-    print("  boundary it rests on; scale rows work but claim no winner at N=3; the negative")
-    print("  row is the no-hallucination check. The graph-vs-vector baseline is Phase 8,")
-    print("  where the corpus is large enough for the comparison to be robust.")
+    print("\n  Interpretation (~830-doc corpus): showcase proves within-report multi-hop")
+    print("  (anchored on an LER number); xdoc/aggregation prove the cross-document joins a")
+    print("  flat retriever cannot assemble (HPCI components across ~15 plants, cause")
+    print("  distribution over ~770 LERs); payoff is the cross-plant join that was empty at")
+    print("  N=3; clarify asks-not-guesses on real same-plant ambiguity; intent guards the")
+    print("  router boundary; negative is the no-hallucination check. The graph-vs-vector")
+    print("  baseline is the capstone (after the probabilistic layer).")
     return 0 if npass == len(results) else 1
 
 

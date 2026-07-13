@@ -12,3 +12,13 @@ venv/
 .DS_Store
 .vscode/
 .idea/
+
+# generated / fetched corpus data — regenerable, kept out of git to stay code-focused.
+#   re-fetch source docs with fetch_ler.py; re-extract records with pipeline_batch.py.
+# tracked on purpose: data/raw/manifest.csv, data/raw/fetch_list.csv (the parser reads it
+#   for the event-date fallback), data/raw/ground_truth/ (frozen oracle), data/raw/reference/.
+# NOTE: .gitignore has no inline comments — a pattern and a trailing '# ...' would be
+# read as one literal pattern, so keep each pattern on its own bare line.
+data/raw/*.json
+data/raw/*.txt
+out/

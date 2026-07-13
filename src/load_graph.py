@@ -67,12 +67,10 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 ORACLE_PATH = REPO_ROOT / "data" / "raw" / "ground_truth" / "ground_truth.json"
 OUT_DIR = REPO_ROOT / "out"
 
-# (ler_number, source) — Quad Cities from the oracle, the rest from out/.
-GRAPH_SOURCES = [
-    ("254-2025-006-00", "oracle"),    # Quad Cities — few-shot exemplar, no raw text
-    ("237-2025-003-00", "pipeline"),  # Dresden
-    ("353-2025-001-00", "pipeline"),  # Limerick
-]
+# The Quad Cities exemplar has no raw text, so it is always loaded from the frozen
+# oracle; every other record comes from out/ (the pipeline). At scale out/ holds the
+# whole extracted corpus, so we GLOB it rather than list docs by hand (Phase 8).
+ORACLE_LERS = {"254-2025-006-00"}     # Quad Cities — few-shot exemplar, source="oracle"
 
 # Node types that are keyed per-LER (never cross-document hubs).
 PER_LER_TYPES = {"FailureMode", "Consequence", "CorrectiveAction"}
@@ -270,15 +268,22 @@ def _reachable(start: str, edges: list[tuple[str, str, str, dict]]) -> set[str]:
 # assemble the global graph
 # --------------------------------------------------------------------------- #
 def load_records() -> list[tuple[LERRecord, str]]:
+    """The QC oracle record + every out/*.json pipeline record. Malformed out/
+    files are skipped with a warning so one bad extraction can't sink the load."""
     gt = GroundTruth.model_validate(json.loads(ORACLE_PATH.read_text()))
     oracle = {r.ler_number: r for r in gt.lers}
     out: list[tuple[LERRecord, str]] = []
-    for ler, src in GRAPH_SOURCES:
-        if src == "oracle":
-            rec = oracle[ler]
-        else:
-            rec = LERRecord.model_validate(json.loads((OUT_DIR / f"{ler}.json").read_text()))
-        out.append((rec, src))
+    for ler in sorted(ORACLE_LERS):
+        out.append((oracle[ler], "oracle"))
+    for path in sorted(OUT_DIR.glob("*.json")):
+        try:
+            rec = LERRecord.model_validate(json.loads(path.read_text()))
+        except Exception as e:
+            print(f"[warn] skipping {path.name}: {type(e).__name__}: {e}")
+            continue
+        if rec.ler_number in ORACLE_LERS:      # never let a stray out/ dup shadow the oracle
+            continue
+        out.append((rec, "pipeline"))
     return out
 
 

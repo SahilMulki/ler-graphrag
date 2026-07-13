@@ -481,7 +481,9 @@ def parse_text(content: str, meta: dict) -> Form366Parse:
     docket = meta.get("docket") or ""
     revision = ler_number.split("-")[-1] if "-" in ler_number else "00"
 
-    event_date = parse_event_date(header, narrative, abstract)
+    # Block-5 text first (the official form field); fall back to the INL export's
+    # Event Date when text extraction separated the date labels from their values.
+    event_date = parse_event_date(header, narrative, abstract) or meta.get("event_date")
     if not event_date:
         raise ValueError(f"{ler_number}: could not parse event_date (block 5)")
 
@@ -541,10 +543,34 @@ def load_meta(accession: str, raw_dir: Path) -> dict:
     return derive_meta(resp)
 
 
+_SHEET_DATES: Optional[dict] = None
+
+
+def sheet_event_date(accession: str, raw_dir: Path) -> Optional[str]:
+    """Authoritative event date (ISO) from the INL export at data/raw/fetch_list.csv,
+    a fallback for when text extraction separates the block-5 date labels from their
+    values (~10% of recent docs). Cached on first use; returns None if unavailable."""
+    global _SHEET_DATES
+    if _SHEET_DATES is None:
+        import csv
+        _SHEET_DATES = {}
+        p = raw_dir / "fetch_list.csv"
+        if p.exists():
+            for row in csv.DictReader(p.open()):
+                mdY = re.match(r"(\d{1,2})/(\d{1,2})/(\d{2,4})", (row.get("event_date") or "").strip())
+                acc = row.get("accession")
+                if acc and mdY:
+                    iso = _iso_from_slashes(*mdY.groups())
+                    if iso:
+                        _SHEET_DATES[acc] = iso
+    return _SHEET_DATES.get(accession)
+
+
 def load_and_parse(accession: str, raw_dir: Optional[Path] = None) -> Form366Parse:
     raw_dir = raw_dir or (REPO_ROOT / "data" / "raw")
     content = (raw_dir / f"{accession}.txt").read_text()
     meta = load_meta(accession, raw_dir)
+    meta.setdefault("event_date", sheet_event_date(accession, raw_dir))
     return parse_text(content, meta)
 
 

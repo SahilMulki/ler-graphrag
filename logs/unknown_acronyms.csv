@@ -1,0 +1,23 @@
+acronym,display_name
+ESPS,Emergency Supplemental Power Source (ESPS)
+RPRW,River Water / Post-LOCA Recirculation Water (RPRW)
+SSF,Safe-Shutdown Facility (SSF) Diesel Generator
+AGCS,Auxiliary Glycol Cooling System (AGCS)
+BDAS,Boron Dilution Alarm System (BDAS)
+CEDMCS,Control Element Drive Mechanism Control System (CEDMCS)
+CREOAS,Control Room Emergency Outside Air Supply (CREOAS)
+CRETS,Control Room Emergency Temperature System (CRETS)
+CREVS,Control Room Emergency Ventilation System (CREVS)
+EHC,Electro-Hydraulic Control (EHC) fluid system
+EHC,Turbine Electro-Hydraulic Control System (EHC)
+ERAT,Emergency Reserve Auxiliary Transformer (ERAT)
+ISV,Isolation Valve System (ISV)
+MSIVS,Main Steam Isolation Valves (MSIVs)
+NIS,Nuclear Instrumentation System (NIS)
+OPRM,Oscillating Power Range Monitor (OPRM)
+RPS,Reactor Protection System (RPS)
+RSS,Remote Shutdown System (RSS)
+SSPS,Solid State Protection System (SSPS)
+TORUS,Suppression Chamber (Torus)
+UAT,Unit Auxiliary Transformer (UAT)
+UAT,Unit Auxiliary Transformer (UAT) protective relay/deluge circuitry

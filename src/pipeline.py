@@ -74,6 +74,34 @@ def load_fewshot(oracle_path: Path = ORACLE_PATH, ler: str = FEWSHOT_LER) -> str
     return json.dumps(rec, indent=2)
 
 
+# The USER template splits here: everything before is the identical few-shot prefix
+# (cacheable across all docs); everything from here on is this document's data.
+FEWSHOT_MARKER = "Now extract the LER below."
+
+
+def build_prefix(sys_tmpl: str, usr_tmpl: str, schema_json: str,
+                 fewshot_json: str) -> tuple[str, str]:
+    """The doc-independent, cacheable pieces, computed ONCE for a whole run:
+    (system = schema instructions, fewshot_user = the worked example)."""
+    system = sys_tmpl.replace("{{JSON_SCHEMA}}", schema_json)
+    head = usr_tmpl.split(FEWSHOT_MARKER, 1)[0] if FEWSHOT_MARKER in usr_tmpl else ""
+    fewshot_user = head.replace("{{FEWSHOT_RECORD}}", fewshot_json).strip()
+    return system, fewshot_user
+
+
+def build_tail(usr_tmpl: str, parse: Form366Parse, include_abstract: bool) -> str:
+    """This document's varying part of the USER message (form fields + narrative)."""
+    tail = (FEWSHOT_MARKER + usr_tmpl.split(FEWSHOT_MARKER, 1)[1]
+            if FEWSHOT_MARKER in usr_tmpl else usr_tmpl)
+    tail = tail.replace("{{FORM366_FIELDS}}", json.dumps(parse.form_fields_json(), indent=2))
+    if include_abstract:
+        tail = tail.replace("{{ABSTRACT}}", parse.abstract or "(no abstract provided)")
+    else:
+        # drop the entire "[ABSTRACT block 16] {{ABSTRACT}}" section (the A/B toggle)
+        tail = re.sub(r"\[ABSTRACT block 16\][^\[]*", "", tail, count=1)
+    return tail.replace("{{NARRATIVE}}", parse.narrative or "")
+
+
 def build_messages(
     sys_tmpl: str,
     usr_tmpl: str,
@@ -82,18 +110,9 @@ def build_messages(
     parse: Form366Parse,
     include_abstract: bool,
 ) -> tuple[str, str]:
-    system = sys_tmpl.replace("{{JSON_SCHEMA}}", schema_json)
-    user = usr_tmpl.replace("{{FEWSHOT_RECORD}}", fewshot_json)
-    user = user.replace(
-        "{{FORM366_FIELDS}}", json.dumps(parse.form_fields_json(), indent=2)
-    )
-    if include_abstract:
-        user = user.replace("{{ABSTRACT}}", parse.abstract or "(no abstract provided)")
-    else:
-        # drop the entire "[ABSTRACT block 16] {{ABSTRACT}}" section (the A/B toggle)
-        user = re.sub(r"\[ABSTRACT block 16\][^\[]*", "", user, count=1)
-    user = user.replace("{{NARRATIVE}}", parse.narrative or "")
-    return system, user
+    system, fewshot_user = build_prefix(sys_tmpl, usr_tmpl, schema_json, fewshot_json)
+    tail = build_tail(usr_tmpl, parse, include_abstract)
+    return system, f"{fewshot_user}\n\n{tail}".strip()
 
 
 # --------------------------------------------------------------------------- #

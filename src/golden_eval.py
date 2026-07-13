@@ -1,21 +1,26 @@
 """
-golden_eval.py — the golden-question eval spec + scoring for Phase 6.
+golden_eval.py — the golden-question eval spec + scoring.
 
-Two things the notes asked for:
+Two things the notes asked for, preserved from Phase 6:
   * Retrieval is scored SEPARATELY from answering. Each question carries a
-    hand-specified expected set (node match_keys and/or LER numbers) derived from
-    ground_truth.json / out/ via `build_expected()`, and we score whether the
-    GraphRetriever surfaced them — independent of what the answer LLM then says.
-  * Materialize-at-scale questions (Q2, Q13, Q14 grouping) are judged on honest
-    behavior, NOT on declaring a graph-vs-vector "winner" that N=3 can't support.
+    hand-specified expected set (node match_keys and/or LER numbers), and we score
+    whether the GraphRetriever surfaced them — independent of what the answer LLM says.
+  * Ambiguity is a first-class outcome: a single-subject question matching several
+    events must return a Clarification (asserted structurally, not by prose).
 
-`kind` drives the pass rule:
-  showcase / aggregation  — retrieval must surface the expected nodes+LERs and the
-                            answer must be grounded and cite the expected LERs
-  scale                   — retrieval must behave honestly (thin/empty as designed);
-                            no winner is claimed
-  negative                — the no-hallucination test: answer must refuse (answerable
-                            = false, no citations)
+Phase 8 rescaled the set for the ~830-doc corpus (`kind` drives the pass rule):
+  showcase     single-event answer, anchored on a specific LER number so it stays
+               deterministic even though plants now have many events; must answer
+               (not clarify), surface the expected chain, and cite that LER
+  xdoc         cross-document breadth: the known oracle items must appear as a SUBSET
+               and the result must span many LERs (the join a flat retriever can't do)
+  aggregation  corpus-wide grouping: known items appear + spans the corpus + grounded
+  payoff       a join that was empty at N=3 and is non-empty at scale (cross-plant)
+  clarify      real same-plant / broad ambiguity -> must ask, asserted structurally
+  intent       adversarial router-boundary guard: aggregate must NOT clarify
+  negative     no-hallucination: an out-of-corpus question must be refused
+
+The frozen 3-doc oracle regression (score.py) is the separate extraction-quality gate.
 """
 from __future__ import annotations
 
@@ -27,6 +32,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from load_graph import load_records
 from retrieve import Clarification
 
+# The three hand-marked HPCI LERs remain the STABLE anchors at scale: their
+# extractions are frozen/known, so expected sets derived from them don't drift.
 HPCI_LERS = {"254-2025-006-00", "237-2025-003-00", "353-2025-001-00"}
 
 
@@ -55,109 +62,98 @@ def build_expected() -> dict:
 
 
 # --------------------------------------------------------------------------- #
-# the golden set (MVP-now subset from phase_0.md)
+# the golden set (Phase-8 scale)
 # --------------------------------------------------------------------------- #
 def golden(expected: dict) -> list[dict]:
     return [
-        # --- LEAD showcase: pipeline-extracted multi-hop (note 3) ---------------
-        {"id": "Q1-Limerick", "kind": "showcase", "intent": "failure_chain",
+        # --- multi-hop, anchored on a specific LER so it stays a single answer ----
+        {"id": "MH-Limerick", "kind": "showcase", "intent": "failure_chain",
          "provenance": "pipeline",
-         "q": "What chain of failures led to HPCI being inoperable at Limerick?",
+         "q": "What chain of failures led to HPCI being inoperable in LER 353-2025-001-00?",
          "exp_nodes": expected["chain_limerick"], "exp_lers": {"353-2025-001-00"},
-         "note": "primary multi-hop demo — this chain came from the extraction pipeline, "
-                 "not a hand-labeled record."},
+         "note": "lead multi-hop demo — pipeline-extracted Limerick chain; anchored on the "
+                 "LER number because 'HPCI at Limerick' is now genuinely ambiguous (2 events)."},
 
-        {"id": "Q1-QuadCities", "kind": "showcase", "intent": "failure_chain",
+        {"id": "MH-QuadCities", "kind": "showcase", "intent": "failure_chain",
          "provenance": "oracle",
-         "q": "What chain of failures led to HPCI being inoperable at the Quad Cities "
-              "Power Plant?",
+         "q": "What caused HPCI inoperability in LER 254-2025-006-00?",
          "exp_nodes": expected["chain_qc"], "exp_lers": {"254-2025-006-00"},
-         "note": "golden Q1, but Quad Cities is loaded from its ORACLE record (few-shot "
-                 "exemplar, no raw text) — flagged so the pipeline result (Limerick) leads."},
+         "note": "the oracle-sourced QC chain, anchored on its LER number (few-shot exemplar)."},
 
-        # --- cross-document hubs (graph's structural advantage) -----------------
-        {"id": "Q3", "kind": "showcase", "intent": "system_components",
+        # --- cross-document hubs: the structural advantage, now at fleet scale ----
+        {"id": "XDOC-HPCI-COMP", "kind": "xdoc", "intent": "system_components",
          "provenance": "mixed",
          "q": "What components have failed in the HPCI system across the whole corpus?",
          "exp_nodes": expected["hpci_components"], "exp_lers": set(HPCI_LERS),
-         "note": "cross-document join on the shared System:BJ hub — all three plants."},
+         "min_lers": 8,
+         "note": "join on the shared System:BJ hub across ~45 HPCI events / ~15 plants; the "
+                 "known 3-doc components must appear as a subset and the result must span "
+                 "many LERs — the cross-document assembly a flat retriever cannot do."},
 
-        {"id": "Q4", "kind": "showcase", "intent": "mitigating_backups",
+        {"id": "AGG-CAUSE", "kind": "aggregation", "intent": "cause_distribution",
          "provenance": "mixed",
-         "q": "Which events were mitigated by a redundant safety system being available?",
-         "exp_nodes": set(), "exp_lers": set(HPCI_LERS),
-         "note": "scored on LERs/citations (backups are serialized as codes, not nodes)."},
-
-        {"id": "Q11", "kind": "aggregation", "intent": "cause_distribution",
-         "provenance": "mixed",
-         "q": "What is the distribution of cause categories across the event reports?",
+         "q": "What is the distribution of cause categories across all the event reports?",
          "exp_nodes": expected["cause_categories"], "exp_lers": set(HPCI_LERS),
-         "note": "aggregation over the corpus."},
+         "min_lers": 100,
+         "note": "corpus-wide aggregation over ~770 LERs; the known cause categories appear "
+                 "and the grouping now has real mass behind each bucket."},
 
-        # --- materialize-at-scale: no winner claimed (note 2) -------------------
-        {"id": "Q14", "kind": "scale", "intent": "system_failure_modes",
+        {"id": "AGG-WEAK-PROG", "kind": "aggregation", "intent": "weak_program_events",
          "provenance": "mixed",
-         "q": "For the HPCI system, group all corpus events by failure mode and show the "
-              "most common one.",
-         "exp_nodes": expected["hpci_failure_modes"], "exp_lers": set(HPCI_LERS),
-         "note": "grouping mechanism works, but FailureModes are per-event; a meaningful "
-                 "'most common' only appears at corpus scale, not at N=3."},
-
-        {"id": "Q2", "kind": "scale", "intent": "weak_program_events",
-         "provenance": "oracle",
          "q": "Which events across all these plants trace back to a weak maintenance or "
-              "procedure program?",
+              "procedure program (personnel error)?",
          "exp_nodes": set(), "exp_lers": {"254-2025-006-00"},
-         "note": "only one personnel-error event exists at N=3; the cross-plant pattern "
-                 "is a scale result."},
+         "min_lers": 5,
+         "note": "the cross-plant 'weak program' pattern that only exists at scale; QC is one "
+                 "known personnel-error event, now among many across the fleet."},
 
-        {"id": "Q13", "kind": "scale", "intent": "shared_component_cause",
+        # --- the scale payoff: a join that was empty at N=3, non-empty now --------
+        {"id": "XPLANT-SHARED", "kind": "payoff", "intent": "shared_component_cause",
          "provenance": "none",
          "q": "Find events at different plants that share both a common component and a "
               "common cause.",
          "exp_nodes": set(), "exp_lers": set(),
-         "note": "no such pair exists at N=3; the join is built into the schema and "
-                 "surfaces once the corpus is scaled."},
+         "note": "empty at N=3, non-empty at scale — the cross-plant join built into the "
+                 "coded-hub schema finally surfaces real pairs."},
 
-        # --- abstain / clarify: >1 candidate event -> ASK, don't guess ----------
-        {"id": "CLARIFY", "kind": "clarify", "intent": "failure_chain",
+        # --- abstain / clarify on REAL ambiguity (the whole point at scale) -------
+        {"id": "CLARIFY-PLANT", "kind": "clarify", "intent": "failure_chain",
+         "provenance": "mixed",
+         "q": "What caused an HPCI event at Browns Ferry?",
+         "min_candidates": 3, "must_include": "259-2024-002-00",
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "same-plant ambiguity is now real: Browns Ferry has 8 HPCI events, so the "
+                 "system must ASK which one instead of guessing."},
+
+        {"id": "CLARIFY-BROAD", "kind": "clarify", "intent": "failure_chain",
          "provenance": "mixed",
          "q": "What caused HPCI inoperability?",
-         "exp_candidates": set(HPCI_LERS), "exp_nodes": set(), "exp_lers": set(),
-         "note": "single-subject question with no plant: 3 HPCI-inoperability events match, "
-                 "so the system must ASK which one (candidate set asserted) instead of "
-                 "silently answering one. Mechanism test — same-plant ambiguity gets "
-                 "realistic at scale (Phase 8); do not over-tune to this no-plant case."},
+         "min_candidates": 10,
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "no plant, ~45 HPCI events match: clarify with an overflow hint to narrow "
+                 "by year or LER number (candidates are capped, not hidden silently)."},
 
-        {"id": "CLARIFY-RESOLVED", "kind": "showcase", "intent": "failure_chain",
-         "provenance": "oracle",
-         "q": "What caused HPCI inoperability at Quad Cities?",
-         "exp_nodes": expected["chain_qc"], "exp_lers": {"254-2025-006-00"},
-         "note": "the disambiguated re-ask (adds a plant): exactly one Quad Cities HPCI "
-                 "event matches, so it ANSWERS — no clarification. Pairs with CLARIFY."},
-
-        # --- adversarial intent: the clarify feature's linchpin -----------------
-        # A misclassified aggregate -> wrongly clarifies; a misclassified single-subject
-        # -> silently answers over many events. Assert the ROUTED INTENT near the boundary.
+        # --- adversarial intent: aggregate must NOT be read as a single event -----
         {"id": "ADV-AGG", "kind": "intent", "intent": "system_failure_modes",
          "provenance": "mixed",
          "q": "Across all the reports, what failure modes has the HPCI system had?",
          "exp_nodes": set(), "exp_lers": set(),
          "note": "aggregate phrasing near the single/aggregate boundary: must route to "
-                 "system_failure_modes and span events, NOT be read as one event and clarify."},
+                 "system_failure_modes and span events, NOT clarify."},
 
-        # --- negative / out-of-corpus: the no-hallucination test (note 4) -------
+        # --- negative / out-of-corpus: the no-hallucination test ------------------
         {"id": "NEG", "kind": "negative", "intent": "out_of_corpus",
          "provenance": "none",
-         "q": "What caused the steam generator tube rupture at Diablo Canyon Unit 1?",
+         "q": "What caused the turbine failure at the Fukushima Daiichi nuclear plant?",
          "exp_nodes": set(), "exp_lers": set(),
-         "note": "Diablo Canyon and steam-generator tube ruptures are not in this corpus; "
-                 "the system must refuse rather than fabricate."},
+         "note": "Fukushima Daiichi is not a U.S. NRC licensee in this corpus (verified absent); "
+                 "the system must refuse rather than fabricate. (Diablo Canyon IS in-corpus, so "
+                 "it would not be a valid out-of-corpus probe.)"},
     ]
 
 
 # --------------------------------------------------------------------------- #
-# scoring — retrieval and answering kept separate
+# scoring — retrieval, answering, and clarification kept separate
 # --------------------------------------------------------------------------- #
 def score_retrieval(ev, spec) -> dict:
     surfaced_nodes = set(ev.node_keys)
@@ -182,71 +178,32 @@ def score_retrieval(ev, spec) -> dict:
 
 def score_clarify(outcome: Clarification, spec) -> dict:
     offered = outcome.candidate_keys()
-    exp = spec.get("exp_candidates", set())
     return {
         "routed_intent": outcome.intent,
         "intent_ok": outcome.intent == spec["intent"],
         "offered": sorted(offered),
         "total": outcome.total,
-        "candidate_recall": (len(exp & offered) / len(exp)) if exp else None,
-        "missing": sorted(exp - offered),
+        "overflow": outcome.overflow,
     }
 
 
 def score_answer(ans, spec) -> dict:
     citations = set(ans.get("citations", []))
-    exp_lers = spec["exp_lers"]
     return {
         "answerable": bool(ans.get("answerable")),
         "citations": sorted(citations),
-        "citations_cover_expected": exp_lers <= citations if exp_lers else None,
-        "unexpected_citations": sorted(citations - exp_lers) if exp_lers else sorted(citations),
     }
-
-
-def decide_pass(spec, rscore, ascore) -> tuple[bool, str]:
-    kind = spec["kind"]
-    nr, lr = rscore["node_recall"], rscore["ler_recall"]
-
-    if kind == "negative":
-        ok = (not ascore["answerable"]) and not ascore["citations"]
-        return ok, ("refused, no citations" if ok
-                    else "FAILED no-hallucination: answered or cited out-of-corpus")
-
-    if kind == "scale":
-        # honest behavior only; never assert a winner
-        if spec["id"] == "Q13":
-            ok = rscore["empty"]
-            return ok, ("honestly empty (surfaces at scale)" if ok
-                        else "expected no cross-plant pair at N=3")
-        ok = (lr == 1.0) and ascore["answerable"]
-        return ok, ("mechanism works; scale-dependent, no winner claimed" if ok
-                    else "expected the thin N=3 result")
-
-    # showcase / aggregation
-    node_ok = (nr is None) or (nr >= 0.8)
-    ler_ok = (lr == 1.0)
-    ans_ok = ascore["answerable"] and (ascore["citations_cover_expected"] in (True, None))
-    ok = node_ok and ler_ok and ans_ok
-    bits = []
-    if not node_ok:
-        bits.append(f"node recall {nr:.2f}")
-    if not ler_ok:
-        bits.append(f"LER recall {lr}")
-    if not ans_ok:
-        bits.append("answer ungrounded/missing citations")
-    return ok, ("retrieval + grounded answer OK" if ok else "; ".join(bits))
 
 
 # --------------------------------------------------------------------------- #
 # judge — one entry point over both outcome types (Evidence | Clarification)
 # --------------------------------------------------------------------------- #
 def judge(spec, outcome, ans) -> tuple[bool, str, dict]:
-    """Decide PASS/FAIL for a spec given the retriever outcome and (for Evidence)
-    the answer. Returns (ok, why, detail); detail carries {"clar": ...} for a
-    Clarification or {"rs":..., "as":...} for Evidence, for the printers."""
+    """Decide PASS/FAIL for a spec at scale. Returns (ok, why, detail); detail
+    carries {"clar": ...} for a Clarification or {"rs":..., "as":...} for Evidence."""
     kind = spec["kind"]
 
+    # --- Clarification outcome -------------------------------------------------
     if isinstance(outcome, Clarification):
         cs = score_clarify(outcome, spec)
         detail = {"clar": cs}
@@ -254,24 +211,59 @@ def judge(spec, outcome, ans) -> tuple[bool, str, dict]:
             return False, "unexpectedly asked to disambiguate", detail
         if not cs["intent_ok"]:
             return False, f"clarified but routed to {cs['routed_intent']}", detail
-        if cs["candidate_recall"] not in (1.0, None):
-            return False, f"clarified but candidates miss {cs['missing']}", detail
-        return True, (f"asked to disambiguate across {cs['total']} events; "
-                      "candidate set covers the expected events"), detail
+        need = spec.get("min_candidates", 2)
+        if outcome.total < need:
+            return False, f"clarified but only {outcome.total} candidate(s) (< {need})", detail
+        inc = spec.get("must_include")
+        if inc and inc not in outcome.candidate_keys() and not outcome.overflow:
+            return False, f"clarified but {inc} not among the shown candidates", detail
+        return True, f"asked to disambiguate across {outcome.total} events", detail
 
-    # Evidence outcome
+    # --- Evidence outcome ------------------------------------------------------
     rs = score_retrieval(outcome, spec)
     as_ = (score_answer(ans, spec) if ans is not None
-           else {"answerable": False, "citations": [], "citations_cover_expected": None,
-                 "unexpected_citations": []})
+           else {"answerable": False, "citations": []})
     detail = {"rs": rs, "as": as_}
+    grounded = set(as_["citations"]) <= set(rs["surfaced_lers"])
+    n_lers = len(rs["surfaced_lers"])
 
     if kind == "clarify":
         return False, "expected a disambiguation prompt; got a single answer/refusal", detail
-    if kind == "intent":                       # adversarial: assert routing, no false clarify
+    if kind == "intent":
         ok = rs["intent_ok"]
         return ok, ("routed to the expected aggregate intent; no false clarification" if ok
                     else f"wrong intent {rs['routed_intent']} (expected {spec['intent']})"), detail
+    if kind == "negative":
+        ok = (not as_["answerable"]) and not as_["citations"]
+        return ok, ("refused, no citations" if ok
+                    else "FAILED no-hallucination: answered or cited out-of-corpus"), detail
+    if kind == "payoff":
+        ok = rs["intent_ok"] and (not rs["empty"]) and as_["answerable"]
+        return ok, ("cross-plant pair surfaced at scale + grounded answer" if ok
+                    else "expected a non-empty cross-plant result at scale"), detail
 
-    ok, why = decide_pass(spec, rs, as_)
+    # showcase / xdoc / aggregation — retrieval recall + scale breadth + grounded
+    nr, lr = rs["node_recall"], rs["ler_recall"]
+    node_ok = (nr is None) or (nr >= 0.8)
+    ler_ok = (lr is None) or (lr >= 0.8)
+    ans_ok = as_["answerable"] and grounded
+    scale_ok = n_lers >= spec.get("min_lers", 0)
+    cited_ok = (spec["exp_lers"] <= set(as_["citations"])) if kind == "showcase" and spec["exp_lers"] else True
+    ok = rs["intent_ok"] and node_ok and ler_ok and ans_ok and scale_ok and cited_ok
+
+    bits = []
+    if not rs["intent_ok"]:
+        bits.append(f"intent {rs['routed_intent']} (exp {spec['intent']})")
+    if not node_ok:
+        bits.append(f"node recall {nr:.2f}")
+    if not ler_ok:
+        bits.append(f"known-LER recall {lr:.2f}")
+    if not scale_ok:
+        bits.append(f"only {n_lers} LERs (< {spec['min_lers']})")
+    if not ans_ok:
+        bits.append("answer ungrounded/unanswerable")
+    if not cited_ok:
+        bits.append("expected LER not cited")
+    why = ("retrieval + grounded answer OK" + (f"; spans {n_lers} LERs" if spec.get("min_lers") else "")
+           if ok else "; ".join(bits))
     return ok, why, detail

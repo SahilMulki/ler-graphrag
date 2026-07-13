@@ -112,9 +112,14 @@ class Clarification:
 # --------------------------------------------------------------------------- #
 @dataclass
 class GraphVocab:
+    # Only the BOUNDED controlled vocabularies go in the router prompt: systems
+    # (~50 EIIS codes) and cause categories (~6). Plants (~100) and LER numbers
+    # (100s–1000s) scale with the corpus, so they are NOT listed — the router
+    # extracts them as free text and the retriever resolves them deterministically
+    # in Cypher (plant CONTAINS, LER-number exact). Keeps the prompt O(1) in corpus
+    # size and underpins the clarify feature's LER-number re-ask at scale.
     systems: list[dict]      # [{code, name}]
     causes: list[dict]       # [{code, category}]
-    plants: list[dict]       # [{ler, plant}]
 
     @classmethod
     def load(cls, session) -> "GraphVocab":
@@ -124,10 +129,7 @@ class GraphVocab:
         causes = [dict(r) for r in session.run(
             "MATCH (c:Cause) RETURN DISTINCT c.cause_code AS code, c.category AS category "
             "ORDER BY code")]
-        plants = [dict(r) for r in session.run(
-            "MATCH (l:LER) WHERE NOT l.stub "
-            "RETURN l.key AS ler, l.plant_name AS plant ORDER BY ler")]
-        return cls(systems=systems, causes=causes, plants=plants)
+        return cls(systems=systems, causes=causes)
 
     def as_prompt(self) -> str:
         return (
@@ -135,8 +137,6 @@ class GraphVocab:
             + "\n".join(f"  {s['code'] or '(none)'} — {s['name']}" for s in self.systems)
             + "\n\nCAUSE CATEGORIES (code — category):\n"
             + "\n".join(f"  {c['code']} — {c['category']}" for c in self.causes)
-            + "\n\nLERs (key — plant):\n"
-            + "\n".join(f"  {p['ler']} — {p['plant']}" for p in self.plants)
         )
 
 
@@ -144,21 +144,29 @@ class GraphVocab:
 # router
 # --------------------------------------------------------------------------- #
 ROUTER_SYSTEM = """You route a natural-language question to ONE retrieval intent over a
-knowledge graph of U.S. NRC Licensee Event Reports (LERs), and extract anchors that
-MUST come from the provided vocabulary. Return JSON only.
+knowledge graph of U.S. NRC Licensee Event Reports (LERs), and extract anchors. Return
+JSON only.
 
 Intents:
 {intents}
 
 Rules:
 - Choose exactly one `intent`.
-- `anchors` may include: system_code (an eiis_code from the vocab, or the string "ADS"
-  for the Automatic Depressurization System), ler_key (from the vocab), plant (a plant
-  name substring from the vocab), cause_code (from the vocab).
-- Only use anchor values that appear in the vocabulary. If the question names an entity
-  (plant, system, component, event) that is NOT in the vocabulary, choose intent
-  "out_of_corpus" with empty anchors — do not guess.
-- "HPCI" is system BJ; "RCIC" is BN. Map common names to their eiis_code when present.
+- `anchors` may include:
+  - system_code: an eiis_code from the SYSTEMS vocabulary below, or the string "ADS" for
+    the Automatic Depressurization System. "HPCI" is BJ; "RCIC" is BN. Use ONLY a code that
+    appears in the vocabulary; if the question's system is not there, omit system_code.
+  - cause_code: a code from the CAUSE CATEGORIES vocabulary below (omit if none applies).
+  - plant: the plant name as written in the question (FREE TEXT — a plant list is NOT
+    provided; extract what the user wrote, e.g. "Limerick", "Quad Cities"). The retriever
+    validates it against the graph.
+  - ler_key: an LER number the user typed, verbatim and formatted like "237-2025-003-00"
+    (FREE TEXT). Extract it whenever the user gives one — this is how a user disambiguates.
+- Do NOT invent system/cause codes. Plant and LER-number anchors are resolved against the
+  graph, so if the plant/LER is not in the corpus the retriever returns nothing and the
+  answerer refuses — that is the intended behavior; you need not pre-check them.
+- Use "out_of_corpus" only when the question is clearly not about an in-corpus LER topic at
+  all (e.g. a different domain, or a system/event with no relation to these reports).
 
 Return: {{"intent": "...", "anchors": {{...}}, "reason": "one short clause"}}"""
 
@@ -263,12 +271,15 @@ class GraphRetriever:
         if len(cands) > 1:
             return self._clarify("failure_chain", anchors, cands)
         ler = cands[0]["key"]
+        # Constrain EVERY hop to this LER's own edges (ler_number). The Cause node is a
+        # shared cross-document hub, so without this the chain fans out through the hub
+        # into every other event sharing the cause category (a scale-only explosion).
         rows = list(s.run(
-            "MATCH (l:LER {key:$ler})-[:HAS_CAUSE]->(cause:Cause) "
-            "MATCH (cause)<-[:CAUSED_BY]-(origin:FailureMode) "
-            "MATCH path=(origin)-[:LEADS_TO*0..]->(cons:Consequence) "
+            "MATCH (l:LER {key:$ler})-[:HAS_CAUSE {ler_number:$ler}]->(cause:Cause) "
+            "MATCH (cause)<-[:CAUSED_BY {ler_number:$ler}]-(origin:FailureMode) "
+            "MATCH path=(origin)-[:LEADS_TO*0.. {ler_number:$ler}]->(cons:Consequence) "
             "WITH l, cause, path, cons "
-            "OPTIONAL MATCH (cons)-[:BACKED_UP_BY]->(bk:System) "
+            "OPTIONAL MATCH (cons)-[:BACKED_UP_BY {ler_number:$ler}]->(bk:System) "
             "RETURN l.key AS ler, l.source AS source, l.plant_name AS plant, "
             "  cause.display_name AS cause, cause.category AS category, "
             "  [n IN nodes(path) | n.display_name] AS chain, "
@@ -311,10 +322,13 @@ class GraphRetriever:
 
     def _t_system_failure_modes(self, s, anchors) -> Evidence:
         pred, params = self._sys_match(anchors)
+        # per-LER edge filter (l.key) so the chain stays within each event and does not
+        # fan out through the shared Cause hub across the whole corpus.
         rows = list(s.run(
             f"MATCH (l:LER)-[:INVOLVES]->(s:System) WHERE NOT l.stub AND {pred} "
-            "MATCH (l)-[:HAS_CAUSE]->(:Cause)<-[:CAUSED_BY]-(:FailureMode)"
-            "-[:LEADS_TO*0..]->(fm:FailureMode) "
+            "MATCH (l)-[:HAS_CAUSE {ler_number:l.key}]->(:Cause)"
+            "<-[:CAUSED_BY {ler_number:l.key}]-(:FailureMode)"
+            "-[:LEADS_TO*0.. {ler_number:l.key}]->(fm:FailureMode) "
             "RETURN fm.match_key AS mk, fm.display_name AS name, "
             "  collect(DISTINCT l.key) AS lers, count(DISTINCT l) AS n "
             "ORDER BY n DESC, name", **params))
@@ -331,9 +345,11 @@ class GraphRetriever:
                         lers=[{"key": k, "source": None} for k in lers])
 
     def _t_mitigating_backups(self, s, anchors) -> Evidence:
+        # per-LER edge filter (l.key) to keep each event's chain within itself.
         rows = list(s.run(
-            "MATCH (l:LER)-[:HAS_CAUSE]->(:Cause)<-[:CAUSED_BY]-()-[:LEADS_TO*0..]->"
-            "(cons:Consequence)-[:BACKED_UP_BY]->(bk:System) WHERE NOT l.stub "
+            "MATCH (l:LER)-[:HAS_CAUSE {ler_number:l.key}]->(:Cause)"
+            "<-[:CAUSED_BY {ler_number:l.key}]-()-[:LEADS_TO*0.. {ler_number:l.key}]->"
+            "(cons:Consequence)-[:BACKED_UP_BY {ler_number:l.key}]->(bk:System) WHERE NOT l.stub "
             "RETURN l.key AS ler, l.source AS source, l.plant_name AS plant, "
             "  cons.display_name AS consequence, "
             "  collect(DISTINCT coalesce(bk.eiis_code, bk.display_name)) AS backups "

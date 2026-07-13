@@ -128,6 +128,71 @@ class LLM:
             )
         raise ValueError(f"{tag}: no valid JSON after {retries + 1} attempts")
 
+    # -- batch API (Phase 8: 835-doc extraction, 50% off, async <=24h) ------ #
+    # Cost at scale is dominated by output tokens (structured JSON), which caching
+    # cannot discount — only the Batch API's 50% does. Caching still helps the large
+    # identical prefix (schema system block + few-shot user block): we place two
+    # `cache_control` breakpoints so every request shares one cached prefix. Whether
+    # the async batch actually reuses that cache (5-min ephemeral TTL) is measured in
+    # calibration via cache_read vs cache_creation before the full run.
+    def batch_request(self, custom_id: str, system: str,
+                      fewshot_user: str, tail_user: str) -> dict:
+        """One Messages-Batch request. `system` (schema) and `fewshot_user` are
+        identical across all docs and cached; `tail_user` (this doc's form fields +
+        narrative) varies and is not."""
+        return {
+            "custom_id": custom_id,
+            "params": {
+                "model": self.model,
+                "max_tokens": self.max_tokens,
+                "thinking": {"type": "disabled"},
+                "system": [
+                    {"type": "text", "text": system,
+                     "cache_control": {"type": "ephemeral"}},
+                ],
+                "messages": [{"role": "user", "content": [
+                    {"type": "text", "text": fewshot_user,
+                     "cache_control": {"type": "ephemeral"}},
+                    {"type": "text", "text": tail_user},
+                ]}],
+            },
+        }
+
+    def submit_batch(self, requests: list[dict]) -> str:
+        if self.provider != "anthropic":
+            raise ValueError("batch API is Anthropic-only")
+        return self._client.messages.batches.create(requests=requests).id
+
+    def retrieve_batch(self, batch_id: str):
+        return self._client.messages.batches.retrieve(batch_id)
+
+    def batch_results(self, batch_id: str):
+        """Iterator of MessageBatchIndividualResponse (custom_id + result)."""
+        return self._client.messages.batches.results(batch_id)
+
+    @staticmethod
+    def batch_text(message) -> str:
+        return "".join(b.text for b in message.content if b.type == "text")
+
+    def log_batch_usage(self, custom_id: str, usage) -> None:
+        """Append one batch result's token usage (incl. cache split) to
+        logs/batch_tokens.csv — the source for the calibration cost projection."""
+        path = self.log_path.parent / "batch_tokens.csv"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        new = not path.exists()
+        with path.open("a", newline="") as f:
+            w = csv.writer(f)
+            if new:
+                w.writerow(["ts", "model", "custom_id", "input_tokens", "output_tokens",
+                            "cache_creation_input_tokens", "cache_read_input_tokens"])
+            w.writerow([
+                datetime.datetime.now().isoformat(timespec="seconds"),
+                self.model, custom_id,
+                getattr(usage, "input_tokens", 0), getattr(usage, "output_tokens", 0),
+                getattr(usage, "cache_creation_input_tokens", 0) or 0,
+                getattr(usage, "cache_read_input_tokens", 0) or 0,
+            ])
+
     # -- ollama (untested seam) --------------------------------------------- #
     def _ollama(self, system: str, user: str, tag: str) -> str:
         import urllib.request

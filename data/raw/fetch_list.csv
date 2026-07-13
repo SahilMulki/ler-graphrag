@@ -1,0 +1,868 @@
+accession,ler_sheet,revision,plant,event_date,report_date,title
+ML26149A009,2782026001,0,Peach Bottom 3,04/01/2026,05/28/2026,Loss of Load Center due to Potential Transformer Failure
+ML26146A061,2962026002,0,Browns Ferry 3,03/26/2026,05/26/2026,Technical Specification Prohibited Mode Change due to Inoperable Reactor Core Isolation Cooling System
+ML26140A011,2602026001,0,Browns Ferry 2,03/20/2026,05/20/2026,High Pressure Coolant Injection Steam Line Isolation
+ML26125A399,4612026001,0,Clinton 1,03/18/2026,05/05/2026,Degraded Security Door
+ML26127A309,3532026001,0,Limerick 2,03/11/2026,05/07/2026,Primary Containment Isolation Valves Invalid Actuation due to a Failed Relay
+ML26127A317,4542026001,0,Byron 1,03/08/2026,05/07/2026,Reactor Vessel Closure Head Penetration 31 Degraded
+ML26119A585,3252026001,0,Brunswick 1,03/02/2026,04/29/2026,Primary Containment Penetration Local Leak Rate Testing Failure
+ML26114A183,3212026001,0,Hatch 1,02/26/2026,04/24/2026,Unit 1 Manual Reactor Trip due to Reaching Subcriticality
+ML26112A069,2962026001,0,Browns Ferry 3,02/23/2026,04/22/2026,Main Steam Isolation Valve Inoperable due to Poppet Valve Scale Buildup
+ML26111A387,3332026002,0,FitzPatrick,02/21/2026,04/21/2026,Containment Isolation Valve Actuations Caused by Spurious Undervoltage Relay Trip in Reactor Protection System Electric Power Monitoring
+ML26110A379,3132026001,0,Arkansas 1,02/19/2026,04/20/2026,Emergency Diesel Generator Inoperability due to Open Circuit in Engineered Safeguards Starting Circuit
+ML26110A137,4462026001,0,Comanche Peak 2,02/17/2026,04/20/2026,Condition Prohibited by Technical Specifications for Containment Ventilation and Isolation due to Human Performance Error
+ML26106A327,3332026001,0,FitzPatrick,02/16/2026,04/16/2026,Reactor Core Isolation Cooling (RCIC) Inadvertent Actuation
+ML26104A367,4162026002,0,Grand Gulf 1,02/13/2026,04/14/2026,Loss of Secondary Containment due to Failed Seals
+ML26099A139,3972026001,0,Columbia,02/12/2026,04/09/2026,Manual Reactor Scram due to Loss of Both Reactor Recirculation Pumps
+ML26124A222,2552026001,0,Palisades,02/05/2026,05/04/2026,Emergency Diesel Generator 1-2 Actuation
+ML26096A050,2982026001,0,Cooper Station,02/03/2026,04/06/2026,Diesel Generator 1 Maintenance Exceeded 7-Day Limiting Condition for Operation
+ML26096A457,4582026001,0,River Bend,02/03/2026,04/06/2026,Loss of Division III Electrical Bus Due to Breaker Trip
+ML26089A209,2822026001,0,"Prairie Island 1, Prairie Island 2",02/01/2026,03/30/2026,12 Diesel Driven Cooling Water Pump Auto Start Based on Low System Pressure due to Broken Valve Reach-Rod Bolt
+ML26092A228,4162026001,0,Grand Gulf 1,02/01/2026,04/02/2026,High Pressure Core Spray Inoperable due to Breaker Trip
+ML26085A023,2692026001,0,"Oconee 1, Oconee 2, Oconee 3",01/27/2026,03/26/2026,Switchyard Vital Battery Specific Gravity Surveillance Error Results in Operation or Condition Prohibited by Technical Specifications
+ML26080A001,3952026001,0,Summer 1,01/21/2026,03/20/2026,Operations Prohibited By Technical Specifications
+ML26078A025,2592026001,0,Browns Ferry 1,01/18/2026,03/19/2026,Safety System Functional Failure due to High Pressure Coolant Injection Drain Valves Inoperable
+ML26071A052,3162026001,0,Cook 2,01/18/2026,03/12/2026,Unit 2 Automatic Reactor Trip due to #21 Steam Generator Low Water Level with Steam Flow-Feed Flow Mismatch
+ML26062A865,3482026001,0,Farley 1,01/06/2026,03/03/2026,Three Pressurizer Safety Valves' Lift Pressure Outside of Technical Specifications Limits due to Setpoint Drift
+ML26057A156,3692025001,0,McGuire 1,12/29/2025,02/26/2026,Automatic Reactor Trip and Manual Auxiliary Feedwater Actuation due to Main Generator Lockout
+ML26055A084,3732025002,0,LaSalle 1,12/28/2025,02/24/2026,Manual Scram due to Degrading Containment Parameters
+ML26044A254,5302025001,0,Palo Verde 3,12/21/2025,02/13/2026,Unintentional Uncontrolled Unit 3 Vital Area Keys
+ML26119A030,2592025002,1,"Browns Ferry 1, Browns Ferry 2",12/17/2025,04/28/2026,Unit 1/2 480V Load Shed Logic Division I/II Inoperable Longer Than Allowed by Technical Specifications
+ML26064A231,5302025002,0,Palo Verde 3,12/02/2025,03/05/2026,Violation of Technical Specification Limiting Condition of Operation 3.6.3
+ML26096A453,4992025002,1,South Texas 2,11/21/2025,04/06/2026,Automatic Reactor Trip due to Main Transformer Lockout
+ML26022A036,2372025003,0,Dresden 2,11/17/2025,01/15/2026,High Pressure Coolant Injection Inoperable due to Failed Indicating Light and Blown Fuse
+ML26119A537,3952025005,1,Summer 1,11/15/2025,04/29/2026,Condition Prohibited By Technical Specifications
+ML26013A295,2702026001,0,Oconee 2,11/14/2025,01/13/2026,Loss of AC Power to Unit 2 Main Feeder Buses After Opening Potential Transformer Drawer Resulting in Actuation of Keowee Hydroelectric Units
+ML26015A092,4612025004,0,Clinton 1,11/14/2025,01/13/2026,Emergency Diesel Generator Automatic Start due to Emergency Reserve Auxiliary Transformer Trip
+ML25351A150,4822025003,0,Wolf Creek,11/05/2025,12/17/2025,Loss of Voltage on ESF Bus Results in Automatic Actuation of Emergency Diesel Generator
+ML25342A007,2802025002,0,"Surry 1, Surry 2",11/03/2025,12/08/2025,Fault on Transformer Feeder Cable Caused Automatic Start of Emergency Diesel Generator
+ML26086A018,3732025001,1,LaSalle 1,11/02/2025,03/27/2026,Automatic Scram due to Turbine Control Valves Fast Closure on Generator Lockout
+ML26127A016,4452025002,1,Comanche Peak 1,10/30/2025,05/07/2026,Pressure Transmitter Inoperable for a Duration Prohibited by TS due to Excessive Signal Drift
+ML26055A051,3882025001,1,Susquehanna 2,10/28/2025,02/24/2026,Arc Flash on 500 kilovolt Transmission Lines Resulted in Main Generator Trip and Automatic Reactor Scram
+ML25360A001,2372025002,0,Dresden 2,10/27/2025,12/26/2025,Valid Reactor Protection System Actuation While Shutdown
+ML25357A159,3822025004,0,Waterford 3,10/26/2025,12/23/2025,Station Air Leak in Control Room Envelope Results in a Condition That Could Have Prevented Fulfillment of a Safety Function
+ML25353A533,3212025002,0,Hatch 1,10/22/2025,12/19/2025,Unit 1 Reactor Protection System Instrumentation for Turbine Control Valve Fast Closure Inoperable
+ML25364A102,4612025003,0,Clinton 1,10/22/2025,12/16/2025,Manual Scram due to Main EHC Leak
+ML26057A342,3382025002,1,North Anna 1,10/21/2025,02/26/2026,Unit 1 Automatic Reactor Trip due to PRNI High Negative Rate
+ML26075C887,4822025002,1,Wolf Creek,10/21/2025,03/16/2026,Loss of Both Trains of Control Room Air Conditioning Causes Condition that Could Have Prevented Fulfillment of a Safety Function
+ML25351A282,4822025001,0,Wolf Creek,10/20/2025,12/17/2025,Improperly Breached Control Building Doors Cause a Condition Prohibited by Technical Specifications
+ML25363A104,4002025002,0,Harris,10/15/2025,12/29/2025,Incorrect Current Value Used During Power Range Nuclear Instrument Calibration
+ML25346A200,3952025004,0,Summer 1,10/14/2025,12/12/2025,Actuation of the Reactor Protection and Emergency Feedwater Systems
+ML25343A343,3702025002,0,McGuire 2,10/10/2025,12/09/2025,"Reactor Trip, Auxiliary Feedwater Actuation, and Refueling Water Storage Tank Inoperability due to Relief Valve Leak"
+ML25336A056,4002025001,0,Harris,10/10/2025,12/02/2025,Fuel Assembly Incorrectly Placed in Spent Fuel Pool 'B'
+ML25338A187,4562025002,0,Braidwood 1,10/10/2025,12/04/2025,Liquid Penetrant Indication in Control Rod Drive Mechanism Nozzle Seal Weld Repair due to Subsurface Weld Defects Opening from Thermal and Pressure Stresses During Operation
+ML25342A438,4582025007,0,River Bend,10/09/2025,12/08/2025,Division 1 Balance of Plant Isolation Results in Manual Reactor Trip
+ML26078A183,4612025002,1,Clinton 1,10/06/2025,03/03/2026,Automatic SCRAM on High Reactor Water Level
+ML25324A399,3132025001,0,Arkansas 1,09/24/2025,11/20/2025,Automatic Reactor Trip due to Fault on the 'B' Main Phase Transformer
+ML26023A162,3182025002,1,Calvert Cliffs 2,09/24/2025,01/22/2026,Condition Prohibited by Technical Specifications due to Condition 3.7.12 A Required Restoration Time Exceeded
+ML25328A054,4452025001,0,Comanche Peak 1,09/24/2025,11/24/2025,Manual Reactor Trip from a Loss of Both Main Feedwater Pump due to a Failure to Reset a Signal Fault
+ML25317A674,2772025003,0,"Peach Bottom 2, Peach Bottom 3",09/19/2025,11/13/2025,Invalid Actuation due to Transformer Trip
+ML25317A742,4462025003,0,Comanche Peak 2,09/14/2025,11/13/2025,"Failure of Turbine Electrohydraulic Control System Results in Manual Trip of Unit 2 and Actuation of the Auxiliary Feedwater 
+System"
+ML25315A010,3662025003,0,Hatch 2,09/13/2025,11/11/2025,Unit 2 Manual Reactor Scram due to Trip of Both Reactor Recirculation Pumps
+ML25321A460,4612025001,0,Clinton 1,09/13/2025,11/12/2025,MSIV B21-F022D Limit Switch Failed Testing
+ML25308A004,2542025006,0,Quad Cities 1,09/05/2025,11/04/2025,High Pressure Coolant Injection Inoperable due to Turbine Inlet Valve Failure to Open
+ML25307A221,4142025004,0,Catawba 2,09/05/2025,11/03/2025,Through Wall Leak in Letdown Piping
+ML25281A104,2772025002,0,"Peach Bottom 2, Peach Bottom 3",09/04/2025,10/08/2025,Uncoordinated DC Circuits Cause Unanalyzed Condition
+ML25307A312,3872025002,0,"Susquehanna 1, Susquehanna 2",09/04/2025,11/03/2025,"Both Sub-Systems of the Control Room Emergency Outside Air Supply System Impacted by Concurrent, Unrelated Equipment Issues in the Control Structure Heating, Ventilation & Air Conditioning System"
+ML25307A235,4162025005,0,Grand Gulf 1,09/04/2025,11/03/2025,Loss of Secondary Containment due to Unsecured Roof Hatch
+ML25302A454,3152025002,0,Cook 1,09/03/2025,10/29/2025,Supplemental Diesel Generators (DG) Unavailable Resulting in Emergency DGs Inoperable Greater Than Allowed by TS
+ML25293A255,4582025006,0,River Bend,08/23/2025,10/20/2025,Potential Loss of Safety Function of Control Building Chillers due to a Valve Mispositioned
+ML25281A097,2772025001,0,"Peach Bottom 2, Peach Bottom 3",08/20/2025,10/08/2025,Invalid Actuation Due to Bus Failure
+ML25293A447,4582025005,0,River Bend,08/20/2025,10/20/2025,Containment Unit Coolers Inoperable due to Compensatory Measures
+ML26033A500,2962025002,1,Browns Ferry 3,08/19/2025,02/02/2026,Reactor Core Isolation Cooling Inoperable due to a Failed Ramp Generating Signal Converter
+ML25287A021,4462025002,0,Comanche Peak 2,08/14/2025,10/14/2025,Safety Chiller Inoperable due to Failure of Copper Refrigerant Fittings
+ML25282A052,3462025002,0,Davis-Besse,08/13/2025,10/09/2025,Cooldown to Mode 4 Not Completed in Required Time due to Improper Procedure Routing
+ML25287A034,3482025001,0,"Farley 1, Farley 2",08/13/2025,10/14/2025,Emergency Diesel 1C Unable to Achieve 110% of Maximum Load
+ML25282A050,3462025001,0,Davis-Besse,08/12/2025,10/09/2025,Required Shutdown for Steam Generator Low Level Instrumentation Reference Leg Steam Leak
+ML25286A003,4462025001,0,Comanche Peak 2,08/12/2025,10/13/2025,Containment Spray Pump Declared Inoperable due to Misaligned Breaker
+ML25268A017,3952025002,0,Summer 1,08/11/2025,09/24/2025,Automatic Actuation of an Emergency Diesel Generator
+ML25274A076,2502025001,0,Turkey Point 3,08/09/2025,10/01/2025,Lightning Caused Turbine Control System Failures Resulting in Reactor Trip
+ML25275A606,2802025001,0,Surry 1,08/06/2025,10/02/2025,Failed Relay Caused Reactor Trip
+ML26029A088,2592025001,1,Browns Ferry 1,08/01/2025,01/29/2026,Reactor Scram due to Low Reactor Water Level
+ML25323A433,3172025001,1,"Calvert Cliffs 1, Calvert Cliffs 2",07/31/2025,11/19/2025,Control Room Loss of Ventilation due to Smoke Detector Failure Causing Common Supply Damper to Shut
+ML25269A165,4562025001,0,Braidwood 1,07/30/2025,09/26/2025,Over Temperature Delta Temperature Reactor Trip due to Lightning Strike
+ML25268A050,2632025004,0,Monticello,07/28/2025,09/25/2025,Rainwater Intrusion Caused Failure of Reactor Building Ventilation and Rise in Steam Chase Temperatures
+ML25265A025,4162025004,0,Grand Gulf 1,07/24/2025,09/22/2025,Standby Gas Treatment System Train Inoperable Which Led to a Failure to Identify Condition Prohibited by Technical Specifications
+ML25296A198,2822025003,0,Prairie Island 1,07/22/2025,10/23/2025,Nuclear Instrumentation Over-Temperature Delta Temperature Function Inoperable due to Defective Potentiometers
+ML25317A743,3872025001,1,Susquehanna 1,07/22/2025,11/13/2025,Manual Reactor Scram Following Loss of Cooling to Main Transformer
+ML25259A219,4582025004,0,River Bend,07/21/2025,09/16/2025,Unsecured Pressure Boundary Door Resulting in Condition That Could Have Prevented Fulfillment of a Safety Function
+ML25251A231,2822025001,0,Prairie Island 1,07/16/2025,09/08/2025,Reactor Trip and Auto-start Actuation of Auxiliary Feedwater due to Bus 11 Undervoltage Relay Issues
+ML25258A159,4142025003,0,"Catawba 2, Catawba 1",07/15/2025,09/15/2025,2B Emergency Diesel Generator Field Failed to Flash
+ML25254A011,3912025002,0,Watts Bar 2,07/13/2025,09/11/2025,Automatic Reactor Trip due to a Main Turbine Trip
+ML25240B635,0252025001,0,Vogtle 3,07/02/2025,08/28/2025,Condition Prohibited by Technical Specification due to Pressurizer Safety Relief Valves' Lift Pressure Setpoint Drift
+ML25303A285,3182025001,1,Calvert Cliffs 2,07/02/2025,10/30/2025,Loss of Site Transformer U-4000-12
+ML25230A243,3642025004,0,Farley 2,06/27/2025,08/18/2025,Manual Reactor Trip due to Loss of Main Condenser Vacuum
+ML25237A236,2602025004,0,Browns Ferry 2,06/25/2025,08/25/2025,Main Steam Relief Valves Lift Settings Outside of Technical Specifications Required Setpoints
+ML25295A001,3272025001,1,Sequoyah 1,06/24/2025,10/22/2025,Manual Reactor Trip due to Reboot of the Distributed Control System and Lowering Steam Generator Levels
+ML25275A002,3282025002,1,Sequoyah 2,06/24/2025,10/01/2025,Manual Reactor Trip due to a Failed Closed Main Feedwater Regulating Valve
+ML25226A035,2512025004,0,Turkey Point 4,06/21/2025,08/14/2025,Unplanned Scram
+ML25283A066,2822025002,0,"Prairie Island 1, Prairie Island 2",06/21/2025,10/10/2025,121 Control Room Chiller Inoperable due to Purge System Failure
+ML25230A239,3642025003,0,Farley 2,06/19/2025,08/18/2025,Automatic Reactor Trip due to Low Steam Generator Level
+ML25226A231,4582025003,0,River Bend,06/18/2025,08/14/2025,Turbine Control Valve Closure Results in Loss of Safety Function
+ML25226A116,3412025001,0,Fermi 2,06/17/2025,08/14/2025,"Division I Transformer 64 Load Tap Changer Failure Potentially Prohibited by Technical Specifications and Potential Loss 
+of Safety Function"
+ML25230A099,4162025003,0,Grand Gulf 1,06/17/2025,08/18/2025,Manual Reactor Scram due to Degraded Main Condenser Vacuum Caused by Circulating Water Pump Trip
+ML25224A176,3522025002,0,Limerick 1,06/13/2025,08/12/2025,Loss of Power to the 1A Reactor Protection System Resulted in Multiple Invalid Primary Containment Isolations
+ML25216A111,2512025003,0,Turkey Point 4,06/04/2025,08/04/2025,4B CCW Pump and its Associated Breaker Inoperable
+ML25210A397,3212025001,0,Hatch 1,06/03/2025,07/29/2025,Unit 1 High Pressure Coolant Injection System Inoperable
+ML25258A204,4432025001,0,Seabrook,05/31/2025,09/15/2025,Erratic Potentiometer Caused Upper Detector Flux Deviation Which Exceeded Technical Specification Allowed Outage Time
+ML25300A115,2602025003,1,Browns Ferry 2,05/30/2025,10/27/2025,Primary Containment Isolation and Manual Reactor Trip due to Dual Recirculation Pump Trips
+ML25205A149,4242025001,0,Vogtle 1,05/28/2025,07/24/2025,Human Performance Error Results in Loss of Main Feedwater Pump and Manual Reactor Trip
+ML26029A457,4992025001,1,South Texas 2,05/22/2025,01/29/2026,Inoperable Essential Cooling Water Strainer Could Have Prevented Fulfillment of a Safety Function and Resulted in Condition Prohibited by Technical Specifications
+ML25293A384,4582025002,1,River Bend,05/21/2025,10/20/2025,Unidentified Drywell Leakage Increase Results in Shutdown
+ML26037A200,2542025005,1,"Quad Cities 1, Quad Cities 2",05/19/2025,02/06/2026,Scram due to 125 VDC Voltage Fluctuations from Battery Cell Failure
+ML25195A123,2602025002,0,Browns Ferry 2,05/16/2025,07/14/2025,Residual Heat Removal Suppression Pool Spray Inoperable due to Missing U-bolt
+ML25252A080,2602025001,1,Browns Ferry 2,05/12/2025,09/09/2025,Reactor SCRAM due to Low Electro-Hydraulic Control Pressure
+ML25169A246,2632025003,0,Monticello,05/12/2025,06/18/2025,Condition Prohibited by Technical Specifications for Not Implementing Setpoint Change of Primary Containment Isolation Valve
+ML25183A213,4832025002,0,Callaway,05/06/2025,07/02/2025,Reactor Vessel Bottom Head (RVBH) Bottom Mounted Instrument (BMI) Nozzle Pressure Boundary Leakage
+ML25182A246,4832025001,0,Callaway,05/04/2025,07/01/2025,Refueling Water Storage Tank Lowered Below TS 3.5.4 Limit
+ML25202A164,4132025002,0,"Catawba 1, Catawba 2",04/23/2025,07/21/2025,Inoperability of 1B Emergency Diesel Generator due to Fuel Oil Leak
+ML25149A137,3822025002,0,Waterford 3,04/17/2025,05/29/2025,Auxiliary Pressurizer Spray Train Inoperable Resulting in a Condition Prohibited by Technical Specifications
+ML25161A146,3972025001,0,Columbia,04/12/2025,06/10/2025,"Pressure Boundary Leakage Resulting in a Technical Specification Required Plant Shutdown, Degraded Condition, and 
+Condition Prohibited by Technical Specifications"
+ML25160A203,3822025003,0,Waterford 3,04/10/2025,06/09/2025,Auxiliary Component Cooling Water Train Inoperable Resulting in a Condition Prohibited by Technical Specifications
+ML26027A361,5282025004,1,Palo Verde 1,04/10/2025,01/27/2026,Unit 1 Train A Emergency Diesel Generator Emergency Stop with System Actuation Supplement
+ML25157A104,2982025001,0,Cooper Station,04/08/2025,06/06/2025,Inoperable Diesel Generator Jacket Water Pump Results in Condition Prohibited by Technical Specifications
+ML25156A246,4582025001,0,River Bend,04/08/2025,06/05/2025,Human Performance Error Results in Manual Reactor Trip
+ML25156A358,5282025003,0,Palo Verde 1,04/08/2025,06/05/2025,Unit 1 Specified System Actuation due to Loss of Power (LOP)/Load Shed (LS) Signal
+ML25155A098,2542025004,0,Quad Cities 1,04/05/2025,06/04/2025,Loss of Suppression Chamber Vacuum Breaker Safety Function due to Configuration Control Error
+ML25266A239,3392025001,1,North Anna 2,04/04/2025,09/23/2025,Unit 2 Reactor Trip Breakers Opened due to High Vibes On 2-RC-P-1B
+ML25141A212,4402025001,0,Perry,03/29/2025,05/21/2025,Automatic Actuation of Division 3 Diesel Generator Resulting from Startup Transformer Testing
+ML25126A035,3242025001,0,Brunswick 2,03/28/2025,05/01/2025,Automatic Actuation of Containment Isolation Valves During Testing
+ML25142A400,5282025001,0,Palo Verde 1,03/28/2025,05/22/2025,Unit 1 Loss of High Pressure Safety Injection Safety Function
+ML25143A119,3822025001,0,Waterford 3,03/27/2025,05/23/2025,Inoperability of Startup Transformer 'A' Results in a Condition Prohibited by Technical Specifications
+ML25143A260,3662025002,0,Hatch 2,03/26/2025,05/23/2025,2A Emergency Diesel Generator Inoperable due to Inadvertent Overspeed Trip
+ML25143A135,3642025002,0,Farley 2,03/24/2025,05/23/2025,Two Pressurizer Safety Valves' Lift Pressure Outside of Technical Specifications Limits due to Setpoint Drift
+ML25135A102,3152025001,0,Cook 1,03/20/2025,05/15/2025,Two Main Steam Safety Valves Failed Setpoint Testing
+ML25274A095,2632025001,1,Monticello,03/19/2025,09/24/2025,Automatic Reactor Scram on Low Water Level
+ML25133A192,4162025002,0,Grand Gulf 1,03/15/2025,05/13/2025,Automatic Emergency Diesel Generator Actuation Caused by Grid Transient
+ML25174A283,2512025002,1,Turkey Point 4,03/13/2025,06/20/2025,Emergency Diesel Generator Actuation
+ML25241A295,2542025003,1,Quad Cities 1,03/12/2025,08/27/2025,Main Steam Isolation Valves Local Leak Rate Test Exceed Technical Specification Limits
+ML25143A173,2512025001,1,Turkey Point 4,03/03/2025,05/23/2025,Degraded Condition
+ML25122A139,3532025001,0,Limerick 2,03/03/2025,05/02/2025,HPCI Valve Isolated During a Surveillance Test due to a Degraded Test Connector
+ML25295A315,2512025005,0,Turkey Point 4,03/01/2025,10/22/2025,4A Main Steam Isolation Valve Failed to Fully Close Resulting in Loss of Safety Function
+ML25107A275,3662025001,0,Hatch 2,02/22/2025,04/17/2025,Unit 2 Primary Containment Inoperable due To Exceeding Technical Specification Allowable Leakage Limits
+ML25111A260,2692025001,0,"Oconee 1, Oconee 2, Oconee 3",02/20/2025,04/21/2025,Inoperability of Keowee Hydroelectric Unit due to Legacy Deficiencies in Generator Exciter Speed Switch Calibration Procedure Resulting in a Condition Prohibited by Technical Specifications
+ML25111A262,3522025001,0,"Limerick 1, Limerick 2",02/19/2025,04/21/2025,Bypass Leakage on the B Train of Standby Gas Treatment System HEPA Filters Exceeded Technical Specification Value
+ML25097A252,4982025001,0,South Texas 1,02/19/2025,04/07/2025,Two Inoperable Emergency Core Cooling System Trains Resulting in Potential Loss of Safety Function
+ML25338A159,3702025001,1,McGuire 2,02/16/2025,12/04/2025,Condition Prohibited by Technical Specifications due to Emergency Diesel Ventilation Damper Malfunction
+ML25106A148,4162025001,0,Grand Gulf 1,02/15/2025,04/16/2025,Manual Scram due to Degraded Condenser Vacuum
+ML25097A291,3952025001,0,Summer 1,02/10/2025,04/07/2025,Manual Reactor Trip due to Unisolable EHC Leak
+ML25149A021,2962025001,1,Browns Ferry 3,02/08/2025,05/29/2025,Automatic Reactor Scram Following Main Generator Trip
+ML25092A162,4122025001,0,Beaver Valley 2,02/05/2025,04/01/2025,"Unit 2 Automatic Reactor Trip and Automatic Actuation of the Auxiliary Feedwater System due to Loose Feedback Linkage on 
+Feedwater Regulating Valve"
+ML25090A171,4132025001,0,Catawba 1,01/28/2025,03/31/2025,Unit 1 Plant Shutdown Required by Technical Specifications due to Unidentified Reactor Coolant System Leakage
+ML25099A035,3352025001,1,St. Lucie 1,01/27/2025,04/08/2025,Safety Injection Tank Above Technical Specifications Limit
+ML25086A216,2542025002,0,"Quad Cities 1, Quad Cities 2",01/26/2025,03/27/2025,Control Room Emergency Ventilation Air Conditioning System Inoperable due to a Logic Issue
+ML25077A032,3902025002,0,Watts Bar 1,01/17/2025,03/18/2025,Automatic Reactor Trip due to Main Turbine Trip
+ML25066A110,2542025001,0,"Quad Cities 1, Quad Cities 2",01/16/2025,03/07/2025,Technical Specification 3.6.4.2 Action Not Performed due to Tagout Boundary Placement Error
+ML25071A010,3282025001,0,Sequoyah 2,01/16/2025,03/11/2025,Reactor Trip Breakers Opened due to Group 2 of Control Rod Bank D Failing to Withdraw
+ML25062A082,3902025001,0,"Watts Bar 1, Watts Bar 2",01/04/2025,03/03/2025,Loss of the Control Room Emergency Air Temperature Control System due to a Chiller Oil Migration
+ML25037A301,3132024002,0,Arkansas 1,12/10/2024,02/06/2025,ANO Unit 1 Inoperable Containment Isolation Boundary
+ML25031A065,2502024004,0,Turkey Point 3,12/04/2024,01/31/2025,Unplanned Reactor scram
+ML25163A305,4982024007,1,South Texas 1,11/27/2024,06/12/2025,Condition Prohibited by Technical Specifications
+ML25023A193,4402024005,0,Perry,11/26/2024,01/23/2025,Division 3 Diesel Generator Inoperable due to Failure of the Right Bank Air Start Motor
+ML25021A090,2542024001,0,Quad Cities 1,11/22/2024,01/21/2025,Technical Specification 3.5.2 Action Not Performed due to Inadequate Procedure Adherence
+ML25021A128,3912025001,0,Watts Bar 2,11/22/2024,01/21/2025,Loss of the Control Room Emergency Air Temperature Control System due to Chiller Valve Malfunction
+ML25296A468,2492024002,2,Dresden 3,11/20/2024,10/23/2025,"Low Pressure Coolant Injection Pump Suction Relief Valve Inoperable as a Primary Containment Isolation Valve Resulted in a 
+Condition Prohibited by Technical Specifications"
+ML25013A036,4432024002,0,Seabrook,11/19/2024,01/10/2025,Manual Reactor Trip due to 'B' MFP Trip
+ML25065A080,2502024003,1,Turkey Point 3,11/17/2024,03/06/2025,Condition Prohibited by Technical Specifications
+ML25044A064,4462024002,1,Comanche Peak 2,11/17/2024,02/13/2025,Turbine Driven Auxiliary Feedwater Pump Unavailable Following Transition from Mode 4 to Mode 3
+ML25013A038,3352024002,0,St. Lucie 1,11/15/2024,01/10/2025,Manual Reactor Trip due To 3 CEA's Dropping into Reactor Bottom
+ML25010A346,2592024004,0,Browns Ferry 1,11/12/2024,01/10/2025,Main Steam Relief Valves Lift Settings Outside of Technical Specifications Required Setpoints
+ML25077A289,3382024003,1,North Anna 1,11/12/2024,03/18/2025,Loss of Offsite Power Train A Relay Failure During Surveillance Testing
+ML25009A011,4162024005,0,Grand Gulf 1,11/10/2024,01/09/2025,Loss of Seal Steam Controller Power Resulted in Manual Reactor Shutdown
+ML24354A337,2692024001,0,Oconee 1,11/07/2024,12/19/2024,"Standby Shutdown Facility (SSF) Pressurizer Level Switch Configuration Caused by Legacy Procedure Deficiency Resulted in 
+Condition Prohibited by Technical Specifications"
+ML24366A126,2982024007,0,Cooper Station,11/03/2024,12/31/2024,Inoperable Pressure Switch During Mode Change Results in Operation or Condition Prohibited by Technical Specifications
+ML25314A119,3062024002,1,Prairie Island 2,10/29/2024,11/10/2025,Reactor Trip and Auto-start Actuation of Auxiliary Feedwater due to High Negative Neutron Flux Rate Trip
+ML25055A256,4402024004,1,Perry,10/29/2024,02/24/2025,Division 3 Diesel Generator Inoperable due to Low Output Voltage Resulting in Loss of Safety Function
+ML24354A312,2702024001,0,Oconee 2,10/28/2024,12/19/2024,Common Cause Inoperability of Both Trains of Control Room Ventilation System Outside Air Booster Fans due to Supply Breaker Wiring Deficiency Resulted in a Condition That Could Have Prevented Fulfillment of a Safety Function
+ML24354A318,2982024006,0,Cooper Station,10/24/2024,12/19/2024,"Human Performance Errors Cause a Condition Prohibited by Technical Specifications and Common Cause Inoperability of 
+Independent Reactor Protection System Channels"
+ML24358A097,4982024006,0,South Texas 1,10/22/2024,12/23/2024,"Condition Prohibited by Technical Specifications and Potential Loss of Safety Function due to Inoperable Pressurizer Power 
+Operated Relief Valve"
+ML24344A197,3182024003,0,Calvert Cliffs 2,10/10/2024,12/09/2024,Automatic Reactor Trip due to Main Turbine Loss of Load
+ML24331A033,4232024002,0,Millstone 3,10/10/2024,11/26/2024,Door Latch Failure Resulted in Loss of Safety Function for Secondary Containment Boundary
+ML24344A153,0252024004,0,Vogtle 3,10/09/2024,12/09/2024,Condition Prohibited by Technical Specification due to Main Steam Safety Valve Lift Pressure Setpoint Drift
+ML25043A286,3382024002,1,North Anna 1,10/09/2024,02/12/2025,1H EDG Failure to Achieve Rated Speed / Frequency During Surveillance Testing
+ML24338A212,3682024001,0,Arkansas 2,10/08/2024,12/03/2024,Surface Flaw in Primary Coolant System
+ML25114A051,2962024004,1,Browns Ferry 3,10/05/2024,04/24/2025,Reactor Coolant System Pressure Boundary Leakage Identified from Recirculation System Small Bore Piping
+ML25079A251,3362024002,1,Millstone 2,10/01/2024,03/20/2025,"Two Main Steam Safety Valves Failed to Lift Within the Acceptance Criteria Resulting in a Condition Prohibited by Technical 
+Specifications"
+ML24324A187,3212024004,0,Hatch 1,09/27/2024,11/19/2024,Manual Reactor Trip During Hurricane Helene due to Degrading Condenser Vacuum
+ML24330A060,4142024002,0,Catawba 2,09/27/2024,11/25/2024,Unit 2 Manual Reactor Trip and Auxiliary Feedwater Actuation due to Water Intrusion
+ML24326A363,4162024004,0,Grand Gulf 1,09/24/2024,11/22/2024,High Pressure Core Spray Over Frequency Relay Trip
+ML24327A098,3332024003,0,FitzPatrick,09/23/2024,11/22/2024,Turbine Trip and Scram due to Automatic Voltage Regulator Protective Device During a Grid Transient
+ML25009A027,4102024002,1,Nine Mile Point 2,09/23/2024,01/09/2025,"Supplement to LER 2024-002-00, Automatic Reactor Scram on Turbine Trip due to Failed Breaker"
+ML24323A169,0252024003,0,Vogtle 3,09/17/2024,11/18/2024,Automatic Reactor Protection System and Manual Safeguards Actuation due to a Failed Open Flow Control Valve
+ML24323A154,3952024003,0,Summer 1,09/17/2024,11/18/2024,Common Cause Inoperability of Engineered Safety Features
+ML24318C508,4982024005,0,South Texas 1,09/16/2024,11/13/2024,Condition Prohibited by Technical Specifications
+ML24303A034,2592024003,0,"Browns Ferry 1, Browns Ferry 2",08/30/2024,10/29/2024,Valid Specified System Actuation Caused the Automatic Start of Emergency Diesel Generators
+ML24296B226,4992024003,0,South Texas 2,08/24/2024,10/22/2024,Containment Isolation Valve Inoperable Resulting in Condition Prohibited by Technical Specification and Prevention of Fulfillment of Safety Functions
+ML25099A196,3272024001,1,Sequoyah 1,08/23/2024,04/09/2025,Reactor Trip due to a Turbine Trip
+ML24346A412,4822024002,1,Wolf Creek,08/23/2024,12/11/2024,Technical Specification Required Shutdown due to Inoperable Auxiliary Feedwater Discharge Valve
+ML24288A015,4232024001,0,Millstone 3,08/21/2024,10/14/2024,Loss of Safety Function and Condition Prohibited by Technical Specifications for Loss of Secondary Containment Boundary
+ML25028A244,3952024002,1,Summer 1,08/20/2024,01/28/2025,Loss of Control Room Emergency Filtration System
+ML25132A132,4992024002,1,South Texas 2,08/20/2024,05/12/2025,"Two Control Room Envelope HVAC Trains Inoperable Resulting in a Condition That Could Have Prevented Fulfillment of a 
+Safety Function"
+ML24275A213,4832024002,0,Callaway,08/02/2024,10/01/2024,"Concurrent Inoperability of Control Room Air Conditioning System Train and Opposite Train Emergency Diesel Generator 
+Results in Condition Prohibited by Technical Specifications Limiting Conditions for Operation 3.7.11, 3.8.1, and 3.0.3"
+ML25182A055,3282024001,1,Sequoyah 2,07/30/2024,07/01/2025,Reactor Trip due to an Electrical Trouble Turbine Trip
+ML24269A205,3352024001,0,St. Lucie 1,07/28/2024,09/25/2024,Unplanned Reactor Scram
+ML25254A061,4982024004,1,"South Texas 1, South Texas 2",07/24/2024,09/11/2025,Loss of Offsite Power Resulting in Unit 1 Automatic Reactor Trip and Actuation of Emergency Diesel Generators and Auxiliary Feedwater Pumps
+ML25086A101,3162024004,1,"Cook 2, Cook 1",07/23/2024,03/27/2025,2AB Emergency Diesel Generator Inoperable for Longer Than Allowed by Technical Specifications
+ML25024A089,3182024002,1,Calvert Cliffs 2,07/18/2024,01/24/2025,Automatic Reactor Trip due to Main Turbine Loss of Load
+ML24249A109,2772024003,0,Peach Bottom 2,07/10/2024,09/05/2024,Automatic Reactor Scram Following Main Turbine Trip due to Degraded Condenser Vacuum
+ML24250A052,0252024002,0,Vogtle 3,07/08/2024,09/05/2024,Manual Reactor Protection System and Automatic Safeguards Actuation due to an Unexpected Change in Position of a Main Feedwater Pump Minimum Flow Control Valve
+ML24250A179,3172024003,0,"Calvert Cliffs 1, Calvert Cliffs 2",07/08/2024,09/06/2024,1A Diesel Generator Inoperable due to Potential Transformer Failure
+ML24249A254,3332024002,0,FitzPatrick,07/08/2024,09/04/2024,Reactor Protection System Electric Power Monitoring System Trip Caused Primary Containment Isolation
+ML24249A175,3902024002,0,Watts Bar 1,07/08/2024,09/05/2024,Automatic Reactor Trip due to Main Generator Protection Relay Actuation
+ML24249A074,4542024001,0,"Byron 1, Byron 2",07/07/2024,09/05/2024,Both Trains of Control Room Ventilation Temperature Control System Inoperable
+ML25150A333,2632024002,1,Monticello,06/28/2024,05/30/2025,Low Pressure Coolant Injection Inoperable due to Motor Valve Failure
+ML24235A156,3162024003,0,Cook 2,06/27/2024,08/22/2024,Unit 2 Plant Shutdown Required by Technical Specifications due to Reactor Coolant System Identified Leakage
+ML24222A467,4252024001,0,Vogtle 2,06/22/2024,08/09/2024,Manual Actuation of the Reactor Protection System due to a Rod Control Fuse Opening Causing a Misaligned Shutdown Rod
+ML25226A260,3822024004,1,Waterford 3,06/16/2024,08/14/2025,Automatic Reactor Trip due to Lightning Strike
+ML24218A260,0262024001,0,Vogtle 4,06/05/2024,08/05/2024,Manual Reactor Protection System Actuation due to Procedure Not Optimally Sequenced to Reset the Rapid Power Reduction Signal
+ML24218A080,3892024003,0,St. Lucie 2,06/04/2024,08/05/2024,Unplanned Reactor Scram
+ML24215A408,2872024001,0,Oconee 3,06/03/2024,08/02/2024,Procedure Deficiency Results in Inadvertent Automatic Feedwater Isolation and Automatic Emergency Feedwater Actuation
+ML24212A077,2802024001,0,Surry 1,06/02/2024,07/30/2024,Troubleshooting Initiated Unknown Turbine Trip Feature in Control System
+ML24204A192,4002024001,0,Harris,05/30/2024,07/22/2024,Automatic Reactor Trip due to Main Generator Lock-Out
+ML24268A312,3382024001,1,North Anna 1,05/29/2024,09/24/2024,Unit 1 Automatic Reactor Trip due to PRNI High Negative Rate
+ML24304A856,2652024002,1,Quad Cities 2,05/23/2024,10/30/2024,Turbine Trip and Automatic Scram due to Digital EHC Power Supply Intermittent Failure
+ML24198A025,4402024003,0,Perry,05/23/2024,07/15/2024,Technical Specification Required Shutdown due to Increase in RCS Unidentified Leakage
+ML24199A242,3342024004,0,Beaver Valley 1,05/19/2024,07/17/2024,Reactor Trip due to Bypass Feedwater Regulating Valve Failure to Control
+ML24256A172,3162024002,1,Cook 2,05/15/2024,09/12/2024,Unit 2 Manual Reactor Trip Following Rapid Downpower for Steam Leak
+ML24193A307,3912024003,0,Watts Bar 2,05/13/2024,07/11/2024,Inoperability of Both Trains of Unit 2 Low Head Safety Injection
+ML24242A163,4992024001,1,South Texas 2,05/12/2024,08/29/2024,Automatic Reactor Trip and Actuation of Two of Three Emergency Diesel Generators
+ML24192A173,3822024003,0,Waterford 3,05/11/2024,07/10/2024,Automatic EFAS Actuation During Surveillance Test
+ML24185A033,3342024003,0,Beaver Valley 1,05/09/2024,07/02/2024,Unanalyzed Containment Bypass Condition due to Degraded River Water Piping
+ML24296A068,4822024001,1,Wolf Creek,05/09/2024,10/22/2024,Mode 3 Entry with One Auxiliary Feedwater Pump Train Inoperable due to Missed Post-Maintenance Testing
+ML24185A269,3212024003,0,Hatch 1,05/08/2024,07/03/2024,Reactor Core Isolation Cooling (RCIC) System Inoperable due to Mispositioned Link
+ML24190A129,2962024003,0,Browns Ferry 3,05/07/2024,07/08/2024,Main Steam Relief Valves Lift Settings Outside of Technical Specifications Required Setpoints
+ML24183A214,3132024001,0,Arkansas 1,05/07/2024,07/01/2024,Source Range Nuclear Instrument Failure Resulting in Condition Prohibited by Technical Specifications
+ML24183A174,4982024003,0,South Texas 1,05/06/2024,07/01/2024,Condition Prohibited by Technical Specifications and Potential Loss of Safety Function due to Inoperable Low Head Safety Injection Pump
+ML24185A160,4562024001,0,Braidwood 1,05/05/2024,07/03/2024,Unit Trip on Low Steam Generator Level due to Failure to Verify Isolation Valves Were Open
+ML24253A265,3542024001,1,Hope Creek,05/03/2024,09/05/2024,Invalid Primary Containment Integrated Leak Rate As-Found Test (ILRT)
+ML24296B194,2822024001,1,"Prairie Island 1, Prairie Island 2",05/02/2024,10/22/2024,Auxiliary Building Special Ventilation System Inoperable During Movement of Irradiated Fuel Assemblies
+ML25296A231,2372024001,1,Dresden 2,04/30/2024,10/23/2025,"Containment Cooling Service Water Valve Failure Resulted in a Condition Prohibited by Technical Specifications and Loss of 
+Safety Function"
+ML24177A322,5302024002,0,Palo Verde 3,04/27/2024,06/25/2024,Invalid Specified System Actuation of Unit 3 Train B Emergency Diesel Generator
+ML24172A162,4402024001,0,Perry,04/25/2024,06/20/2024,"Operation of the Residual Heat Removal Loops B and C “Alternate Keep Fill” Configuration Was Prohibited by Technical 
+Specifications and Resulted in an Unanalyzed Condition"
+ML24176A102,2592024002,0,Browns Ferry 1,04/24/2024,06/24/2024,Reactor Scram due to Generator Step-Up Transformer Failure
+ML24234A140,3332024001,1,FitzPatrick,04/24/2024,08/21/2024,EDG Lube Oil Check Valve Bonnet Cap Leak due to Failed Gasket
+ML24170A772,3522024003,0,Limerick 1,04/22/2024,06/18/2024,Core Operating Limits Report Thermal Limit Exceeded for Unit 1 Fuel Bundle GGK123
+ML24235A178,3732024004,1,LaSalle 1,04/20/2024,08/22/2024,Emergency Diesel Generator Auto-Start and Load due to Loss of System Auxiliary Transformer
+ML24130A090,2722024001,0,Salem 1,04/18/2024,05/09/2024,Pressure Boundary Leakage Through a Reactor Coolant Pump Thermal Barrier Heat Exchanger
+ML24233A245,3392024001,1,North Anna 2,04/18/2024,08/20/2024,Loss of Generator Field for 2J EDG During 2-PT-82.2B
+ML24169A161,3482024001,0,Farley 1,04/18/2024,06/17/2024,Pressurizer Safety Valve Lift Pressure Outside of Technical Specifications Limits due to Setpoint Drift
+ML24162A088,3362024001,0,Millstone 2,04/14/2024,06/10/2024,Control Room Air Conditioning Unit Inoperable due to Refrigerant Overcharge Resulting in a Condition Prohibited by Technical Specifications
+ML24163A306,3342024002,0,Beaver Valley 1,04/13/2024,06/11/2024,Automatic Reactor Trip due to Low Reactor Coolant Flow Caused by Transformer Overexcitation Protection Relay Actuation
+ML24234A332,5302024001,1,Palo Verde 3,04/13/2024,08/21/2024,Inoperable Boron Dilution Alarm System (BDAS) with Technical Specification Violation
+ML24347A138,5302024003,0,Palo Verde 3,04/13/2024,12/12/2024,Violation Of Technical Specifications 3.9.2 And 3.3.12
+ML24162A325,3522024002,0,Limerick 1,04/11/2024,06/10/2024,Invalid Actuation due to a Trip of 1B Reactor Protection System Circuit Breaker
+ML24162A104,3342024001,0,Beaver Valley 1,04/10/2024,06/06/2024,Offsite AC Power Source Inoperable due to Breaker Failure Resulting in Condition Prohibited by Technical Specification
+ML24162A324,3522024001,0,Limerick 1,04/09/2024,06/10/2024,Leakage for the Unit 1 `B' Outboard Main Steam Isolation Valve Exceeded Technical Specification Limit
+ML24213A022,3732024003,1,LaSalle 1,04/09/2024,07/31/2024,Technical Specification (TS) Limiting Condition for Operation (LCO) 3.6.1.3 Completion Time Exceeded
+ML24260A227,3872024002,0,"Susquehanna 1, Susquehanna 2",04/08/2024,09/16/2024,B Diesel Generator Inoperable due to Failed Excitation System Linear Reactor
+ML24277A774,4452024002,1,Comanche Peak 1,04/03/2024,10/03/2024,Condition Prohibited by Technical Specifications due to Inoperable Remote Shutdown System Functions
+ML24234A326,3872024001,1,Susquehanna 1,03/28/2024,08/21/2024,Main Steam Isolation Valve Leakage due to Valve Body Seat Wear
+ML24131A015,2652024001,0,Quad Cities 2,03/27/2024,05/10/2024,Automatic Actuation of Reactor Protection System During Scram Discharge Volume Leak Rate Testing
+ML24149A159,4162024002,0,Grand Gulf 1,03/26/2024,05/28/2024,Automatic Actuation of Reactor Protection System
+ML24138A030,3732024002,0,LaSalle 1,03/25/2024,05/17/2024,Reactor Protection System Half Scram due to Motor Generator Set Electric Power Monitoring Assembly Output Breaker Trip
+ML24144A277,5292024001,0,Palo Verde 2,03/24/2024,05/23/2024,Valid Specified System Actuations of Unit 2 Train B Emergency Diesel Generator and Train B Auxiliary Feedwater
+ML24136A211,3412024001,0,Fermi 2,03/23/2024,05/15/2024,Automatic RPS SCRAM on High RPV Pressure While Attempting to Lower Generator Output During RF-22
+ML24141A120,3162024001,0,Cook 2,03/22/2024,05/20/2024,Unit 2 Reactor Trip due to Main Turbine Trip from a High-High Thrust Bearing Position Trip
+ML24137A335,3822024002,0,Waterford 3,03/21/2024,05/16/2024,Automatic Reactor Trip due to Transformer Failure
+ML24330A077,2602024002,1,Browns Ferry 2,03/19/2024,11/25/2024,High Pressure Coolant Injection Inoperable due to Rupture Disc Failure and Resulting System Isolation
+ML24141A032,3232024001,0,Diablo Canyon 2,03/19/2024,05/17/2024,LCO 3.0.3 Completion Time Limits
+ML24137A008,3412024002,0,Fermi 2,03/17/2024,05/16/2024,Primary Containment Isolation Valve Declared Inoperable for a Period Prohibited by Technical Specifications
+ML24312A174,3822024001,1,Waterford 3,03/16/2024,11/07/2024,Manual Reactor Trip due to Engineered Safety Features Actuation System Relay Failure
+ML24134A267,2982024005,0,Cooper Station,03/13/2024,05/13/2024,"High Pressure Coolant Injection Pressure Switch Installation Causes Condition That Could Have Prevented Fulfillment of a 
+Safety Function and a Condition Prohibited by Technical Specifications"
+ML24274A331,4462024001,1,Comanche Peak 2,03/12/2024,09/30/2024,Two Recurring Reactor Scrams Associated with Main Feedwater System Modifications
+ML24131A023,2982024004,0,Cooper Station,03/11/2024,05/09/2024,"Main Turbine Stop Valve Position Switches Do Not Meet Channel Independence Criteria Results in Two Channels Being 
+Declared Inoperable and a Condition Prohibited by Technical Specifications"
+ML24130A268,3212024002,0,Hatch 1,03/11/2024,05/09/2024,Unit 1 Manual Reactor Trip due to Loss of Feedwater
+ML24179A341,4982024002,1,South Texas 1,03/10/2024,06/27/2024,Two Essential Chilled Water Trains Inoperable Resulting in a Condition That Could Have Prevented Fulfillment of a Safety Function
+ML24127A139,3912024002,0,Watts Bar 2,03/05/2024,05/06/2024,Automatic Reactor Trip due to Steam Generator #3 Level LO-LO
+ML24127A155,4452024001,0,"Comanche Peak 1, Comanche Peak 2",03/05/2024,05/06/2024,"Potential Loss of Safety Function due to the Inoperability of Both Trains of the Uninterruptible Power Supply Heating, Ventilation, and Air Conditioning (UPS HVAC)"
+ML24117A127,3732024001,0,LaSalle 1,03/04/2024,04/26/2024,Core Operating Limits Report Thermal Limits Exceeded
+ML24110A087,4432024001,0,Seabrook,03/04/2024,04/19/2024,Condition Prohibited by Technical Specifications - Transformer Bushing Failure -- Offsite AC Sources
+ML24155A195,3062024001,1,Prairie Island 2,03/03/2024,05/31/2024,Reactor Trip and Auto-start Actuation of Auxiliary Feedwater due to Loss of Suction to the 22 Main Feedwater Pump
+ML24136A202,4102024001,0,Nine Mile Point 2,03/03/2024,05/01/2024,"LER 2024-001-00, Automatic Reactor Scram on Turbine Trip due to Low Condenser Vacuum"
+ML24116A117,2632024001,0,Monticello,02/28/2024,04/25/2024,"Reactor Scram, Containment Isolation, and Cooldown Rate Outside of Limits Following Technician Adjustment of Wrong Component"
+ML24121A002,3172024002,0,"Calvert Cliffs 1, Calvert Cliffs 2",02/28/2024,04/29/2024,Emergency Diesel Generators Automatic Start due to Loss of a 13kV Bus
+ML24185A259,3662024002,1,"Hatch 2, Hatch 1",02/27/2024,07/03/2024,Incorrectly Installed Temporary Modification Results in Multiple Conditions Prohibited by Plant Technical Specifications
+ML24115A165,2962024002,0,Browns Ferry 3,02/24/2024,04/24/2024,Breaker Trip Automatically Started an Emergency Diesel Generator
+ML25311A147,3182024001,2,Calvert Cliffs 2,02/24/2024,11/07/2025,Manual Reactor Trip due to 22 Steam Generator Feed Pump Trip
+ML24113A201,2962024001,0,Browns Ferry 3,02/21/2024,04/22/2024,Primary Containment Isolation Valve Inoperable due to Incorrect Motor Operated Valve Setup
+ML24108A143,3952024001,0,Summer 1,02/19/2024,04/17/2024,Automatic Actuation of 'B' Emergency Diesel Generator
+ML24102A124,3252024002,0,"Brunswick 1, Brunswick 2",02/18/2024,04/10/2024,Automatic Start of Emergency Diesel Generator due to Emergency Bus De-energization
+ML24102A123,3252024001,0,Brunswick 1,02/17/2024,04/10/2024,Primary Containment Penetration Local Leak Rate Testing Failure
+ML24171A018,3642024002,1,"Farley 2, Farley 1",02/16/2024,06/19/2024,Manual Reactor Trip due to Loss of Power to the 2A 125 Volt DC Distribution Panel
+ML24095A326,4832024001,0,Callaway,02/15/2024,04/04/2024,Reactor Trip due to Turbine Trip
+ML24100A863,3212024001,0,Hatch 1,02/11/2024,04/09/2024,Primary Containment Penetration Exceeded Maximum Allowable Primary Containment Leakage Rate (La)
+ML25051A147,2982024003,1,Cooper Station,01/31/2024,02/20/2025,High Pressure Coolant Injection Steam Leak Causes Condition that Could Have Prevented Fulfillment of a Safety Function and a Condition Prohibited by Technical Specifications
+ML24081A121,2772024001,0,Peach Bottom 2,01/29/2024,03/21/2024,Automatic Reactor Scram due to an Invalid Generator Lockout
+ML24087A196,4162024001,0,Grand Gulf 1,01/29/2024,03/27/2024,High Pressure Core Spray Inoperable due to Minimum Flow Valve Failure to Close
+ML24087A215,3912024001,0,Watts Bar 2,01/27/2024,03/27/2024,Automatic Reactor Trip due to Main Generator Protection Relay Actuation
+ML24092A190,4982024001,0,South Texas 1,01/23/2024,04/01/2024,"Two Steam Generator Power Operated Relief Valves (PORVs) Inoperable Resulting in a Condition That Could Have Prevented 
+Fulfillment of a Safety Function"
+ML24078A343,0252024001,0,Vogtle 3,01/20/2024,03/18/2024,Condition Prohibited by Technical Specification Limiting Condition of Operation 3.1.6 Control Bank Overlap Limits Exceeded due to Inadequate Procedure Guidance
+ML24184B867,3172024001,1,Calvert Cliffs 1,01/13/2024,07/02/2024,Condition Prohibited by Technical Specifications due to Safety Injection Check Valve Not Full Closed
+ML24064A252,2982024001,0,Cooper Station,01/03/2024,03/04/2024,Inoperable Turbine Stop Valve Limit Switch Causes Condition Prohibited by Technical Specifications
+ML24194A149,3892024002,1,St. Lucie 2,01/03/2024,07/11/2024,Safety Injection Tank Vent Line Through Wall Leakage
+ML24064A190,4142024001,0,"Catawba 2, Catawba 1",01/02/2024,03/04/2024,"Condition Prohibited by Technical Specifications and Loss of Safety Function due to Failed Damper Controller for the 
+2A1 Emergency Diesel Generator Room Ventilation Fan"
+ML24270A035,4612023002,1,Clinton 1,12/19/2023,09/24/2024,Reactor Core Isolation Cooling System Inoperable prior to Mode Change
+ML24302A223,2602024001,2,"Browns Ferry 2, Browns Ferry 1, Browns Ferry 3",12/18/2023,10/28/2024,Secondary Containment Isolation Valve Inoperable due to Mechanical Failure
+ML24045A152,3662024001,0,Hatch 2,12/18/2023,02/14/2024,Unit 2 High Pressure Coolant Injection (HPCI) System Inoperable
+ML24045A179,3822023004,0,Waterford 3,12/17/2023,02/14/2024,"Non-Compliance with Technical Specifications due to Performing Startup Channel 1 Functional Testing During Fuel 
+Movement"
+ML24044A193,4162023002,0,Grand Gulf 1,12/16/2023,02/13/2024,Reactor Scram due to Generator Stator Fault to Ground
+ML24044A167,3892024001,0,St. Lucie 2,12/15/2023,02/13/2024,Safety Injection Tank Vent Line Through Wall Leakage
+ML24079A283,3542023003,1,Hope Creek,12/14/2023,03/19/2024,Inadvertent Main Turbine Control Valve Closure Caused Reactor Scram
+ML24039A130,4582023006,0,River Bend,12/13/2023,02/08/2024,Automatic Reactor Scram due to a Turbine Trip Following a Disconnect Failure at Switchyard
+ML24039A186,4232023005,0,Millstone 3,12/10/2023,02/08/2024,"Oil Leakage From ""C"" RSS Pump Motor Challenged Meeting its Mission Time Resulting in a Condition Prohibited by Technical Specifications"
+ML24032A443,5282023003,0,Palo Verde 1,12/06/2023,02/01/2024,Unit 1 Control Room Essential Filtration Actuation Signal (CREFAS) Actuation with Essential Spray Pond Pump Start
+ML24030A968,4992023002,0,South Texas 2,12/02/2023,01/30/2024,Automatic Actuation of Emergency Diesel Generator due to Lockout of Switchyard Electrical Bus
+ML24116A317,4982023004,1,South Texas 1,11/27/2023,04/25/2024,Condition Prohibited by Technical Specifications due to Inoperable Train of Essential Chilled Water
+ML24022A224,3972024001,0,Columbia,11/21/2023,01/22/2024,Failure to Track Operability Requirements of Transversing In-Core Probe Valves
+ML24156A040,4582023005,1,River Bend,11/17/2023,06/04/2024,Manual Reactor Scram due to Lowering Feedwater Temperature Following an Automatic Isolation of Feedwater Heater String
+ML24107B099,3182023004,1,Calvert Cliffs 2,11/16/2023,04/12/2024,Automatic Reactor Trip from Reactor Protection System Actuation due to Loss of Unit Service Transformer
+ML24015A002,4992023001,0,South Texas 2,11/16/2023,01/15/2024,"Two Essential Chilled Water Trains Inoperable Resulting in a Condition That Could Have Prevented Fulfillment of a Safety 
+Function"
+ML24011A217,3642024001,0,Farley 2,11/14/2023,01/11/2024,Manual Reactor Trip due to Rising Steam Generator Levels
+ML24239A847,3872023004,1,Susquehanna 1,11/10/2023,08/26/2024,Manual Reactor Scram due to Degraded Main Condenser Vacuum
+ML24171A011,4982023003,1,South Texas 1,11/10/2023,06/19/2024,"Two Essential Chilled Water Trains Inoperable Resulting in a Condition That Could Have Prevented Fulfillment of a Safety 
+Function"
+ML24008A243,3182023003,0,Calvert Cliffs 2,11/08/2023,01/08/2024,Manual Actuation of Auxiliary Feedwater System due to 22 Steam Generator Feedwater Pump Trip
+ML24008A240,3182023002,0,Calvert Cliffs 2,11/07/2023,01/08/2024,Automatic Reactor Trip from Reactor Protection System Actuation due to Loss of Unit Service Transformer
+ML23354A067,4432023005,0,Seabrook,11/07/2023,12/20/2023,Auxiliary Feedwater System Inoperable
+ML23364A001,3822023003,0,Waterford 3,11/05/2023,12/30/2023,Steam Generator Tube Degradation Indicated by Failed In-Situ Pressure Testing
+ML23362A034,4582023004,0,River Bend,11/02/2023,12/28/2023,Drywall Post Accident Radiation Monitor Inoperable due to Unrecognized Surveillance Failure
+ML23353A109,3662023003,0,Hatch 2,11/01/2023,12/19/2023,Manual Reactor Trip due to Loss of Feedwater
+ML23347A130,2502023004,0,Turkey Point 3,10/24/2023,12/13/2023,Unplanned Automatic Scram During RPS Testing
+ML23341A209,3642023003,0,Farley 2,10/24/2023,12/07/2023,Pressurizer Code Safety Valve Lift Pressure Outside of Technical Specifications Limits
+ML24158A065,2982023002,1,Cooper Station,10/22/2023,06/06/2024,Secondary Containment Differential Pressure Perturbation Exceeds Technical Specifications
+ML23363A151,2202023002,0,Nine Mile Point 1,10/21/2023,12/15/2023,Average Power Range Monitors Declared Inoperable due to Trip of Reactor Recirculation Pump 12
+ML23353A063,4232023004,0,Millstone 3,10/20/2023,12/19/2023,Reactor Coolant System Pressure Isolation Valves Operational Leakage Exceeded the Acceptance Criteria Resulting in a Condition Prohibited by Technical Specifications
+ML24270A029,4232023006,2,Millstone 3,10/20/2023,09/26/2024,"Pressurizer Power Operated Relief Valve Failed to Open During Surveillance Testing Resulting in a Condition Prohibited by 
+Technical Specifications"
+ML24081A153,2822023001,1,"Prairie Island 1, Prairie Island 2",10/19/2023,03/21/2024,"Reactor Trip, Auxiliary Feedwater and Emergency Service Water System Actuation due to Electrical Transient in DC Control Power Cables"
+ML23347A120,3692023001,0,McGuire 1,10/18/2023,12/13/2023,Automatic Actuation of the 1A Motor Driven Auxiliary Feedwater Pump due to Human Error
+ML23338A183,3732023002,0,LaSalle 1,10/18/2023,12/04/2023,Turbine Stop Valve Limit Switch Failure due to Lubricant Degradation
+ML25036A236,3642025001,0,Farley 2,10/17/2023,02/05/2025,Containment Isolation Valve Inoperable for Longer than Allowed by Technical Specifications
+ML23348A260,2782023002,0,Peach Bottom 3,10/16/2023,12/14/2023,Main Steam Isolation Valves Stroke Times Exceed Technical Specification Limit
+ML23346A154,3152023002,0,Cook 1,10/15/2023,12/12/2023,Failure of Unit 1 West Auxiliary Feedwater Pump to Restart During Load Sequencer Testing
+ML24067A253,2442023003,1,Ginna,10/12/2023,03/07/2024,"Supplement to LER 2023-003-00, Manual Reactor Trip due to Degraded Condenser Vacuum from Lowering Main Steam to Air 
+Ejectors and Auxiliary Feedwater Actuation due to Low Steam Generator Level"
+ML23342A122,4232023003,0,Millstone 3,10/11/2023,12/08/2023,RCS Temperature Detector Exceeded Time Response Acceptance Criteria Resulting in a Condition Prohibited by TS
+ML23342A068,5282023002,0,Palo Verde 1,10/09/2023,12/08/2023,Reactor Coolant System Degraded Pressure Boundary
+ML23338A184,2632023003,0,Monticello,10/07/2023,12/04/2023,Condition Prohibited by Technical Specifications due to Inoperable Main Steam Line Low Pressure Isolation Switch
+ML24012A145,3392023001,0,North Anna 2,10/03/2023,11/30/2023,Reactor Coolant Pressure Boundary Leak due to Poor Weld Workmanship
+ML23334A228,3642023002,0,Farley 2,10/03/2023,11/30/2023,Main Steam Safety Valve Lift Pressure Outside of Technical Specifications Limits due to Setpoint Drift
+ML23333A215,3482023002,0,Farley 1,10/02/2023,11/29/2023,Residual Heat Removal Pump Inoperable for Longer Than Allowed by Technical Specifications
+ML23333A143,4832023001,0,Callaway,10/01/2023,11/29/2023,Inoperable Instrument Tunnel Sump Level Indication Resulted in Condition Prohibited by Technical Specifications
+ML23331A967,2752023001,0,Diablo Canyon 1,09/30/2023,11/22/2023,Unit 1 Manual Reactor Trip at Low Power
+ML23331A300,3172023001,0,Calvert Cliffs 1,09/29/2023,11/27/2023,Condition Prohibited by Technical Specifications due to Failure to Sample Diesel Generator Fuel Oil Storage Tank
+ML23317A359,2632023002,0,Monticello,09/27/2023,11/13/2023,Reactor Scram and Containment Isolation due to Valve Responses During Main Turbine Control Valve Testing
+ML23324A275,2502023003,0,Turkey Point 3,09/22/2023,11/20/2023,Grid Disturbance in Switchyard Causes Automatic Reactor Trip
+ML23321A224,4572023001,0,Braidwood 2,09/22/2023,11/17/2023,Unit 2 Train B Auxiliary Feedwater Pump was Inoperable due to Degraded Oil in the Crank Case
+ML23313A196,3872023003,0,"Susquehanna 1, Susquehanna 2",09/12/2023,11/09/2023,D Diesel Generator Inoperable due to Clogged Fuel Injectors
+ML23312A176,2442023002,0,Ginna,09/09/2023,11/08/2023,Overtemperature Delta Temperature Reactor Protection System and Auxiliary Feedwater System Actuations on due to 100% Load Rejection Caused by Turbine Overspeed Circuit Card Failure (Parts Quality Initiative Inspection Bypassed)
+ML23311A061,2782023001,0,Peach Bottom 3,09/09/2023,11/07/2023,Standby Liquid Control Pump Inoperable for Greater than LCO Window due to Gas Intrusion
+ML23334A152,4232023002,0,Millstone 3,09/04/2023,11/30/2023,Auxiliary Feedwater Control Valve Failure Resulting in a Condition Prohibited by Technical Specifications
+ML23306A048,4102023001,0,Nine Mile Point 2,09/02/2023,10/27/2023,Automatic Reactor SCRAM on Low Level due to Partial Loss of Feedwater
+ML23284A427,4242023002,0,Vogtle 1,08/22/2023,10/11/2023,Manual Reactor Trip due to Failure of a Heater Drain Pump and Standby Condensate Pump
+ML23291A358,3412023003,0,Fermi 2,08/20/2023,10/18/2023,Reactor Pressure Boundary Leakage at Socket Weld on Reactor Recirculation Sample Line Caused by Fatigue Failure
+ML23334A076,2652023001,1,Quad Cities 2,08/11/2023,11/30/2023,Turbine Trip and Automatic Reactor Scram due to High Moisture Separator Level
+ML23271A026,4402023003,0,Perry,08/10/2023,09/28/2023,Plant Trip During Reactor Protection System Power Transfer
+ML23275A053,2502023002,0,Turkey Point 3,08/04/2023,10/02/2023,Manual Reactor Trip due to Steam Generator Feedwater Regulating Valve Positioner Failure
+ML24060A097,3912023003,1,Watts Bar 2,08/04/2023,02/29/2024,Automatic Reactor Trip due to Loss of Main Feedwater Regulating Valve Control
+ML23271A132,3642023001,0,Farley 2,08/01/2023,09/28/2023,Pressurizer Code Safety Valve Lift Pressure Outside of Technical Specifications Limits
+ML23271A098,3152023001,0,"Cook 1, Cook 2",07/31/2023,09/28/2023,Two Trains of Fuel Handling Area Exhaust Ventilation Inoperable
+ML23270B916,4432023004,0,Seabrook,07/30/2023,09/27/2023,Manual Reactor Trip due to Main Turbine Electro-Hydraulic Control Oil Level
+ML23262A958,0252023006,0,Vogtle 3,07/21/2023,09/19/2023,"Automatic Reactor Protection System Actuation During Startup Testing due to Auto Reactive Power Regulator Being Active 
+While in Island Mode Operation"
+ML23258A067,3412023002,0,Fermi 2,07/21/2023,09/15/2023,Technical Specification Completion Time Exceeded Due to Repairs on the MDCT Fan D
+ML23319A429,4582023003,1,River Bend,07/17/2023,11/15/2023,Drywell Atmosphere Radiation Monitor Particulate and Gaseous Channels Inoperable due to Out of Tolerance Conversion Factors
+ML23251A141,4122023004,0,Beaver Valley 2,07/12/2023,09/08/2023,Condition Prohibited by Technical Specification and Loss of Safety Function due to Emergency Diesel Generator Lube Oil Contamination by Fuel Oil
+ML23249A177,0252023005,0,Vogtle 3,07/09/2023,09/06/2023,Automatic Reactor Protection System Actuation During Startup Testing due to Inadequate Turbine Trip Logic
+ML23243B033,3362023002,0,Millstone 2,07/06/2023,08/31/2023,Failed Check Valve Resulted in an Unanalyzed Condition
+ML23236A544,3912023002,0,Watts Bar 2,06/27/2023,08/24/2023,Automatic Reactor Trip due to Main Generator Protection Relay Actuation
+ML24060A311,2872023002,0,Oconee 3,06/23/2023,02/29/2024,Passive Containment Isolation Device Inoperability Results in Operation or Condition Prohibited by Technical Specifications
+ML23229A506,2612023002,0,Robinson 2,06/22/2023,08/17/2023,Plant Trip During Reactor Protection System Testing
+ML23285A094,4452023001,1,Comanche Peak 1,06/16/2023,10/12/2023,Automatic Reactor Trip due to Lo-Lo Steam Generator Level
+ML23222A257,2612023001,0,Robinson 2,06/12/2023,08/10/2023,Condition Prohibited by Technical Specification due to Missed Entry into Limiting Condition for Operation
+ML24051A155,4122023003,1,Beaver Valley 2,06/11/2023,02/20/2024,Missile Barrier Door Left Open Resulting in a Loss of Safety Function
+ML23334A051,4162023001,1,Grand Gulf 1,06/06/2023,11/30/2023,Valve Closure Test Failure Resulting in Condition Prohibited by Technical Specification
+ML23216A176,2602023002,0,Browns Ferry 2,06/05/2023,08/04/2023,Main Steam Relief Valves Lift Settings Outside of Technical Specifications Required Setpoints
+ML23313A162,5292023001,1,Palo Verde 2,06/02/2023,11/09/2023,Unit 2 Automatic Reactor Trip on Low Steam Generator Water Level due to Degraded Feedwater Flow
+ML23208A287,4232023001,0,Millstone 3,05/30/2023,07/27/2023,Automatic Reactor Trip due to Main Generator Output Breaker Ground Fault
+ML23199A216,3062023001,0,Prairie Island 2,05/27/2023,07/18/2023,2GT/XFMR Lockout due to Failure of Lightning Arrester Caused Unit 2 Reactor Trip
+ML23201A109,3912023001,0,Watts Bar 2,05/25/2023,07/20/2023,Unanalyzed Condition Related to Loss of the 2A Emergency Diesel Generator During a Postulated Appendix R Fire
+ML23199A224,3242023001,0,Brunswick 2,05/23/2023,07/17/2023,Two Main Steam Line Safety Relief Valves Inoperable
+ML23200A238,2592023002,0,Browns Ferry 1,05/20/2023,07/19/2023,Full Reactor Scram due to an Oscillation Power Range Monitor Confirmation Density Algorithm Trip
+ML23193A364,4122023002,0,Beaver Valley 2,05/19/2023,07/12/2023,Automatic Actuation of Auxiliary Feedwater System
+ML23188A132,3362023001,0,Millstone 2,05/09/2023,07/07/2023,"Structural Integrity of ""A"" Train Service Water Header Piping Could Not Be Demonstrated Causing the Unit to Operate In a Condition Prohibited by Technical Specifications"
+ML23181A088,4432023003,0,Seabrook,05/06/2023,06/30/2023,Reactor Protection System Manual Actuation due to Failed Silicon Controlled Rectifiers
+ML23293A002,3542023002,0,Hope Creek,05/04/2023,10/20/2023,Shutdown Margin Less than Expected Resulting in a Condition Prohibited by Technical Specifications
+ML23270B186,3902023001,1,Watts Bar 1,05/03/2023,09/27/2023,Inadequate 10 CFR 50.59 Results in Failure to Obtain Prior NRC Approval for Condition Prohibited by Technical Specifications
+ML23181A173,0252023004,0,Vogtle 3,05/02/2023,06/30/2023,Manual Reactor Protection System Actuation due to Condenser Flanges Not Removed During Construction
+ML23181A085,4432023002,0,Seabrook,05/02/2023,06/30/2023,Automatic Actuation of Emergency Service Water During Testing due to a Defective Relay
+ML23269A205,3542023001,2,Hope Creek,04/30/2023,09/25/2023,Technical Specification Required Shutdown due to Declaring the Suppression Chamber and Primary Containment Inoperable
+ML23174A067,3332023003,0,FitzPatrick,04/24/2023,06/23/2023,Emergency Diesel Generator Fuel Oil Supply Procedure Error “B” Subsystem
+ML23167A468,4122023001,0,Beaver Valley 2,04/22/2023,06/16/2023,Indications Identified During Reactor Vessel Head Inspection
+ML23166A081,3252023001,0,Brunswick 1,04/20/2023,06/15/2023,Loss of Redundant Power Supply Operation Causes Turbine Trip and Subsequent Reactor Scram
+ML24060A312,2702023001,0,Oconee 2,04/17/2023,02/29/2024,"Inappropriate Procedural Guidance for Planned Online Maintenance Results in Event or Condition That Could Have Prevented 
+Fulfillment of a Safety Function"
+ML23167A071,3732023001,0,LaSalle 1,04/17/2023,06/16/2023,Low Pressure Core Spray Inoperable due to Minimum Flow Valve Flow Pressure Switch Failure
+ML23165A158,2502023001,0,Turkey Point 3,04/15/2023,06/14/2023,RCS Pressure Boundary Degraded
+ML23226A139,3332023002,1,FitzPatrick,04/14/2023,08/14/2023,Reactor Protection System Electric Power Monitoring System Trip Caused Primary Containment Isolation
+ML23335A068,3332023004,0,FitzPatrick,04/12/2023,12/01/2023,Misaligned Spacer Prevented Tie Breaker Closing Coil Armature Operation on a Magne-Blast for EDG A Subsystem
+ML23163A217,4432023001,0,Seabrook,04/12/2023,06/12/2023,Automatic Actuation of ‘B’ Emergency Diesel Generator Emergency Power Sequencer
+ML23158A263,2442023001,0,Ginna,04/11/2023,06/07/2023,Vital Bus 17 Failed to Load onto Emergency Diesel Generator B During Load / Safeguard Sequence Testing; Corroded Breaker Shunt Trip Attachment Plunger Found Which Indicated an Earlier Violation of Technical Specifications 3.8.1
+ML23160A212,3132023002,0,Arkansas 1,04/11/2023,06/09/2023,Reactor Protection System Underpower Relay Test Failure Resulting in Condition Prohibited by Technical Specifications
+ML23158A170,3282023001,0,Sequoyah 2,04/11/2023,06/07/2023,Inoperable Ice Condenser Intermediate Deck Doors Results in Condition Prohibited by Technical Specifications
+ML23159A223,0252023003,0,Vogtle 3,04/10/2023,06/08/2023,Automatic Reactor Protection System Actuation During Startup Testing due to Incorrect Turbine Control Valve Setting
+ML24026A298,5282023001,2,Palo Verde 1,04/08/2023,01/26/2024,Unit 1 Reactor Trip Following a Main Turbine Trip
+ML23157A176,3872023002,0,Susquehanna 1,04/07/2023,06/06/2023,"Unplanned Inoperability of the High Pressure Coolant Injection (HPCI) System due Failure of the HPCI Turbine Stop Valve to Fully Close, Most Likely due to Internal Corrosion and Mechanical Binding of the Valve Hydraulic Drive"
+ML23150A162,3952023001,0,Summer 1,04/05/2023,05/30/2023,Manual Reactor Trip due to Loss of Main Feedwater Pump
+ML23151A370,3702023001,0,McGuire 2,04/02/2023,05/31/2023,Manual Actuation of the Unit 2 Motor Driven Auxiliary Feedwater Pumps
+ML23146A191,3662023002,0,Hatch 2,03/31/2023,05/26/2023,Unit 2 Manual SCRAM due to Trip of Both Reactor Recirculation Pumps
+ML23145A178,3882023001,0,Susquehanna 2,03/26/2023,05/25/2023,Secondary Containment Bypass Leakage Limit Exceeded due Inadequate Procedure Guidance Resulting in Failure of the Inboard Containment Isolation Valve to Close and Pressurize
+ML23229A121,4582023001,1,River Bend,03/24/2023,08/17/2023,Ultimate Heat Sink Inoperable due to Boundary Valve Leakage
+ML23177A043,3412023001,1,Fermi 2,03/23/2023,06/23/2023,Loss of Mechanical Draft Cooling Tower Fan Brakes During High Speeds Leads to Loss of Safety Function and Inoperability
+ML23142A269,3872023001,0,"Susquehanna 1, Susquehanna 2",03/23/2023,05/22/2023,Inadvertent Contact Between Relay Cover and Relay Trip Contacts Resulted in Automatic Actuation of the ‘B’ Emergency Diesel Generator
+ML23227A037,2202023001,1,Nine Mile Point 1,03/18/2023,08/11/2023,"Supplement to LER 2023-001-00, Indication on the N2E Dissimilar Metal Weld Exceeding ASME Acceptance Criteria"
+ML23207A220,4982023001,1,South Texas 1,03/18/2023,07/26/2023,Unit 1 Pressurizer Power Operated Relief Valve Failed to Open
+ML23285A040,4542023001,1,"Byron 1, Byron 2",03/16/2023,10/12/2023,0A Control Room Ventilation Inoperable due to Jumpers Left on 0PR031J and 0PR032J
+ML23135A768,0252023002,0,Vogtle 3,03/15/2023,05/15/2023,"Automatic RPS Actuation During Mode 1 due to Incorrect Relay Settings Caused by Less Than Adequate Questioning Attitude, Validation of Assumptions, and lnterface/Guidance"
+ML23272A104,3182023001,1,Calvert Cliffs 2,03/11/2023,09/29/2023,Condition Prohibited by Technical Specifications due to Inoperable Nuclear Instrumentation at Very Low Power
+ML23129A791,3822023002,0,Waterford 3,03/10/2023,05/09/2023,Plant Shutdown Required by Technical Specifications for Unidentified Reactor Coolant System Leakage in Containment
+ML23128A133,2982023001,0,Cooper Station,03/08/2023,05/08/2023,Valve Test Failures Result in Condition Prohibited by Technical Specifications
+ML23137A275,2632023001,0,Monticello,03/04/2023,05/17/2023,Main Steam Isolation Valve Leakage Exceeds Technical Specification Requirements Due to Stem Scoring
+ML23122A016,3742023003,0,LaSalle 2,03/04/2023,05/02/2023,Automatic Actuation of Reactor Protection System (RPS)
+ML23117A063,4402023002,0,Perry,03/04/2023,04/26/2023,Main Steam Line Leakage Exceeded Technical Specification Limit
+ML23121A120,3822023001,0,Waterford 3,03/02/2023,05/01/2023,Non-Compliance with Technical Specifications due to Pico-ammeter Circuit Board Fluctuations in Containment High Range Radiation Monitor B
+ML23177A232,3522023001,0,Limerick 1,02/27/2023,06/26/2023,"Emergency Diesel Generator Lube Oil Pressure Sensing Line Leak Resulting in a Condition Prohibited by Technical 
+Specifications"
+ML23341A206,3482023003,0,Farley 1,02/26/2023,12/07/2023,Unit 1 Emergency Diesel Generator (EDG) Lube Oil Pump Outlet Coupling Leak
+ML24283A102,3742023002,2,"LaSalle 2, LaSalle 1",02/24/2023,10/09/2024,Air Circuit Breaker (ACB) Mechanically Operated Contacts (MOC) Switch Failed to Actuate
+ML23109A246,3332023001,0,FitzPatrick,02/19/2023,04/19/2023,Primary Containment Isolation System Isolation due to Initiation of Main Condenser Fire Protection Foam System
+ML23261C399,2602023001,1,Browns Ferry 2,02/18/2023,09/18/2023,Pressure Boundary Leak on Recirculation Pump Discharge Isolation Valve Drain Line due to Fatigue Failure
+ML23107A190,3742023001,0,LaSalle 2,02/17/2023,04/17/2023,Standby Liquid Control Valve Inoperable due to Failed Motor Starter Contactor
+ML23104A162,3132023001,0,Arkansas 1,02/14/2023,04/14/2023,Automatic Reactor Trip due to Reactor Protection System Actuation
+ML23256A200,4582023002,1,River Bend,02/12/2023,09/13/2023,Division I and II Diesel Generators Inoperable due to Exceeding Load Sequence Times
+ML23095A088,3662023001,0,Hatch 2,02/07/2023,04/05/2023,Primary Containment Penetration Exceeded Maximum Allowable Primary Containment Leakage Rate (La)
+ML23089A356,3482023001,0,Farley 1,02/01/2023,03/30/2023,Automatic Reactor Trip due to DC Ground on Turbine Trip Solenoid
+ML23094A112,4612023001,0,Clinton 1,01/31/2023,03/31/2023,Grid Fault Results in Switchyard Breaker Trips and Reactor Scram
+ML23164A134,2592023001,1,Browns Ferry 1,01/24/2023,06/13/2023,High Pressure Coolant Injection System Inoperable due to a Torn Valve Diaphragm
+ML24029A241,2592023003,0,Browns Ferry 1,01/18/2023,01/29/2024,Standby Liquid Control Inoperable due to Demineralized Water In-leakage
+ML23073A380,0252023001,0,Vogtle 3,01/14/2023,03/14/2023,Manual Actuation of Reactor Protection System During Mode 3 due to an Inadequate Procedure Step
+ML23068A470,2872023001,0,Oconee 3,01/08/2023,03/09/2023,Condition Prohibited by Technical Specifications due to Isolation Valve Exceeding Inservice Testing Leakage Requirements
+ML23053A083,4402023001,0,Perry,01/05/2023,02/22/2023,Manual ECCS Actuation Following Automatic Reactor Trip
+ML23058A432,4242023001,0,"Vogtle 1, Vogtle 2",01/03/2023,02/27/2023,Partial Loss of Offsite Power Results in Emergency Diesel Generator and Auxiliary Feedwater Actuation
+ML23052A211,3112022001,0,Salem 2,12/24/2022,02/21/2023,Invalid Safety Injection and Valid Reactor Trip due to Inaccurate Steam Generator Pressure Indications
+ML23051A019,3462022002,0,Davis-Besse,12/23/2022,02/20/2023,Strong Winds Result in Ultimate Heat Sink Low Water Level
+ML23047A547,4162022003,0,Grand Gulf 1,12/19/2022,02/16/2023,Manual Reactor SCRAM due to a Loss of the Condensate and Feed Water System
+ML23132A132,2982022004,1,Cooper Station,12/16/2022,05/11/2023,Manual Reactor Scram and Group I Isolation due to Main Turbine Bypass Valve Failing Open
+ML24185A151,2592024001,1,"Browns Ferry 1, Browns Ferry 2, Browns Ferry 3",12/14/2022,07/03/2024,Inoperability of Unit 3 Diesel Generator due to Relay Failure
+ML23037A992,2592022003,0,Browns Ferry 1,12/06/2022,02/06/2023,Main Steam Relief Valves Lift Settings Outside of Technical Specifications Required Setpoints
+ML23212B015,2962022003,1,Browns Ferry 3,12/02/2022,07/31/2023,Pressure Boundary Leak on Residual Heat Removal System Low Pressure Coolant Injection Test Line due to Fatigue Failure
+ML23012A325,2692022002,0,Oconee 1,11/14/2022,01/12/2023,Reactor Coolant System Pressure Boundary Leak on Reactor Coolant Pump Lower Bearing Thermowell
+ML23011A111,2982022003,0,Cooper Station,11/12/2022,01/11/2023,Actuation of Reactor Protection System Initiates a Full Reactor Scram
+ML23004A205,3162022001,0,Cook 2,11/10/2022,01/04/2023,Automatic Reactor Trip due to Steam Generator High-High Level
+ML22364A273,2652022003,0,Quad Cities 2,11/04/2022,12/30/2022,Manual Scram due to Feedwater Regulator Valve Failure Increasing Reactor Water Level
+ML22362A015,3732022004,0,"LaSalle 1, LaSalle 2",11/04/2022,12/21/2022,Both Trains of Main Control Room and Auxiliary Electric Room HVAC Declared Inoperable due to Compressor Trips
+ML24312A416,2692022001,1,Oconee 1,11/01/2022,11/07/2024,Ultrasonic Examination Indication Identifies Degraded Reactor Coolant System Pressure Boundary
+ML23026A333,4002022007,1,Harris,10/30/2022,01/26/2023,Automatic Reactor Trip due to Loss of Power from the ‘A’ Auxiliary Bus
+ML22353A591,4002022008,0,Harris,10/30/2022,12/19/2022,Automatic Actuation of Auxiliary Feedwater System
+ML23018A201,3542022002,0,Hope Creek,10/28/2022,01/18/2023,Inoperable Isolation Actuation Instrumentation Caused by Failure to Remove Electrical Jumper
+ML23192A759,4002022006,2,Harris,10/27/2022,07/11/2023,Auxiliary Feedwater Pump Inoperability
+ML23194A172,4832022003,1,Callaway,10/25/2022,07/13/2023,"Class 1E Electrical Air Conditioning System Thermal Expansion Valve Failure Resulted in Condition Prohibited by Technical 
+Specifications"
+ML22353A609,0252022003,0,Vogtle 3,10/24/2022,12/19/2022,Unborated Water Flowpath Not Secured per Technical Specification 3.9.2 due to Inadequate Procedure Revision
+ML22357A036,4142022003,0,Catawba 2,10/24/2022,12/23/2022,Manual Reactor Trip and Auxiliary Feedwater System Actuation
+ML23034A235,0252022002,1,Vogtle 3,10/23/2022,02/03/2023,Automatic Depressurization System Stage 4 Flow Paths Inoperable During Mode 6 with Upper Internals in Place due to Inadequate Work Processes
+ML22355A081,3232022001,0,Diablo Canyon 2,10/23/2022,12/21/2022,Unit 2 Reactor Coolant System Pressure Boundary Degradation
+ML23180A170,2982022002,1,Cooper Station,10/22/2022,06/29/2023,Manual Core Spray Injection to Restore Skimmer Surge Tank Level
+ML22349A023,3272022002,0,Sequoyah 1,10/22/2022,12/15/2022,Turbine Trip Function Inoperable due to Slow to Close Turbine Throttle Valve
+ML22353A082,3882022003,0,"Susquehanna 2, Susquehanna 1",10/22/2022,12/19/2022,Inoperable 13.8kV Startup Transformer due to Misaligned Load Tap Charger Local/Remote Control Switch
+ML22353A290,4162022002,0,Grand Gulf 1,10/20/2022,12/19/2022,Loss of Secondary Containment During Standby Gas Treatment System Testing due to Boundary Leakage
+ML22353A631,2962022002,0,Browns Ferry 3,10/18/2022,12/19/2022,Both Standby Liquid Control Subsystems Inoperable due to an Insufficient Boron Injection Rate
+ML22349A084,2772022002,0,Peach Bottom 2,10/17/2022,12/15/2022,Automatic Depressurization System Safety Relief Valve Actuator Diaphragm Degraded
+ML22340A427,4142022002,0,Catawba 2,10/15/2022,12/06/2022,Indications Identified During Reactor Vessel Head Penetration Embedded Flaw Repair Surface Examination
+ML22347A286,3522022001,0,Limerick 1,10/14/2022,12/13/2022,Unit 1 HPCI Inoperable due to Inadvertent Isolation Signal
+ML22339A029,4402022002,0,Perry,10/07/2022,12/05/2022,Steam Bypass Valve Demand Limited on the 'B' Train due to a Degraded Signal in the Max Combined Flow Limit Circuit
+ML22334A008,4562022001,0,Braidwood 1,10/07/2022,11/30/2022,"Liquid Penetrant Indications in Control Rod Drive Mechanism Nozzle Seal Weld Repair due to Subsurface Weld 
+Defects Opening Up from Thermal and Pressure Stresses during Operation"
+ML22336A125,0252022001,0,Vogtle 3,10/06/2022,12/02/2022,Automatic Reactor Trip Signal due to Inadequate Procedure Guidance Causing Incorrect Opening of Division B DC Supply Breaker
+ML23301A009,4232022003,0,Millstone 3,10/06/2022,10/28/2023,Gas Void in the Emergency Core Cooling System Resulted In a Condition Prohibited By Technical Specifications
+ML23251A149,3332022003,2,FitzPatrick,10/01/2022,09/08/2023,Safety Relief Valves Lift Setpoint Found Out of Tolerance Low
+ML23031A225,3332022002,1,FitzPatrick,09/26/2022,01/31/2023,Mode Switch Failed to Bypass Low Main Steam Line in Mode 2 Resulting in MSIV and RPS System Actuation
+ML23167A076,3742022003,2,LaSalle 2,09/26/2022,06/16/2023,Manual Scram due to Isophase Bus Duct Fire Followed by 2A RPS Normal Power Supply Trip
+ML22327A176,3882022001,0,Susquehanna 2,09/26/2022,11/23/2022,Inadequate Performance of Loss of Safety Determination Resulting in Both Divisions of Core Spray Being Inoperable
+ML22325A332,3182022003,0,Calvert Cliffs 2,09/21/2022,11/21/2022,Pressurizer Safety Valve As-Found Settings (Low) Outside Technical Specification Limits due to Setpoint Drift
+ML23319A436,4582022004,1,River Bend,09/19/2022,11/15/2023,High Pressure Core Spray Inoperable due to Transformer Failure
+ML22316A021,2802022003,0,Surry 1,09/15/2022,11/11/2022,Loss of Emergency Switchgear Room Cooling due to Use of Incorrect Air Handler Fan V-Belts
+ML22316A019,3182022002,0,Calvert Cliffs 2,09/14/2022,11/11/2022,Unplanned Safety Injection Actuation Signal due to Human Error
+ML22311A471,3822022006,0,Waterford 3,09/08/2022,11/07/2022,Non-Compliance with Technical Specifications due to Incorrect Conversion Factors in Plant Stack and Fuel Handling Building Radiation Monitors
+ML22307A292,4452022001,0,Comanche Peak 1,09/05/2022,11/03/2022,Reactor Trip due to Turbine Trip Greater Than 50% Power
+ML22362A073,4102022002,1,Nine Mile Point 2,09/04/2022,12/20/2022,Reactor Protection System Actuation While Shutdown
+ML22301A127,3352022003,0,St. Lucie 1,09/02/2022,10/28/2022,Manual Reactor Trip due to Loss of Feedwater Pump
+ML22301A124,3352022002,0,St. Lucie 1,08/31/2022,10/28/2022,Condition Prohibited by Technical Specifications
+ML23053A162,3152022003,1,Cook 1,08/28/2022,02/22/2023,Automatic Reactor Trip on Loss of Flow due to Reactor Coolant Pump Trip
+ML22332A494,4002022005,1,Harris,08/28/2022,11/28/2022,Manual Reactor Trip due to “B” Condensate Pump Motor Failure
+ML24064A255,2982024002,0,Cooper Station,08/27/2022,03/04/2024,Technical Specifications Prohibited Condition for Inoperable Service Water Booster Pump
+ML22290A172,2822022001,0,"Prairie Island 1, Prairie Island 2",08/15/2022,10/17/2022,Fuel Assemblies Incorrectly Placed in Spent Fuel Pool
+ML22285A000,5282022001,0,"Palo Verde 1, Palo Verde 3",08/14/2022,10/11/2022,Units 1 and 3 Emergency Diesel Generator Actuation on Loss of Offsite Power to Class 4.16 kV Buses
+ML22273A139,3482022001,0,Farley 1,08/03/2022,09/30/2022,Outdated Relay Settings Resulted in an Automatic Reactor Trip after a Floor Tile was Dropped in High Voltage Switch House
+ML22304A225,2372022002,1,"Dresden 2, Dresden 3",07/29/2022,10/28/2022,Ultimate Heat Sink Declared Inoperable due to River Grass Accumulation
+ML22263A429,2802022002,0,"Surry 1, Surry 2",07/25/2022,09/15/2022,Failure of Unit 1 Emergency Diesel Generator Results in an Operation or Condition Prohibited by Technical Specifications
+ML22258A065,3272022001,0,Sequoyah 1,07/22/2022,09/15/2022,Failure of 1B-B Centrifugal Charging Pump Results in Condition Prohibited by Technical Specifications
+ML22263A029,3152022002,0,Cook 1,07/20/2022,09/19/2022,Unit 1 Ice Condenser Door Inoperable Resulting in a Condition Prohibited by Technical Specifications
+ML22257A207,4822022001,0,Wolf Creek,07/18/2022,09/14/2022,Low Steam Generator Level due to Main Feedwater Valve Failure Caused Reactor Trip
+ML22255A164,3252022001,0,Brunswick 1,07/15/2022,09/12/2022,High Pressure Coolant Injection (HPCI) Inoperable
+ML22251A354,4122022001,0,Beaver Valley 2,07/13/2022,09/08/2022,"Unit 2 Operation or Condition Prohibited by Technical Specification and Loss of Safety Function due to Emergency Diesel 
+Generator Fuel Oil Intrusion into Lube Oil"
+ML22304A228,2372022001,1,Dresden 2,07/12/2022,10/28/2022,Unit 2 Reactor Scram due to Turbine Trip on High Reactor Water Level Caused by Feedwater Regulating Valve Failure
+ML23285A192,2592022002,1,Browns Ferry 1,07/12/2022,10/12/2023,High Pressure Coolant Injection System Declared Inoperable due to a Corroded Actuator
+ML22252A138,4542022001,0,"Byron 1, Byron 2",07/12/2022,09/09/2022,0B Control Room Ventilation Supply Fan Failed to Start due to Erroneous Position Indication from the Closed Limit Switch for Charcoal Deluge Valve Interlock
+ML22244A134,2542022003,0,"Quad Cities 1, Quad Cities 2",07/04/2022,09/01/2022,Both Trains of Standby Gas Treatment Inoperable due to Blockage in the Common Discharge Line
+ML22244A135,2652022002,0,Quad Cities 2,07/04/2022,09/01/2022,Manual Scram due to Feedwater Regulator Valve Failure Decreasing Reactor Water Level
+ML22244A098,4582022003,0,River Bend,07/04/2022,09/01/2022,Division 1 Standby Diesel Generator Speed Sensor Power Supply Failure
+ML22241A113,4162022001,0,Grand Gulf 1,06/30/2022,08/29/2022,Manual Reactor Trip due to the Loss of Balance of Plant Transformer 23
+ML22304A009,3412022004,0,Fermi 2,06/27/2022,10/31/2022,"Containment Isolation Valve Actuator Found Disconnected from Its Bonnet Resulting in Condition Prohibited by Technical 
+Specification"
+ML22235A106,3412022003,0,Fermi 2,06/24/2022,08/23/2022,Turbine Trip and Subsequent Reactor Trip due to Mayflies
+ML22361A050,3822022005,0,Waterford 3,06/24/2022,08/23/2022,Engineered Safety Features Actuation System Relay Failure Results in Reactor Trip and Emergency Feedwater Actuation
+ML22229A090,4402022001,0,Perry,06/24/2022,08/17/2022,Low Pressure Core Spray Inoperable due to Loss of Minimum Flow Valve
+ML22230C557,3692022001,0,"McGuire 1, McGuire 2",06/21/2022,08/18/2022,Both Control Room Area Chilled Water System Trains Inoperable due to Human Error
+ML22230C934,4832022002,0,Callaway,06/21/2022,08/18/2022,Containment Spray Recirculation Valve Out of Position Resulted in Condition Prohibited by Technical Specifications and Condition Which Could Have Prevented Fulfillment of a Safety Function
+ML22222A122,3342022001,0,Beaver Valley 1,06/15/2022,08/10/2022,Manual Reactor Trip and Auxiliary Feedwater Actuation due to Heater Drain System Valve Failure
+ML22202A055,3152022001,0,Cook 1,05/24/2022,07/21/2022,Manual Reactor Trip Following Manual Turbine Trip due to High Vibrations on Main Turbine
+ML22201A521,2982022001,0,Cooper Station,05/23/2022,07/20/2022,Secondary Containment Differential Pressure Perturbation Exceeds Technical Specifications Limit
+ML22339A095,3872022002,1,Susquehanna 1,05/23/2022,12/05/2022,"Automatic Reactor Scram due to Reactor Protection System Actuation on High Reactor Vessel Pressure 
+Signal Following Inadvertent Closure of Inboard Main Steam Isolation Valve"
+ML22362A013,3732022003,2,"LaSalle 1, LaSalle 2",05/20/2022,12/28/2022,Main Control Room and Auxiliary Electric Room HVAC Declared Inoperable due to Multiple Component Failures
+ML22196A020,2772022001,0,Peach Bottom 2,05/16/2022,07/15/2022,Automatic Reactor Scram due to Loss of Power to Both RPS Buses
+ML22189A111,2632022001,0,Monticello,05/13/2022,07/07/2022,Loss of Control Room Envelope Operability
+ML22187A109,3412022002,0,Fermi 2,05/11/2022,07/06/2022,Unexpected HPCI Turbine Trip
+ML22189A029,2542022002,0,Quad Cities 1,05/10/2022,07/08/2022,Low Pressure Coolant Injection Manually Isolated due to Valve Test Equipment Issue
+ML22192A036,2962022001,0,Browns Ferry 3,05/10/2022,07/11/2022,Main Steam Relief Valves Lift Settings Outside of Technical Specifications Required Setpoints
+ML22182A501,2872022002,0,Oconee 3,05/06/2022,07/01/2022,Automatic Actuation of Emergency Feedwater System due to Malfunctioning Startup Feedwater Control Valve
+ML22182A500,5292022001,0,"Palo Verde 2, Palo Verde 3",05/04/2022,07/01/2022,Units 2 and Unit 3 Emergency Diesel Generator Actuation on Loss of Offsite Power to Class 4.16 kV Buses
+ML22175A161,4242022001,0,Vogtle 1,05/03/2022,06/24/2022,Manual Reactor Trip due to Loss of a Main Feed Pump
+ML22181A122,4002022004,0,Harris,05/02/2022,06/30/2022,Both Trains of High Head Safety Injection Inoperable
+ML22179A366,3332022001,0,FitzPatrick,04/29/2022,06/28/2022,"LER: 2022-001, Exhaust Drain Pot Line Filled with Water up to HPCI Turbine due to Relay Failure"
+ML22179A261,4002022003,0,Harris,04/29/2022,06/28/2022,Manual Reactor Trip due to Degrading Condenser Vacuum
+ML22174A429,3822022004,0,Waterford 3,04/24/2022,06/23/2022,Operation Prohibited by Technical Specifications due to Inadequate Radiation Monitor Calibration Procedures
+ML22173A172,4142022001,0,Catawba 2,04/23/2022,06/22/2022,Manual Reactor Trip and Auxiliary Feedwater Start due to Misaligned Control Rods
+ML23243A934,4552022001,1,Byron 2,04/23/2022,08/31/2023,Byron Station Unit 2 Volumetric Examinations of Reactor Pressure Vessel Head Core Exit Thermocouple Penetration P-75 Identified an Indication Attributed to Primary Water Stress Corrosion Cracking
+ML22270A020,3382022001,1,North Anna 1,04/14/2022,09/06/2022,Automatic Reactor Trip During Control Rod Operability Testing
+ML22164B005,3822022003,0,Waterford 3,04/13/2022,06/13/2022,Operation Prohibited by Technical Specifications due to Radiation Monitor Calibration Error
+ML22160A397,4582022002,0,River Bend,04/13/2022,06/09/2022,Condition Prohibited by Technical Specifications due to Reactor Scram and Turbine Trip Level 8 Trip Setpoint Deviation
+ML22159A196,4102022001,0,Nine Mile Point 2,04/05/2022,06/03/2022,Automatic Reactor Scram due to Low Reactor Water Level During Maintenance
+ML22151A121,4232022002,0,Millstone 3,04/05/2022,05/31/2022,Two Main Steam Safety Valves Installed in Wrong Location Resulting in Failure to Lift Within the Technical Specification Acceptance Criteria
+ML22228A152,3462022001,0,Davis-Besse,04/04/2022,08/16/2022,Plant Heatup with Inoperable Decay Heat Pump due to Oil Leak Induced by Constant Level Oiler
+ML22222A010,3872022001,1,Susquehanna 1,04/02/2022,08/10/2022,Main Steam Isolation Valve Leakage due to Seating Surfaces Wear and Material Deposits
+ML24239A788,4162024003,0,Grand Gulf 1,04/02/2022,08/26/2024,Feedwater Inlet Check Valve Incorrectly Determined Operable
+ML22138A355,2802022001,0,"Surry 1, Surry 2",03/22/2022,05/18/2022,Failure of Two Intake Canal Level Probes due to Biofouling
+ML22140A128,2652022001,0,Quad Cities 2,03/21/2022,05/20/2022,Electromatic Relief Valve 3B Did Not Actuate due to Incorrectly Oriented Plunger Well Plastic Guides
+ML22137A035,4582022001,0,River Bend,03/18/2022,05/17/2022,Condition Prohibited by Technical Specifications due to Residual Heat Removal B Pump Motor Bearing Oil Leak
+ML22133A248,3822022002,0,Waterford 3,03/17/2022,05/13/2022,Operation Prohibited by Technical Specifications Due to Personnel Error
+ML22111A361,2702022003,0,Oconee 2,02/21/2022,04/21/2022,Manual Reactor Trip due to Main Feedwater Control Valve Positioner Malfunction
+ML22109A027,3702022001,0,McGuire 2,02/18/2022,04/19/2022,Valid Actuation of the Unit 2 Reactor Protection System and Auxiliary Feedwater System
+ML22104A257,2702022002,0,Oconee 2,02/13/2022,04/14/2022,Automatic Actuation of Emergency Feedwater System due to Main Feedwater Pump Malfunction
+ML22342B247,3952022002,1,Summer 1,02/09/2022,12/08/2022,Condition Prohibited By Technical Specifications: Inoperable 'B' Emergency Diesel Generator
+ML22096A333,2702022001,0,Oconee 2,02/05/2022,04/06/2022,Unit 2 Automatic Reactor Trip due to Loss of Power to Reactor Coolant Pumps
+ML22094A155,3412022001,0,Fermi 2,02/04/2022,04/04/2022,Reactor Scram on Low Reactor Pressure Vessel Level
+ML22147A131,3732022001,0,LaSalle 1,02/04/2022,05/27/2022,Turbine Stop Valve Limit Switch Failure due to Lubricant Degradation
+ML22087A512,2872022001,0,Oconee 3,01/26/2022,03/28/2022,Response Actions Resulted in Brief Inoperability of Both Onsite and Offsite Emergency AC Power Paths
+ML22088A024,4232022001,0,Millstone 3,01/26/2022,03/24/2022,Emergency Core Cooling and Reactor Plant Component Cooling Water Systems Inoperable for Time Greater than Allowed by Technical Specifications
+ML22081A025,3362022001,0,Millstone 2,01/20/2022,03/18/2022,Structural Integrity of Reactor Building Component Cooling Water Cracked Threaded Fitting Could not be Established Resulting in System Inoperable Longer Than Allowed by Technical Specifications
+ML22077A378,3542022001,0,Hope Creek,01/19/2022,03/18/2022,B EDG Inoperable Resulting in a Condition Prohibited by Technical Specifications
+ML23053A354,3822022001,2,Waterford 3,01/18/2022,02/22/2023,Non-Compliance with Technical Specifications due to Incorrect Procedural Guidance for Radiation Monitors
+ML22151A327,2592022001,1,"Browns Ferry 1, Browns Ferry 2",01/15/2022,05/31/2022,Pressure Boundary Leak on Residual Heat Removal System Low Pressure Coolant Injection Test Line
+ML22070A034,4002022001,0,Harris,01/10/2022,03/10/2022,Essential Services Chilled Water Chiller Inoperable due to Pre-Rotation Vane Actuator Control Arm Position
+ML22066B310,4832022001,0,Callaway,01/07/2022,03/07/2022,Reactor Trip During Reactor Trip Breaker Surveillance Testing
+ML22063A075,3892022001,0,St. Lucie 2,01/06/2022,03/04/2022,Reactor Shutdown Required by Technical Specifications due to a Misaligned Control Element Assembly
+ML22062B665,4992022001,0,South Texas 2,01/06/2022,03/03/2022,Automatic Actuation of Emergency Diesel Generator due to Lockout of Switchyard Electrical Bus
+ML22063A703,3182022001,0,Calvert Cliffs 2,01/03/2022,03/03/2022,Unit 2 Automatic Reactor Trip due to High Reactor Coolant System Pressure
+ML22049B535,3212022001,0,Hatch 1,12/29/2021,02/18/2022,Manual Reactor Scram due to Reactor Pressure Perturbations
+ML22101A186,3882021005,1,Susquehanna 2,12/15/2021,04/11/2022,Condition Prohibited by Technical Specification due to Setpoint Drift Attributed to Age Related Degradation
+ML22039A333,2702021005,0,Oconee 2,12/10/2021,02/08/2022,Unit 2 Automatic Reactor Trip due to Spurious Trip Signal Concurrent with System Testing
+ML22035A033,3352021001,0,St. Lucie 1,12/10/2021,02/04/2022,Manual Reactor Trip due to Insufficient Feed Flow to Steam Generators
+ML22038A970,2702021004,0,Oconee 2,12/09/2021,02/07/2022,More Than One Axial Power Shaping Rod not Aligned Within Technical Specification Limits
+ML22020A402,3252021001,0,"Brunswick 1, Brunswick 2",12/06/2021,01/20/2022,Automatic Specified System Actuation due to Loss of Power to Emergency Bus E3
+ML22033A065,4162021005,0,Grand Gulf 1,12/06/2021,02/02/2022,Oscillation Power Range Monitors (OPRMs) Setpoint Error Causes Technical Specification Noncompliance
+ML22195A281,5302021001,1,Palo Verde 3,12/06/2021,07/14/2022,Unit 3 Reactor Trip During Control Element Assembly Alignment Activities
+ML22038A969,2702021003,0,Oconee 2,12/05/2021,02/07/2022,Conditions Prohibited by Technical Specifications due to SSF and PSW Inoperability
+ML22026A288,2542022001,0,Quad Cities 1,12/01/2021,01/26/2022,High Pressure Coolant Injection System Inoperable due to Gland Seal System Malfunction
+ML22089A238,3872021005,1,Susquehanna 1,11/30/2021,03/30/2022,Automatic Reactor Scram due to Turbine Control Valve Fast Closure
+ML22027A731,3132021002,0,Arkansas 1,11/29/2021,01/27/2022,Automatic Reactor Trip due to High Reactor Coolant System Pressure
+ML22026A530,2702021002,0,"Oconee 2, Oconee 1",11/27/2021,01/26/2022,Actuation of the Keowee Hydroelectric Station due to Loss of AC Power to the Unit 2 Main Feeder Buses
+ML22018A025,3182021004,0,Calvert Cliffs 2,11/21/2021,01/18/2022,Unit 2 Manual Reactor Trip due to Lowering Steam Generator Levels
+ML22038A211,0292021001,0,Yankee-Rowe,11/19/2021,01/12/2022,Compensatory Measure Not Established for a Momentary I/O Board Communication Loss
+ML22014A173,3332021002,0,FitzPatrick,11/18/2021,01/14/2022,Automatic High Pressure Coolant Injection (HPCI) System Function Prevented by Control Circuit Relay Failure
+ML22014A174,3332021003,0,FitzPatrick,11/18/2021,01/14/2022,"LER: 2021-003, Air Solenoid Valve Condition Results in Main Steam Isolation Valve (MSIV) Fast Closure Test Failure"
+ML22019A270,4162021004,0,Grand Gulf 1,11/18/2021,01/19/2022,Procedure Inadequacy Resulted in Core Monitoring System Miscalibration and Violation of Technical Specification
+ML22017A001,4122021005,0,Beaver Valley 2,11/17/2021,01/17/2022,Manual Reactor Trip and Auxiliary Feedwater Actuation due to Trip of a Main Feedwater Pump
+ML22349A700,3952022001,1,Summer 1,11/15/2021,12/15/2022,Manual Reactor Trip due to Main Transformer Fault
+ML22012A400,2772021003,0,Peach Bottom 2,11/14/2021,01/12/2022,Manual Reactor Scram due to Degrading Condenser Vacuum
+ML22006A109,2502021004,0,Turkey Point 3,11/12/2021,01/06/2022,Through-Wall Leakage from Core Exit Thermocouple Tubing
+ML22011A283,4122021004,0,Beaver Valley 2,11/12/2021,01/11/2022,Unit 2 Manual Reactor Trip
+ML22006A232,3282021002,0,Sequoyah 2,11/08/2021,01/06/2022,Turbine Trip Function Inoperable due to Slow to Close Turbine Throttle Valve
+ML22011A160,3362021002,0,Millstone 2,11/06/2021,01/05/2022,Failed Check Valve Resulting in an Unanalyzed Condition and Operation Prohibited by Technical Specifications
+ML21361A084,2982021003,0,Cooper Station,10/28/2021,12/27/2021,Failure of High Pressure Coolant Injection Flow Indicating Switch Results in Condition Prohibited by Technical Specifications
+ML21355A165,4132021005,0,Catawba 1,10/27/2021,12/21/2021,Automatic Actuation of the 1B Emergency Diesel Generator Load Sequencer on Bus Undervoltage Condition
+ML21354A405,4122021003,0,Beaver Valley 2,10/22/2021,12/17/2021,Indications Identified During Reactor Vessel Head Inspection
+ML22154A554,5282021001,1,"Palo Verde 1, Palo Verde 3",10/20/2021,06/03/2022,Unit 1 and Unit 3 Emergency Diesel Generator Actuation on Loss of Offsite Power to Class 4.16 kV Buses
+ML21350A425,4582021005,0,River Bend,10/19/2021,12/16/2021,Potential Loss of Safety Function due to Inoperable Reactor Core Isolation Cooling Steam Flow Transmitter
+ML21350A256,3822021003,0,Waterford 3,10/18/2021,12/16/2021,Non-Compliance with Technical Specifications due to Failed Ambient Pressure Input
+ML21347A972,2822021002,0,"Prairie Island 1, Prairie Island 2",10/17/2021,12/13/2021,Loss of Electrical Bus Results in 121 Motor Driven Cooling Water Pump Auto Start
+ML22165A204,2492021001,1,Dresden 3,10/16/2021,06/14/2022,Unit 3 Reactor Scram due to Main Power Transformer Failure
+ML21348A112,3232021002,0,Diablo Canyon 2,10/15/2021,12/14/2021,Unit 2 Manual Reactor Trip Due to Increased Water Level in a Feedwater Heater
+ML22186A228,4992021002,1,South Texas 2,10/15/2021,07/05/2022,"Condition Prohibited by Technical Specifications due to Inoperable Train of Essential Core Cooling System and Containment 
+Spray System"
+ML22083A168,3882021003,1,Susquehanna 2,10/11/2021,03/24/2022,Automatic Reactor Scram due to Main Turbine Trip Caused by Inadvertent Trip of the Main Generator Output Breakers
+ML22307A260,3882021004,1,Susquehanna 2,10/11/2021,11/03/2022,Unit 2 Main Turbine Pressure Regulator Inoperable for Longer Than Allowed by Technical Specifications due to Inadequate Valve Modification
+ML21336A205,2502021003,0,Turkey Point 3,10/09/2021,12/02/2021,Auxiliary Feedwater Actuation due to Feedwater Isolation During Plant Shutdown
+ML22080A216,3872021004,1,Susquehanna 1,10/07/2021,03/21/2022,Loss of 1B RHRSW Pump due to Cable Damage During Excavation Activities
+ML21337A224,4122021002,0,Beaver Valley 2,10/05/2021,12/03/2021,Unit 2 Automatic Reactor Trip and Automatic Actuation of the Auxiliary Feedwater System
+ML21336A082,2442021002,0,Ginna,10/04/2021,12/02/2021,Valid Auxiliary Feedwater System Actuation on Lowered Steam Generator Level due to Failure to Control Main Feed Water Flow and Delay in Closing Main Steam Isolation Valves
+ML21336A340,3682021002,0,Arkansas 2,10/04/2021,12/01/2021,Material Defect in Primary Coolant System that Cannot be Found Acceptable Under American Society of Mechanical Engineers  Section XI
+ML21322A283,3062021001,0,Prairie Island 2,10/03/2021,11/18/2021,22 Turbine Driven Auxiliary Feedwater Pump Actuation Signal Due to Procedure Error
+ML22308A068,4612021002,2,Clinton 1,10/03/2021,11/01/2022,Core Alterations with Source Range Monitor Inoperable Results in Condition Prohibited by Technical Specifications
+ML21323A180,3682021001,0,Arkansas 2,10/01/2021,11/19/2021,Non-Compliance with Technical Specifications Resulting in Lack of Nuclear Instrumentation Audible Indication
+ML22160A432,3972021001,1,Columbia,09/28/2021,06/09/2022,Integrated Leak Rate Test
+ML21327A024,2202021002,0,Nine Mile Point 1,09/25/2021,11/19/2021,Isolation of Both Emergency Condensers due to Loss of UPS 162A
+ML21326A008,3522021001,0,Limerick 1,09/23/2021,11/22/2021,Unit 1 HPCI Inoperable due to Remote Shutdown Panel Switch Failure
+ML22243A193,4542021001,1,Byron 1,09/19/2021,08/31/2022,Pressurizer Safety Valves As-Found Lift Pressure Outside of Tech Spec Limit
+ML21320A354,4432021002,0,Seabrook,09/17/2021,11/16/2021,Condition Prohibited by Technical Specifications Entered due to Service Water Cooling Tower Fan Inoperable
+ML21314A023,3892021002,0,St. Lucie 2,09/16/2021,11/10/2021,Foreign Material Exclusion Device Found in Containment Spray System
+ML21319A348,4242021001,0,Vogtle 1,09/16/2021,11/15/2021,Unit 1 Train A Safety Injection Pump Inoperability Causes the Unit to Operate in a Condition Prohibited by Technical Specifications
+ML21315A001,2802021001,0,"Surry 1, Surry 2",09/13/2021,11/11/2021,Unanalyzed Condition due to Appendix R Concern Identified with Cable Separation
+ML21315A006,3702021001,0,McGuire 2,09/13/2021,11/10/2021,Valid Actuations of the Unit 2 B Train Emergency AC Power System and B Train Auxiliary Feedwater System
+ML21308A491,4162021003,0,Grand Gulf 1,09/09/2021,11/04/2021,High Pressure Core Spray Declared Inoperable
+ML21305A874,3212021003,0,Hatch 1,09/08/2021,11/01/2021,Unit 1 High Pressure Coolant Injection System Discharge Valve Failure to Open
+ML22039A022,3882021002,1,Susquehanna 2,08/30/2021,02/08/2022,Loss of Secondary Containment due to Failed Differential Pressure Transmitter
+ML21327A021,3822021002,0,Waterford 3,08/29/2021,11/22/2021,Loss of Offsite Power due to Hurricane Ida
+ML23010A180,3332021001,1,FitzPatrick,08/24/2021,01/10/2023,Inadequate Protection Devices for DC Motor Field Shunt Cables Through Separate Fire Areas
+ML22075A087,3412021002,1,Fermi 2,08/22/2021,03/15/2022,Unplanned Inoperability of High Pressure Coolant Injection System due to an Inverter Circuit Failure
+ML21292A181,3272021003,0,"Sequoyah 1, Sequoyah 2",08/20/2021,10/19/2021,Exceeded Breach Margin Renders Both Trains of the Auxiliary Building Gas Treatment System Inoperable
+ML21291A262,4822021004,0,Wolf Creek,08/18/2021,10/18/2021,Low Steam Generator Level due to Main Feedwater Valve Failure Caused Automatic Reactor Trip
+ML21266A021,3182021003,0,Calvert Cliffs 2,08/10/2021,09/23/2021,Auxiliary Feedwater Pump Inoperable due to Improper Reset of Trip Throttle Valve
+ML21277A218,2702021001,0,Oconee 2,08/03/2021,10/04/2021,2B Motor Driven Emergency Feedwater Pump Past Inoperability Resulted In Condition Prohibited by Technical Specifications
+ML21274A418,3212021001,0,Hatch 1,08/03/2021,10/01/2021,Automatic Reactor Scram And Containment Isolation On Low Reactor Water Level Due To Trip Of Both Reactor Feed Pumps
+ML21274A738,3212021002,0,Hatch 1,08/03/2021,10/01/2021,Low Pressure Coolant Injection Inoperable Longer than the Allowed Technical Specification Completion Time
+ML21271A271,2662021001,0,Point Beach 1,07/31/2021,09/28/2021,Main Feedwater Pump Trip Results in Manual Reactor Trip
+ML21350A186,3282021001,0,Sequoyah 2,07/25/2021,09/22/2021,Ice Bed Inoperable due to Exceeding Surveillance Requirement Frequency
+ML21263A062,3232021001,0,Diablo Canyon 2,07/22/2021,09/20/2021,Emergency Diesel Generator Declared Inoperable due to Low Frequency Condition Discovery During Routine Surveillance
+ML22035A167,3382021002,0,"North Anna 1, North Anna 2",07/22/2021,09/17/2021,Unanalyzed Condition due to App R Concern Identified with Cable Separation
+ML21315A010,3872021003,1,Susquehanna 1,07/21/2021,11/11/2021,Automatic Reactor Scram due to Main Turbine Trip Caused by a ‘C’ Isophase Bus Ground Fault
+ML21351A167,4612021001,0,Clinton 1,07/20/2021,08/19/2021,Core Monitoring System Software Modeling Error Results in Condition Prohibited by Technical Specifications
+ML21267A024,3362021001,0,Millstone 2,07/15/2021,09/23/2021,Incorrectly Placed Spent Fuel Assemblies in Unit 2 Spent Fuel Pool
+ML21250A131,3462021003,0,Davis-Besse,07/08/2021,09/07/2021,Reactor Trip due to Failed Uninterruptible Power Supply and Steam Feedwater Rupture Control System Actuations
+ML22080A215,3882021001,1,Susquehanna 2,07/06/2021,03/21/2022,Condition Prohibited by Technical Specifications due to Drift of Reactor Pressure Switch
+ML21252A756,4992021001,0,South Texas 2,07/01/2021,09/09/2021,Condition Prohibited by Technical Specifications due to Inoperable Containment Isolation Valve
+ML22040A143,3952021001,1,Summer 1,06/28/2021,02/08/2022,Condition Prohibited by Technical Specifications
+ML21230A251,3162021002,0,Cook 2,06/22/2021,08/18/2021,Manual Reactor Trip due to an Unisolable Steam Leak
+ML21235A413,3462021002,0,Davis-Besse,06/22/2021,08/23/2021,Failure of Auxiliary Feedwater Rooms Interconnecting Door to Latch due to Worn Interlock
+ML21235A012,4002021005,0,Harris,06/22/2021,08/23/2021,Past Inoperability of Effluent Accident Monitor Exceeded Time Allowed by Technical Specifications
+ML21230A030,4562021002,0,Braidwood 1,06/21/2021,08/18/2021,Unit Trip on Generator Load Rejection due to Lightning Strike Within the Unit Switchyard Exceeding the Capabilities of the Switchyard Grounding System
+ML21228A259,4162021002,0,Grand Gulf 1,06/17/2021,08/16/2021,Core Monitoring System Software Modeling Error Resulted in Conditions Prohibited by Technical Specifications
+ML21216A344,4402021002,0,Perry,06/17/2021,08/04/2021,Core Monitoring System Software Modeling Error Results in Conditions Prohibited by Technical Specifications
+ML21228A240,4582021004,0,River Bend,06/17/2021,08/16/2021,Core Monitoring System Software Modeling Error Resulted in Conditions Prohibited by Technical Specifications
+ML21226A001,2552021001,0,Palisades,06/16/2021,08/13/2021,Atmospheric Steam Dump Valves Inoperable due to Relay Failure
+ML21225A038,3542021001,0,Hope Creek,06/14/2021,08/13/2021,Safety Relief Valve (SRV) As-Found Setpoint Failures
+ML22060A103,4462021001,1,Comanche Peak 2,06/07/2021,02/28/2022,Reactor Trip due to Fault on Main Transformer 2MT1
+ML21214A128,2602021002,0,Browns Ferry 2,06/03/2021,08/02/2021,Main Steam Relief Valves Lift Settings Outside of Technical Specifications Required Setpoints
+ML21363A084,3412021003,0,Fermi 2,06/03/2021,12/29/2021,High Pressure Coolant Injection Inoperable due to Contact Oxidation
+ML21323A150,2442021001,0,Ginna,06/02/2021,11/18/2021,"Service Water Pump ""A"" Declared Inoperable due to Winding Failure Following Replacement Resulting in Violation of Technical Specifications LCO 3.7.8.A (One Service Water Pump Inoperable Greater than 14 days)"
+ML21209A105,4402021001,0,Perry,06/01/2021,06/27/2021,Division 3 EDG Inoperability Resulting in an Operation or Condition Prohibited by Technical Specifications
+ML23145A012,3742021002,2,LaSalle 2,05/31/2021,05/23/2023,Reactor Protection System Half Scram due to Motor Generator Set Output Breaker Trip
+ML21207A238,4142021003,0,Catawba 2,05/25/2021,07/26/2021,Containment Penetration Failure Resulting in Integrated Leak Rate Test Failure
+ML21202A441,3272021001,0,Sequoyah 1,05/24/2021,07/21/2021,Reactor Trip on High Neutron Flux Rate due to Dropped Control Rods
+ML22032A112,5292021002,1,Palo Verde 2,05/19/2021,01/28/2022,Unit 2 Reactor Trip During Plant Protection System Surveillance Testing
+ML21196A485,2772021002,0,Peach Bottom 2,05/18/2021,07/16/2021,Safety Relief Valve Inoperability due to Nitrogen Leakage from Braided Hose Wear
+ML21193A078,4822021003,0,Wolf Creek,05/12/2021,07/12/2021,Automatic Reactor Trip due to Low Steam Generator Level
+ML21187A275,3342021001,0,Beaver Valley 1,05/08/2021,07/06/2021,Containment Isolation Valve Found Restrained Open Resulting in Condition Prohibited by Technical Specifications
+ML22021B551,2192022001,0,Oyster Creek,05/07/2021,01/21/2022,Compensatory Measures Not Implemented Per Site's Physical Security Plan due to Multiplexer (MUX) Failure
+ML21195A186,3382021001,0,North Anna 1,05/06/2021,07/01/2021,Manual Reactor Trip on Degrading Condenser Vacuum due to Piping Failure
+ML21182A291,3412021001,0,Fermi 2,05/03/2021,07/01/2021,Unrecognized Impact of Opening of Barrier Doors on High Energy Line Break Analysis
+ML21180A302,4142021002,0,Catawba 2,05/01/2021,06/29/2021,Valid Actuation of the Unit 2 Reactor Protection System and Auxiliary Feedwater System
+ML21175A057,2772021001,0,Peach Bottom 2,04/29/2021,06/24/2021,High Pressure Coolant Injection System Declared Inoperable Due to Instrument Power Inverter Failure
+ML21179A288,3872021002,0,"Susquehanna 1, Susquehanna 2",04/29/2021,06/28/2021,Inoperability of Computer Room Floor Cooling Fan Caused by Extended Operation with Worn Belts due to Less Than Adequate Preventive Maintenance Replacement Interval
+ML21172A009,4002021004,0,Harris,04/29/2021,06/21/2021,Pressurizer Safety Valve Lift Setpoint Drifted Outside of Technical Specification Tolerance
+ML21172A153,4562021001,0,Braidwood 1,04/23/2021,06/21/2021,Train A and B Source Range Neutron Flux Trip Functions Bypassed During Plant Startup
+ML21232A618,2602021001,1,Browns Ferry 2,04/22/2021,08/20/2021,Inoperability of a TS-required Main Steam Isolation Valve
+ML21172A303,3482021001,0,Farley 1,04/22/2021,06/21/2021,Automatic Reactor Trip due to Turbine Generator Trip
+ML21172A302,4142021001,0,Catawba 2,04/20/2021,06/21/2021,Indication Identified During Reactor Pressure Vessel Head Nozzle Penetration Inspection
+ML21154A110,2502021002,0,"Turkey Point 3, Turkey Point 4",04/15/2021,06/03/2021,Unrecognized Technical Specification Surveillance Requirement Non-Compliance
+ML21161A329,3162021001,0,Cook 2,04/15/2021,06/10/2021,Main Steam Safety Valve Setpoints Found Outside Technical Specifications Limits
+ML21175A038,4582021003,0,River Bend,04/08/2021,06/24/2021,Condition Prohibited by Technical Specifications due to Failure to Perform Breaker Functional Test
+ML21152A033,4582021002,0,River Bend,04/02/2021,05/28/2021,Automatic Reactor Scram due to Turbine Control System Communication Fault
+ML21140A411,4432021001,0,Seabrook,03/25/2021,05/20/2021,Pressurizer Safety Valve Outside of Technical Specification Limits Discovered During As-Found Set Point Testing
+ML21141A193,4582021001,0,River Bend,03/25/2021,05/20/2021,Manual Reactor Scram due to Loss of Main Condenser Vacuum
+ML22147A132,3742022002,0,LaSalle 2,03/24/2021,05/27/2022,Turbine Stop Valve Limit Switch Failure due to Lubricant Degradation
+ML21139A096,3182021002,0,Calvert Cliffs 2,03/21/2021,05/19/2021,Manual Reactor Trip due to Lowering Steam Generator Level Following Main Feedwater Regulating Valve Going Shut
+ML21137A329,2982021002,0,Cooper Station,03/20/2021,05/17/2021,Valve Test Failures Result in Condition Prohibited by Technical Specifications
+ML21138A819,2542021001,0,Quad Cities 1,03/19/2021,05/18/2021,Automatic Actuation of Emergency Diesel Generator due to Transformer Maintenance
+ML21130A027,3912021001,0,Watts Bar 2,03/17/2021,05/10/2021,Automatic Reactor Trip on Main Turbine Trip Caused by Main Feed Pump Trip due to Low Condenser Vacuum
+ML21133A020,3132021001,0,Arkansas 1,03/14/2021,05/13/2021,Reactor Manual Trip due to Temporary Loss of Non-Vital 4160 Volt Bus
+ML21144A050,2202021001,0,Nine Mile Point 1,03/12/2021,05/11/2021,Average Power Range Monitors Declared Inoperable due to Trip of Reactor Recirculation Pump 13
+ML21126A316,3872021001,0,Susquehanna 1,03/09/2021,05/06/2021,Unplanned Inoperability of the High Pressure Coolant Injection (HPCI) System due to a Primary Containment Isolation (PCIV) Valve Failure to Stroke Full Closed On-demand due to an Intermittent Break in the Close Control Circuitry
+ML21112A006,3182021001,0,Calvert Cliffs 2,03/04/2021,04/21/2021,Pressurizer Heater Sleeve Weld Pressure Boundary Leakage Caused by Primary Water Stress Corrosion Cracking
+ML22188A133,2592021001,1,"Browns Ferry 1, Browns Ferry 2",03/03/2021,07/06/2022,480 Volt Load Shed Logic Inoperable Longer than Allowed by Technical Specifications due to Failed Relay
+ML21119A005,2502021001,0,Turkey Point 3,03/01/2021,04/29/2021,Automatic Reactor Trip due to Reactor Trip Breaker Cell Switch Malfunction
+ML21110A087,3902021001,0,"Watts Bar 1, Watts Bar 2",03/01/2021,04/20/2021,Control Room Emergency Ventilation System Inoperable due to Main Control Room Door Being Left Open
+ML21119A378,3152021001,0,"Cook 1, Cook 2",02/26/2021,04/29/2021,Condition Prohibited by Technical Specifications due to Loss of Train B Reserve Power
+ML21113A313,5292021001,0,Palo Verde 2,02/26/2021,04/23/2021,Automatic Actuation of the Reactor Protection System Resulting from a Loss of Reactor Coolant Pumps
+ML22334A222,4162021001,1,Grand Gulf 1,02/22/2021,11/30/2022,Primary Containment Outer Airlock Door Inoperable due to Unacceptable Leak Rate
+ML21105A850,4982021001,0,South Texas 1,02/15/2021,04/15/2021,"Frozen Common Sensing Line Results in Loss of Two Main Feedwater Pumps Leading to Automatic Reactor Protection and
+Auxiliary Feedwater Systems Actuations due to Low Steam Generator Level"
+ML24344A257,3462021001,2,Davis-Besse,02/12/2021,12/09/2024,Emergency Diesel Generator Speed Switch Failure due to Direct Current System Ground
+ML21102A278,2982021001,0,Cooper Station,02/09/2021,04/12/2021,Secondary Containment Differential Pressure Perturbation Exceeds Technical Specifications
+ML21098A254,4832021001,0,Callaway,02/09/2021,04/08/2021,Manual Actuation of Essential Service Water System
+ML24193A211,2502024002,1,Turkey Point 3,02/07/2021,07/10/2024,Condition Prohibited by Technical Specifications
+ML21081A290,2822021001,0,"Prairie Island 1, Prairie Island 2",01/26/2021,03/22/2021,12 Diesel Driven Cooling Water Pump Auto Start due to Low System Pressure
+ML21069A341,3892021001,0,St. Lucie 2,01/20/2021,03/10/2021,Automatic Reactor Trip due to a Breaker Failure on the 2B2 480V Motor Control Center
+ML21077A119,4122021001,0,Beaver Valley 2,01/04/2021,03/03/2021,Operation Prohibited by Technical Specifications During a Loss of Control Rod Position Indication Event
+ML21159A106,4612020003,0,Clinton 1,12/26/2020,02/22/2021,Reactor Core Isolation Cooling System Card Fuse Failure Results in a Condition Prohibited by Technical Specifications and That Could Have Prevented Fulfillment of a Safety Function Needed to Control the Release of Radioactive Material
+ML21053A128,3822021001,0,Waterford 3,12/25/2020,02/22/2021,Control Room Air Filtration Equipment Failure Resulting in a Condition Prohibited by Technical Specification 3.7.6.1
+ML21049A109,4832020008,0,Callaway,12/24/2020,02/17/2021,Reactor Trip due to Main Generator Ground Fault
+ML21049A048,3742021001,0,LaSalle 2,12/23/2020,02/18/2021,High Pressure Core Spray Inoperable due to Water Leg Pump Breaker Cubicle Motor Contactor
+ML21074A307,4002021002,1,Harris,12/17/2020,03/15/2021,All ECCS Accumulator Isolation Valves Closed in Mode 3 with RCS Pressure Greater Than 1000 psig
+ML21047A011,4002021001,0,Harris,12/16/2020,02/16/2021,Automatic Reactor Trip due to Faults on Non-Segregated Bus from Unit Auxiliary Transformer 1B
+ML21231A139,4162020006,2,Grand Gulf 1,12/11/2020,08/19/2021,Primary Water Tank Low Level Causing Turbine Trip and Subsequent Reactor Scram
+ML21039A557,3682020001,0,Arkansas 2,12/10/2020,02/08/2021,Loss of Feedwater Control System Power for Train 'A' Feedwater that Resulted in Plant Trip
+ML21092A022,2592020003,1,Browns Ferry 1,12/04/2020,04/02/2021,Main Steam Relief Valves Lift Settings Outside of Technical Specifications Required Setpoints
+ML21027A171,3172020001,0,Calvert Cliffs 1,12/03/2020,01/27/2021,Undervoltage Condition on 4.16kV Electrical Bus 11 Resulted in Actuation of Emergency Diesel Generator 1A
+ML20345A083,3212020001,0,Hatch 1,12/03/2020,12/10/2020,1A EDG Inoperable due to Water in Day Tank
+ML21021A366,3252020005,0,"Brunswick 1, Brunswick 2",11/25/2020,01/21/2021,Condition Prohibited by Technical Specifications due to Ventilation Charcoal Sample Laboratory Results
+ML21015A017,3522020002,0,Limerick 1,11/16/2020,01/15/2021,HPCI and RCIC Were Not Aligned for Service During Startup Resulting in Technical Specification Violations
+ML21063A252,4612020002,0,Clinton 1,11/16/2020,01/15/2021,Simultaneous Inoperability of Main Control Room Ventilation Subsystems A and B
+ML21078A049,3522020001,1,Limerick 1,11/13/2020,03/19/2021,Valid Automatic Actuation of the Reactor Protection System with the Reactor Critical due to Closure of One Main Steam Isolation Valve
+ML21008A571,4252020001,0,Vogtle 2,11/12/2020,01/08/2021,Transformer Failure Leads to Main Generator Trip and Subsequent Reactor Trip
+ML21007A022,3912020004,0,Watts Bar 2,11/11/2020,01/07/2021,Steam Generators Degraded due to Axial Outside Diameter Stress Corrosion Cracking
+ML21231A138,4162020005,2,Grand Gulf 1,11/06/2020,08/19/2021,Primary Water System Flow Lowered Causing Turbine Trip and Subsequent Reactor Scram
+ML21022A042,2982020004,0,Cooper Station,11/03/2020,12/30/2020,Secondary Containment Differential Pressure Perturbation Could Have Prevented Fulfillment of a Safety Function
+ML20352A005,3912020002,0,Watts Bar 2,11/02/2020,12/17/2020,Two Pressurizer Safety Valves Outside of Technical Specification Limits due to Set Point Drift
+ML21014A446,2982020003,0,Cooper Station,11/01/2020,12/28/2020,Manual Reactor Scram due to Digital Electro-Hydraulic Fluid Leak
+ML20357B113,2772020002,0,Peach Bottom 2,10/29/2020,12/22/2020,Degraded Condition due to RPV Instrument Nozzle Leakage
+ML21043A098,2592020002,1,"Browns Ferry 1, Browns Ferry 2, Browns Ferry 3",10/13/2020,02/12/2021,Standby Gas Treatment System Train B Inoperable Longer than Allowed by Technical Specifications
+ML20353A109,3152020001,0,Cook 1,10/12/2020,12/09/2020,Unit 1 Containment Closure Requirements Not Met During Refueling Operations
+ML21063A250,3162020004,1,Cook 2,10/12/2020,02/25/2021,Unit 2 Automatic Reactor Trip on Low-Low #24 Steam Generator Water Level
+ML21041A178,4452020001,0,Comanche Peak 1,10/10/2020,02/10/2021,Main Feedwater Pump Failure to Trip
+ML21084A234,3642020001,1,Farley 2,10/06/2020,03/25/2021,Main Steam Safety Valve Lift Pressure Outside of Technical Specifications Limits due to Setpoint Drift
+ML20330A283,2662020001,0,Point Beach 1,10/03/2020,11/25/2020,Reactor Coolant System Pressure Boundary Leak on Steam Generator Bowl Drain Line Results in Operation Prohibited by Technical Specifications
+ML20330A155,4562020001,0,Braidwood 1,10/03/2020,11/25/2020,The Unit 1 Train A Auxiliary Feedwater Pump Was Inoperable due to a Failed Suction Pressure Lead/Lag Card
+ML20324A632,4232020005,0,Millstone 3,10/01/2020,11/19/2020,Loss of Safety Function - Secondary Containment
+ML20330A317,4242020002,0,Vogtle 1,09/29/2020,11/25/2020,Oil Leak Causes Ultimate Heat Sink to be Inoperable Longer than Allowed by Technical Specifications
+ML20330A267,4832020006,0,Callaway,09/27/2020,11/25/2020,Reactor Trip due to Main Generator Ground Fault
+ML20322A166,4832020005,0,Callaway,09/18/2020,11/17/2020,Inoperable Isolation Valve Between Safety-Related Essential Service Water and Nonsafety-Related Service Water
+ML20325A147,3342020001,0,Beaver Valley 1,09/16/2020,11/13/2020,Intake Structure Interconnecting Flood Door Found Open Resulting in a Loss of Train Separation for the Reactor Plant River Water System
+ML20315A447,2542020002,0,"Quad Cities 1, Quad Cities 2",09/11/2020,11/10/2020,Main Steam Line Drain Valve Declared Inoperable due to Improper Torque Switch Setting
+ML20314A143,2552020002,0,Palisades,09/11/2020,11/05/2020,Indications Identified in Reactor Pressure Vessel Head Nozzle Penetrations
+ML20310A328,4832020004,0,Callaway,09/09/2020,11/05/2020,"Violation of TS 3.8.1 ""AC Sources - Operating"""
+ML20310A151,4132020003,0,Catawba 1,09/08/2020,11/05/2020,Valid Actuation of the Unit 1 Reactor Protection System and Auxiliary Feedwater System
+ML20311A129,3162020003,0,Cook 2,09/04/2020,11/02/2020,Manual Reactor Trip and Automatic Safety Injection due to Failed Open Pressurizer Spray Valve
+ML20302A456,4582020004,0,River Bend,09/03/2020,10/29/2020,Inadvertent Initiation and Injection of High Pressure Core Spray
+ML20293A439,2822020001,0,Prairie Island 1,08/26/2020,10/19/2020,Reactor Trip Caused by Spurious Neutron Flux Signal During Reactor Protection System Testing
+ML20297A536,3822020002,0,Waterford 3,08/24/2020,10/23/2020,Operation or Condition Prohibited by Technical Specifications for Technical Specification 3.4.5.1 (Reactor Coolant System Leakage Detection Instrumentation) due to Personnel Error
+ML21231A137,4162020004,1,Grand Gulf 1,08/24/2020,08/19/2021,Automatic Reactor Scram due to Reactor Feed Pump Trip
+ML21131A168,4402020002,1,Perry,08/21/2020,05/11/2021,Standby Liquid Control System Rendered Inoperable due to Valve Misposition
+ML20293A475,4582020002,0,River Bend,08/21/2020,10/19/2020,Manual Reactor Trip due to Reactor Recirculation Pump Trip
+ML20281A330,2502020004,0,Turkey Point 3,08/20/2020,10/07/2020,Manual Reactor Trip in Response to Automatic Trip of the 3B Steam Generator Feedwater Pump
+ML20274A206,2502020003,0,Turkey Point 3,08/19/2020,09/29/2020,Automatic Reactor Trip due to High Source Range Flux During Reactor Startup
+ML21064A218,2502020005,1,Turkey Point 3,08/19/2020,03/05/2021,Technical Specification Action Not Taken for Unrecognized Inoperable Source Range Channel
+ML21064A212,2502020002,1,Turkey Point 3,08/17/2020,03/05/2021,Manual Reactor Trip in Response to High Steam Generator Level Following Inadvertent Opening of Feedwater Heater Bypass Valve - Rev. 1
+ML20286A166,4002020002,0,Harris,08/13/2020,10/12/2020,Manual Reactor Trip due to Control Rod Drop During Surveillance Testing
+ML20274A324,3252020004,0,Brunswick 1,08/12/2020,09/29/2020,Setpoint Drift in Main Steam Line Safety Relief Valves Results in Three Valves Inoperable
+ML20283A373,3312020001,1,Duane Arnold,08/10/2020,09/30/2020,Notice of Unusual Event and Unit Trip due to Loss of Offsite Power due to High Winds
+ML21182A044,3882020002,1,Susquehanna 2,08/10/2020,07/01/2021,Condition Prohibited by Technical Specifications due to Drift of Reactor Pressure Switch Caused by Lack of Requirements for Acclimation of the Instrument to the Operating Environment
+ML21231A136,4162020003,1,Grand Gulf 1,08/08/2020,08/19/2021,Manual Reactor Scram de to Turbine High Pressure Control Valve Malfunction and Automatic Reactor Water Level Scram
+ML20304A209,2982020002,0,Cooper Station,08/06/2020,10/15/2020,Secondary Containment Differential Pressure Perturbation Results in Potential Loss of Safety Function
+ML21027A120,2812020001,0,Surry 2,08/04/2020,10/01/2020,Loss of Containment Cooling Affecting Containment Partial Pressure Indication
+ML20265A162,3252020003,0,"Brunswick 1, Brunswick 2",08/03/2020,09/21/2020,Automatic Specified System Actuations due to Loss of Offsite Power
+ML20269A166,2552020001,0,Palisades,07/27/2020,09/25/2020,Service Water System Inoperable for Longer than Allowed by Technical Specifications
+ML20262G938,3282020001,0,Sequoyah 2,07/24/2020,09/16/2020,Ice Bed Inoperable due to Exceeding Maximum Allowed Ice Bed Temperature
+ML20261H588,2652020003,0,Quad Cities 2,07/22/2020,09/17/2020,Oscillation Power Range Monitors (OPRMs) Count Setpoint Discrepancy Due to Inadequate Instructions
+ML20322A440,2592020001,1,"Browns Ferry 1, Browns Ferry 2",07/20/2020,11/17/2020,Manual Reactor Shutdown of Two Units on Decreasing Condenser Vacuum due to Eel Grass Intrusion
+ML20259A183,3232020002,0,Diablo Canyon 2,07/17/2020,09/15/2020,Unit 2 Manual Reactor Trip due to Increased Main Generator Hydrogen Usage
+ML20254A015,3902020003,0,"Watts Bar 1, Watts Bar 2",07/15/2020,09/10/2020,Control Room Emergency Ventilation System Inoperable due to Main Control Room Door Being Left Open
+ML20242A001,2512020001,0,Turkey Point 4,07/05/2020,08/28/2020,Automatic Reactor Trip Caused by Main Generator Lockout due to Exciter Fault
+ML20240A330,4432020002,0,Seabrook,07/04/2020,08/27/2020,Remote Shutdown System Indicator Exceeded Allowable Value for Time Longer than Permitted by the Technical Specifications
+ML20244A273,2602020001,0,Browns Ferry 2,07/01/2020,08/31/2020,Core Spray System Inoperable for Longer than Permitted by Technical Specifications
+ML20244A365,3412020002,0,Fermi 2,07/01/2020,08/31/2020,Valid Actuation of Emergency Diesel Generators During Partial Loss of Offsite Power
+ML21041A348,3872020002,1,Susquehanna 1,07/01/2020,02/10/2021,Inoperability of Unit 1 “B” Residual Heat Removal Service Water Pump due to the Circuit Breaker Spring Charging Motor Contact Actuator Being Out of Adjustment
+ML20304A152,3692020001,0,"McGuire 1, McGuire 2",06/29/2020,08/27/2020,"Condition Prohibited by Technical Specification 3.4.15, Reactor Coolant System (RCS) Leakage Detection Instrumentation"
+ML20240A232,4822020002,0,Wolf Creek,06/28/2020,08/27/2020,Faulted Supply Fan Motor Causes Diesel Generator Inoperability Longer than Technical Specification Completion Time
+ML20300A577,4582020003,0,River Bend,06/05/2020,10/26/2020,Weep Holes Discovered in G-Tunnel Wall Result in Inoperable Safety Related Equipment
+ML20209A542,4432020001,0,Seabrook,05/29/2020,07/27/2020,Manual Reactor Trips due to Control Rod Bank Unexpectedly Inserting
+ML21231A135,4162020002,2,Grand Gulf 1,05/25/2020,08/19/2021,Reactor Scram due to Main Turbine Trip
+ML20196L832,3902020002,0,"Watts Bar 1, Watts Bar 2",05/20/2020,07/14/2020,Automatic Start of the Emergency Diesel Generators due to an Equipment Failure During Transfer of Power Source for the 1B-B Shutdown Board
+ML20197A177,3912020001,0,Watts Bar 2,05/19/2020,07/15/2020,Control Room Emergency Ventilation System Inoperable due to Main Control Room Door Being Left Open
+ML20183A159,3272020002,0,Sequoyah 1,05/13/2020,07/01/2020,Safety Injection Signal with Reactor Trip Caused by a Failure with the Main Turbine Control System
+ML20195A588,4132020002,0,Catawba 1,05/12/2020,07/13/2020,Unacceptable Indication Identified During Reactor Pressure Vessel Head Nozzle Penetration Inspection
+ML20356A217,3872020003,0,Susquehanna 1,05/09/2020,12/21/2020,Condition Prohibited by Technical Specifications due to Inoperable Turbine Stop Valve and Turbine Control Valve Instrumentation
+ML20189A179,2962020002,0,Browns Ferry 3,05/08/2020,07/07/2020,Main Steam Relief Valves Lift Settings Outside of Technical Specifications Required Setpoints
+ML20177A143,2502020001,0,Turkey Point 3,05/07/2020,06/24/2020,Technical Specification Action Not Taken for Unrecognized Inoperable Reactor Protection System (RPS) and Engineered Safety Feature Actuation System (ESFAS) Instrument Channel Functional Units
+ML20188A010,2722020002,0,"Salem 1, Salem 2",05/05/2020,07/06/2020,Salem Unit 1 and Unit 2 RHR Availability for Emergency Core Cooling in Mode 4
+ML20269A248,2202020001,1,Nine Mile Point 1,05/03/2020,09/15/2020,Control Room Air Treatment System Inoperable
+ML21026A253,3872020001,1,Susquehanna 1,05/03/2020,01/26/2021,Automatic Reactor Scram due to Main Turbine Trip Caused by an Electrical Ground Path in the B Main Transformer
+ML20192A112,2982020001,0,Cooper Station,05/01/2020,06/30/2020,Reactor Building Doors Opened Simultaneously Could Have Resulted in Loss of Safety Function
+ML20188A216,3162020002,0,Cook 2,05/01/2020,06/25/2020,Plant Shutdown Required by Technical Specifications due to Reactor Coolant System Leakage
+ML20178A322,4122020001,0,Beaver Valley 2,04/24/2020,06/15/2020,Unacceptable Indication Identified During Reactor Vessel Head Inspection
+ML20170A531,3662020002,0,Hatch 2,04/22/2020,06/18/2020,HPCI and RCIC inoperable When Required by Technical Specifications
+ML20234A417,3362020001,0,Millstone 2,04/21/2020,08/11/2020,Failure of Two Main Steam Safety Valves to Lift Within the Technical Specification Acceptance Criteria
+ML20170B056,3952020001,0,Summer 1,04/21/2020,06/18/2020,Condition Prohibited by Technical Specification 3.7.3
+ML20167A150,4162020001,0,Grand Gulf 1,04/16/2020,06/15/2020,Residual Heat Removal System Inadvertent Actuation due to Human Error
+ML20164A226,4572020001,0,Braidwood 2,04/15/2020,06/12/2020,Licensee Event Report 2020-001-00 - Three Main Steam Safety Valves Failed Setpoint Testing
+ML20163A145,2542020001,0,"Quad Cities 1, Quad Cities 2",04/14/2020,06/11/2020,Control Room Emergency Ventilation Air Conditioning System Inoperable due to Incorrect Breaker Setting
+ML20171A393,4232020003,0,Millstone 3,04/13/2020,06/12/2020,Reactor Trip due to Turbine Trip on Low Condenser Vacuum
+ML20161A404,2872020001,0,Oconee 3,04/10/2020,06/09/2020,Unit 3 Manual Reactor Trip due to Reaching Feedwater Heater Level Limit in Operating Procedure
+ML21251A585,3332020003,1,FitzPatrick,04/10/2020,09/08/2021,High Pressure Coolant Injection Inoperable due to Oil Leak
+ML20164A134,3392020001,0,North Anna 2,04/09/2020,06/03/2020,Technical Specification Required Shutdown due to Reactor Coolant System Pressure Boundary Leakage
+ML21040A521,4832020002,1,Callaway,04/04/2020,02/09/2021,Reactor Trip and AFW Actuation Following Spurious MFRV Closure
+ML20149K547,4232020002,0,Millstone 3,04/01/2020,05/28/2020,Automatic Reactor Trip due to Main Generator Ground Fault
+ML20149K600,2652020002,0,Quad Cities 2,03/30/2020,05/28/2020,Electromatic Relief Valve 3D Did Not Actuate Due to Out of Specification Plunger
+ML20147A243,2722020001,0,Salem 1,03/25/2020,05/26/2020,Salem Unit 1 Manual Reactor Trip and Auxiliary Feed Water System Actuation
+ML20157A121,3462020002,0,Davis-Besse,03/25/2020,05/26/2020,Manual Reactor Trip on Trip of Reactor Coolant Pumps due to Loss of 13.8 kV Bus Potential Transformer Fuse
+ML20322A021,3252020002,1,Brunswick 1,03/24/2020,11/17/2020,Technical Specification Required Shutdown due to Unidentified Leakage
+ML20143A188,4982020001,0,"South Texas 1, South Texas 2",03/24/2020,05/22/2020,Automatic Actuation of Emergency Diesel Generators due to Lockout of Switchyard Electrical Bus
+ML20181A414,4002020001,1,Harris,03/23/2020,06/29/2020,Automatic Reactor Trip During Turbine Control System Digital Electro-Hydraulic System Maintenance
+ML20141L763,3252020001,0,Brunswick 1,03/22/2020,05/20/2020,Manual Reactor Scram During Startup due to all Bypass Valves Fully Opening
+ML20134J102,4242020001,0,Vogtle 1,03/21/2020,05/13/2020,Safety-Related Electrical Bus Deenergizing Results in Emergency Diesel Generator Start Signal
+ML20140A093,2652020001,0,Quad Cities 2,03/20/2020,05/19/2020,Loss of Both Divisions of Residual Heat Removal Low Pressure Coolant Injection due to Swing Bus Failure to Transfer
+ML20128J906,3822020001,0,Waterford 3,03/18/2020,05/07/2020,Violation of Technical Specification 3.3.3.7.3.a (Broad Range Gas Detection) due to Operators and Maintenance Technicians Not Performing Procedure Step as Intended
+ML20255A078,4102020002,1,Nine Mile Point 2,03/06/2020,08/31/2020,Failure to Meet Technical Specification MSIV Stroke Times
+ML20107F741,4402020001,0,Perry,03/06/2020,04/09/2020,Combustible Gas Mixing Compressor Inoperability resulting in a Technical Specification Violation
+ML20114E190,3412020001,0,Fermi 2,03/05/2020,04/22/2020,Secondary Containment Inoperable due to Both Airlock Doors Open
+ML20132A108,4102020001,0,Nine Mile Point 2,03/04/2020,05/04/2020,Manual Scram due to an Electro-Hydraulic Control Fluid Leak on the Turbine Control System
+ML20125A102,2962020001,0,Browns Ferry 3,03/03/2020,05/04/2020,Automatic Actuation of Emergency Diesel Generators due to an Offsite Lightning Strike
+ML20255A153,5292020001,1,Palo Verde 2,03/03/2020,09/10/2020,Unit 2 Reactor Trip on Low Steam Generator Level Signal
+ML20115E369,2772020001,0,"Peach Bottom 2, Peach Bottom 3",02/26/2020,04/24/2020,Emergency Diesel Generator Shutdown due to Intercooler Low Pressure Results in Condition Prohibited by Technical Specifications
+ML20171A496,3462020001,1,Davis-Besse,02/26/2020,06/10/2020,Three Main Steam Safety Valves Failed Inservice Test Program As-Found Lift Acceptance Criteria
+ML20113E977,3892020001,0,St. Lucie 2,02/22/2020,04/22/2020,Turbine Loss of Load Trip Found Outside Technical Specification Allowable Range due to Unspecified Legacy M&TE or Calibration Deficiencies
+ML20105B225,3332020002,0,FitzPatrick,02/20/2020,04/14/2020,Unanalyzed Condition due to Unprotected Control Circuits Running Through Multiple Fire Areas
+ML20108E838,3902020001,0,Watts Bar 1,02/19/2020,04/17/2020,Manual Reactor Trip due to Lowering Steam Generator Level Caused by a Hand Station Failure
+ML20122A056,3382020001,1,North Anna 1,02/18/2020,04/21/2020,Degraded Upper Cylinder Piston Pin Bushing Discovered during Maintenance Activities on Emergency Diesel Generator
+ML21040A515,4832020001,1,Callaway,02/18/2020,02/09/2021,Emergency Exhaust Train Inoperable due to Fan Belt Degradation and Failure
+ML20310A258,3882020001,1,Susquehanna 2,02/14/2020,11/05/2020,Manual Scram due to Rising Main Condenser Backpressure Caused by Failure of an Offgas Recombiner Inlet Valve
+ML20100K071,3232020001,0,Diablo Canyon 2,02/13/2020,04/09/2020,Unit 2 Shutdown Required by Technical Specifications
+ML20134H975,4132020001,1,Catawba 1,02/12/2020,05/13/2020,Valid Actuation of the Unit 1 Reactor Protection System and Auxiliary Feedwater System
+ML20188A257,4822020001,1,Wolf Creek,02/01/2020,07/06/2020,Plant Shutdown due to Inoperable Containment Purge Isolation Valves
+ML20091L895,3332020001,0,FitzPatrick,01/31/2020,03/31/2020,Automatic Scram due to Main Turbine Trip on High RPV Water Level
+ML20083F591,3272020001,0,Sequoyah 1,01/21/2020,03/20/2020,Containment Vacuum Relief Lines Found Isolated
+ML20070H650,4232020001,0,Millstone 3,01/15/2020,03/05/2020,Technical Specification Allowed Outage Time Exceeded by Accident Monitoring Instrument
+ML20064D511,4582020001,0,River Bend,01/09/2020,03/04/2020,Loss of Control Building Chill Water due to Chiller Control Panel Installation Error
+ML20062F391,3662020001,0,Hatch 2,01/04/2020,03/02/2020,Primary Containment Penetration Exceeded Maximum Allowable Primary Containment Leakage Rate (La)
+ML20070H633,4462020001,0,Comanche Peak 2,01/01/2020,02/27/2020,Manual Reactor Trip due to Trip of Both Main Feedwater Pumps

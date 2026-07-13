@@ -39,11 +39,21 @@ from pathlib import Path
 ENDPOINT = "https://adams-api.nrc.gov/aps/api/search/{acc}"
 
 
+class FetchError(Exception):
+    """A single document failed to fetch after retries — logged and skipped so a
+    long run stays resumable rather than aborting the whole batch."""
+
+
 # --------------------------------------------------------------------------- #
 # network
 # --------------------------------------------------------------------------- #
-def fetch(accession: str, key: str, timeout: int = 60) -> dict:
-    """GET one document by accession number; return the parsed JSON response."""
+def fetch(accession: str, key: str, timeout: int = 60,
+          retries: int = 4, backoff: float = 2.0) -> dict:
+    """GET one document by accession number; return the parsed JSON response.
+
+    Retries transient failures (network errors, HTTP 429/5xx) with exponential
+    backoff. A persistent failure (or a client error like 401/403/404) raises
+    FetchError so the caller can log-and-continue over an 835-document run."""
     req = urllib.request.Request(
         ENDPOINT.format(acc=accession),
         headers={
@@ -54,17 +64,27 @@ def fetch(accession: str, key: str, timeout: int = 60) -> dict:
             "User-Agent": "ler-graphrag/fetch_ler.py",
         },
     )
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            raw = resp.read()
-            if resp.headers.get("Content-Encoding", "").lower() == "gzip":
-                raw = gzip.decompress(raw)
-    except urllib.error.HTTPError as e:
-        body = e.read().decode("utf-8", "replace")[:300]
-        raise SystemExit(f"HTTP {e.code} for {accession}: {body}") from None
-    except urllib.error.URLError as e:
-        raise SystemExit(f"network error for {accession}: {e.reason}") from None
-    return json.loads(raw.decode("utf-8"))
+    last = ""
+    for attempt in range(retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                raw = resp.read()
+                if resp.headers.get("Content-Encoding", "").lower() == "gzip":
+                    raw = gzip.decompress(raw)
+            return json.loads(raw.decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            body = e.read().decode("utf-8", "replace")[:200]
+            last = f"HTTP {e.code}: {body}"
+            transient = e.code == 429 or 500 <= e.code < 600
+            if not transient:
+                raise FetchError(f"{accession}: {last}") from None
+        except (urllib.error.URLError, TimeoutError, OSError) as e:
+            last = f"network error: {getattr(e, 'reason', e)}"
+        except json.JSONDecodeError as e:
+            last = f"bad JSON: {e}"
+        if attempt < retries:
+            time.sleep(backoff * (2 ** attempt))
+    raise FetchError(f"{accession}: {last} (after {retries + 1} attempts)")
 
 
 # --------------------------------------------------------------------------- #
@@ -158,17 +178,40 @@ def main(argv=None) -> int:
         p.error("no accession numbers given")
 
     outdir = Path(args.out)
+    outdir.mkdir(parents=True, exist_ok=True)
+    fail_log = outdir / "fetch_failures.csv"
+    n_ok = n_cached = 0
+    failures: list[tuple[str, str]] = []
     for i, acc in enumerate(accs):
         cached = outdir / f"{acc}.json"
         if cached.exists() and not args.force:
             meta = derive_meta(json.loads(cached.read_text()))
             print(f"[cached] {acc}  {meta['ler_number']}  ({meta['chars']} chars)")
+            n_cached += 1
             continue
         if i and args.sleep:
             time.sleep(args.sleep)
-        meta = save(fetch(acc, key), outdir)
+        try:
+            meta = save(fetch(acc, key), outdir)
+        except FetchError as e:
+            print(f"[FAIL]   {e}", file=sys.stderr)
+            failures.append((acc, str(e).split(": ", 1)[-1]))
+            continue
+        n_ok += 1
         print(f"[ok]     {acc}  {meta['ler_number']}  ({meta['chars']} chars) -> {outdir}/{acc}.txt")
-    print(f"manifest: {outdir/'manifest.csv'}")
+
+    if failures:                                   # append so a resumed run accumulates
+        new = not fail_log.exists()
+        with fail_log.open("a", newline="") as f:
+            w = csv.writer(f)
+            if new:
+                w.writerow(["accession", "error"])
+            w.writerows(failures)
+    print(f"\n[fetch] {n_ok} fetched, {n_cached} cached, {len(failures)} failed "
+          f"(of {len(accs)}). manifest: {outdir/'manifest.csv'}")
+    if failures:
+        print(f"[fetch] {len(failures)} failures logged to {fail_log} — re-run the same "
+              "command to retry only the missing ones (cached docs are skipped).")
     return 0
 
 

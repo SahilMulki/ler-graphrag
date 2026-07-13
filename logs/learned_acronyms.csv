@@ -1,0 +1,8 @@
+acronym,eiis_code,resolved_from_name
+SWS,BI,service water
+ABVS,NF,auxiliary building filtration
+AFAS,SJ,auxiliary feedwater actuation
+RMS,IL,radiation monitoring
+SGWLC,JB,steam generator water level control
+SIH,BP,safety injection
+VACUUM,SG,main condenser
