@@ -1,210 +1,222 @@
-# Roadmap — remaining work after Phase 6
+# Roadmap — remaining work (Phase 7 onward)
 
-> Companion to `plan.md` (the original, now partly superseded on ordering). Concrete
-> remaining-work plan, self-contained for a reviewer without repo access. Personal learning
-> project — **not research**; pragmatism over rigor.
-> **Revised after a review pass** (dedup correctness fix, clarify-UX details, intent-router
-> emphasis, router-vocab scaling, batch mechanics) — changes marked *[review]*.
+> Companion to `plan.md`. **Self-contained for a reviewer without repo access.** Personal
+> learning project — **not research**; pragmatism over rigor; probabilities may be rough
+> estimates (owner's explicit call).
+> Updated after **Phase 8 (scale-up) completed**, then **revised after a second-opinion review**
+> of the Phase 7 plan (statistical-soundness fixes marked *[review]*).
 
-## Current state (context for a reviewer)
+## Current state (context for the reviewer)
 
-Graph RAG over NRC Licensee Event Reports (LERs). **MVP (Phases 0–6) is complete and committed.**
+Graph RAG over NRC Licensee Event Reports (LERs). **Phases 0–6, the abstain/clarify feature,
+and Phase 8 (scale-up) are complete and committed.**
 
 Pipeline: deterministic NRC Form-366 parse **+** LLM (`claude-sonnet-5`) narrative extraction
-→ Pydantic **schema v4.1** (10 node types, 11 edge types) → `resolve.py` merges + canonicalizes
-EIIS system/component codes → `score.py` grades against a **frozen 3-doc oracle** → `load_graph.py`
-loads into **Neo4j** by `MERGE`-ing on a *graph key* (coded System/Component/Cause/… become
-cross-document hubs; event-specific nodes stay per-report; a load-time `LER-[:HAS_CAUSE]->Cause`
-bridge + synthesized `INVOLVES` keep each report connected) → `retrieve.py` (LLM router + Cypher
-templates, **no Text2Cypher**) → `answer.py` (grounded, cites LER numbers, stamps `oracle|pipeline`).
+→ Pydantic **schema v4.1** (10 node types, 11 edge types) → `resolve.py` canonicalizes EIIS
+system/component codes → **Neo4j** → `retrieve.py` (LLM router + Cypher templates, **no
+Text2Cypher**) → `answer.py` (grounded, cites LER numbers, stamps `oracle|pipeline`).
 
-Corpus so far: **3 hand-marked HPCI-inoperability LERs** — Quad Cities (loaded from its oracle
-record as the few-shot exemplar, held out of the eval), Dresden, Limerick. Extraction scores
-node-F1 **0.88** / edge-F1 **0.72**; graph = 57 nodes / 60 edges, one connected component; golden
-suite **9/9**.
+**Corpus (Phase 8): 833 LERs, event dates 2020–2026**, fetched from NRC ADAMS. Graph =
+**12,474 nodes / 17,372 edges**, 99.8% one connected component, **0 orphans**; cross-document
+hubs dense (the HPCI system joins **45 events across ~15 plants**). Extraction cost **$27**
+(Anthropic Message Batches + prompt caching). Frozen 3-doc oracle regression: node F1 **0.88**
+/ edge F1 **0.72**. Scaled golden suite: **10/10**.
 
-Key modules: `src/{parse_form366, llm, models, resolve, score, pipeline, load_graph, retrieve,
-answer, golden_eval, ask}.py`; `prompts/narrative_extraction.md`; `graph/queries.cypher`;
-`data/raw/` incl. `ground_truth.json` and `reference/{plants.csv [96 plants], systems_components.csv
-[1056 EIIS codes]}`.
+### Graph structure the reviewer must know for Phase 7
+- **Coded hubs are shared across documents** and aggregate cleanly: `System`, `Component`,
+  and non-provisional `Cause` (by category; ~6 categories) are single nodes that many LERs
+  point at (e.g. one `System:BJ` hub for all 45 HPCI events).
+- **`FailureMode`, `Consequence`, `CorrectiveAction` are PER-LER** — keyed with the LER
+  number, phrased differently each time, each appearing once. **They do NOT aggregate without
+  a semantic layer.** This is the central constraint on Phase 7.
+- Every edge is stamped with `ler_number`. The causal chain is
+  `Cause <-CAUSED_BY- FailureMode -LEADS_TO-> … -> Consequence`, optionally
+  `-BACKED_UP_BY-> System`. A load-time `LER-[:HAS_CAUSE]->Cause` bridge joins each report.
+- **Scale lesson directly relevant to Phase 7:** a traversal that goes *through* a shared hub
+  fans out into every unrelated event sharing that hub (a Phase-8 bug: the `failure_chain`
+  query exploded through the shared `Cause` node until each hop was pinned to `{ler_number}`).
+  Phase 7's aggregations must be **deliberate about which axis is shared vs per-LER.**
 
 ## Remaining sequence
+1. **Phase 7 — probabilistic / risk layer** (this plan; next).
+2. **Vector-RAG baseline + comparison** — capstone.
+3. **Writeup / demo.**
 
-1. **Abstain / clarify feature** — next; built on the current 3-doc graph.
-2. **Phase 8 — scale-up** to 835 LERs (event dates 2020–2026).
-3. **Phase 7 — probabilistic layer** — on the scaled graph.
-4. **Vector-RAG baseline + comparison** — capstone.
-5. **Phase 9 — writeup / demo.**
-
-## Decisions made since Phase 6 (with reasoning)
-
-- **Order 8 → 7 (scale before probabilistic).** Phase 8 is the thesis-proving, higher-value work;
-  Phase 7's honest form wants real observed transition frequencies that only scale provides;
-  scaling also shakes out extraction robustness before probability is layered on top. Dependency
-  points one way. User is fine with rough probabilities (which would permit 7-first), but 8-first
-  still wins.
-- **Vector baseline moved to the very end (after Phase 7), split out of Phase 8.** "Phase 8" had
-  bundled *scale-up* (a prerequisite) with *the baseline* (a final eval). Split: scale enables both
-  Phase 7 and the baseline; the baseline then compares the **finished** system and feeds the
-  writeup. Nothing downstream depends on it.
-- **Clarify feature built now, before scaling.** Mechanism is scale-independent and testable today;
-  the scaled corpus inherits it. Independent of the 7/8 order.
-- **Corpus = 835 LERs, 2020–2026**, from `2020s_LERs.xlsx` (INL LER Search export; 837 rows).
-  Recency ⇒ clean text (avoids the pre-2000s scanned-OCR cliff); ~90–100 plants (operating fleet);
-  a dense ~35-doc HPCI/ECCS core **and** breadth for broader questions. **Not "all ~54k"**: ~$550–2,700,
-  days to fetch, poor OCR, unverifiable — no added thesis value (thesis needs *density*, not volume).
-- **Dedup on LER number, keeping the latest revision — NOT on accession.** *[review]* R00 and R01 of
-  the same event have **different** accessions, so deduping on unique accession can keep multiple
-  revisions of one event, which would **double-count in the aggregation questions** (event counts,
-  "most common failure mode" — the thesis questions). Dedup on `(docket, year, seq)` keeping the
-  highest revision (the derived `ler_number` carries the revision suffix). This matters more than the
-  `REVISES` edges; wire `REVISES` only if we also ingest the superseded revisions.
-- **Model: `claude-sonnet-5`; no Haiku switch.** Quality validated on Sonnet; cost trivial at 835
-  (~$16), no reason to risk a regression. (Ollama seam untested; unused.)
-- **Cost controls: prompt caching + Batch API.** Estimate ~$16 (vs ~$42 naive). *[review]* The
-  caching portion is an assumption, not a guarantee — batch requests can outlive prompt-cache TTL, so
-  hits may under-deliver; **worst case is batch-only ≈ $21** (batch alone halves the naive figure), so
-  the run is **~$16–21** regardless. Confirm current Sonnet-5 pricing / intro window against Anthropic
-  docs at run time; if desired, verify `cache_read` vs `cache_creation` on the calibration batch and
-  re-project — but not required.
-- **Eval stays pragmatic.** No hand-marking 835. Frozen 3-doc oracle is the **regression gate**; new
-  docs are **spot-checked**; graph sanity (resolve coverage, connectivity, orphan rate) validates the
-  build. **Oracle is HPCI-only** — a reviewer suggested hand-marking a couple of non-HPCI docs to
-  broaden the regression; **consciously declined** (time cost; the pipeline/structure is judged solid).
-  Known limitation, accepted.
+Deferred by explicit decision (not worth it now): the README update to the 833-doc numbers;
+a re-keying pass for 37 (~5%) cosmetically malformed LER keys.
 
 ---
 
-# Feature plan — abstain / clarify when uncertain
+# Phase 7 plan — probabilistic / risk layer
 
-## The gap
-Phase 6 handles **empty → refuse** (NEG test) and **single clear subject → answer**. It does **not**
-handle **ambiguity**: a single-subject question matching *multiple* candidate events. The system must
-**ask to disambiguate** rather than silently pick one. Example: *"what caused inoperability at
-Limerick 2"* when several Limerick-2 inoperability LERs exist.
+> **STATUS: COMPLETE** — implemented as planned (all three load-bearing review fixes built in).
+> Classifier run over 971 consequences ($1.97), 75% vs a 61-item hand-labeled reference; 834
+> events materialized; golden **23/23** (existing 10 green + 13 risk/honesty, incl. component-seeded
+> paths and a general faceted-frequency engine: reverse, combination/pairs, compound-AND, temporal,
+> numeric, corrective-action, and comparative queries). A pre-existing loader
+> stub-merge bug found during the build was fixed (recovered ~8% of the corpus). Full write-up in
+> **[phase_7.md](phase_7.md)**. The plan below is retained as the design record.
 
-## Design: a three-way outcome, detected structurally in the retriever
-Replace answer/refuse with **`Answer | Refusal | Clarification`**.
+## Framing
+*Dynamic Risk RAG* — Phase 7 is where "risk" earns its name. Goal (from plan.md): **rank
+failure outcomes and paths by likelihood, computed as observed frequencies across the corpus**
+— a *demonstration* of the Dynamic-PRA idea, explicitly **not** a certified reactor risk model.
+Scaling before this (the 8→7 reorder) was so the frequencies come from real counts. **The
+review's verdict: build close to as written; the frequencies are now meaningful (833 docs), but
+three statistical-soundness fixes are load-bearing and must be built *around*, not merely
+caveated.**
 
-Detection lives in the retriever, by **candidate cardinality** — not in the answer LLM (letting the
-LLM pick which event you meant *is* the guessing we prevent). For a **single-subject intent**:
-- 0 candidates → **Refusal**; 1 → **Answer**; >1 → **Clarification**.
+## The core challenge — and what the numbers actually mean
+Two constraints, both load-bearing.
 
-**Define "candidate set" crisply:** *the events matching ALL pinned anchors for that intent.* *[review]*
-Makes the cardinality branch unambiguous.
+**(a) Aggregate over shared axes, counting distinct EVENTS.** Coded hubs aggregate; free-text
+`Consequence`/`FailureMode` do not — so Phase 7 adds a controlled **`outcome_class`** on
+Consequences (the missing aggregatable axis, the enabler for *P(outcome | X)*). **Every
+conditional frequency is computed over distinct `ler_number`s — count events, never edges or
+paths.** *[review]* The aggregated transition graph is built by **grouping each LER's chain
+first, then summing across LERs — never by traversing the live graph through shared hubs** (that
+is the Phase-8 fan-out bug; through a shared `Cause` node it silently double-counts every
+unrelated event touching that hub). **This is the single most likely place the numbers come out
+wrong-but-plausible.**
 
-Detection is **intent-aware**: single-subject intents (`failure_chain`, single-event `subgraph`) guard
-on cardinality; **aggregate intents** (`system_components`, `cause_distribution`, `mitigating_backups`,
-`system_failure_modes`) are *meant* to span events → exempt.
+**(b) The denominator is "reportable events in this corpus," not "failures."** *[review]* Every
+LER already crossed a reporting threshold, and the 833 were selected (2020–2026 INL export,
+HPCI-dense) for recency and reportability. So `P(outcome | System:BJ)` = "among reportable LERs
+mentioning HPCI in this export, the fraction with outcome o" — **not** "probability an HPCI
+failure leads to o." Three consequences the design is built around:
+- **`n_events` is a corpus/reporting artifact, not true failure frequency.** The ranked
+  quantity is therefore named **`observed_risk_contribution`**, and the answer layer says
+  **"within this corpus"** on every risk statement. HPCI ranking high is partly circular (we
+  *chose* an HPCI-dense corpus) — the honest reading is "most-represented in this corpus," not
+  "riskiest system." The **severity axis is defensible; the n_events axis is a corpus artifact.**
+- **Outcome selection bias inflates severity.** The reporting criterion 10 CFR 50.73(a)(2)(v)(D)
+  that dominates the HPCI core *is* "loss of safety function," so `loss-of-safety-function`
+  (sev 5) is near-guaranteed for exactly the events that got reported — because that outcome is
+  the reporting **trigger**, not because the system is dangerous. `expected_severity` is
+  inflated by the reporting rule, most for over-sampled systems. Mitigation: **name this
+  mechanism explicitly** in risk answers + `phase_7.md`, and **report the outcome distribution
+  conditioned on reporting criterion** so the artifact is visible, not hidden.
 
-## The linchpin: intent classification *[review]*
-The feature's correctness rests entirely on the router's single-subject-vs-aggregate call. A
-misclassified aggregate → **wrongly clarifies**; a misclassified single-subject → **silently answers
-over multiple events** (the exact failure we're preventing). So add **adversarial / borderline intent
-test cases** to `golden_eval` that sit near the single/aggregate boundary, asserting the *routed
-intent*, not just the answer.
+## Confirmed scope (owner's three forks)
+Full risk layer · LLM-classified outcome typing (one batched pass over ~971 Consequences,
+~$1–3) · risk = **frequency × severity** with **both factors surfaced**.
 
-## Clarify UX — single-shot (locked)
-Single-shot (return candidates; the user re-asks) over an interactive pick-loop — and for a real
-reason beyond simplicity: it keeps the **retriever stateless**, so a `Clarification` is a
-**deterministic structured return** that `golden_eval` asserts on (**assert the candidate set, not the
-prose question**). A pick-loop adds session state that complicates the CLI and the eval, and is a
-trivial later addition behind the same `Outcome` type.
+## Outcome-class taxonomy (severity 1–5, hand-assigned, **stored as editable data in `risk.py`**)
+| outcome_class | sev | meaning |
+|---|---|---|
+| `loss-of-safety-function` | 5 | actual loss of a safety function / both trains |
+| `safety-system-inoperable` | 4 | a safety system inoperable (single train/component) |
+| `reactor-trip-or-scram` | 4 | automatic or manual reactor trip / scram |
+| `esf-actuation` | 3 | ECCS/AFW/EDG-start/other engineered-safety-feature actuation |
+| `containment-isolation` | 3 | automatic isolation / PCIS actuation |
+| `degraded-not-lost` | 2 | degraded condition, function maintained |
+| `ts-violation-only` | 2 | condition prohibited by TS / LCO exceeded, no functional loss |
+| `other-or-no-safety-impact` | 1 | everything else |
 
-**Load-bearing caveat *[review]*:** single-shot only works if the re-ask is *resolvable*. Same-plant
-events may differ only by date/title, which the router can't anchor on (it anchors on system/cause/
-plant vocab). So the **primary re-ask path is by LER number** (shown in the candidate list,
-unambiguous). **Verified present** in `retrieve.py`: the `ler_key` anchor + `_resolve_ler`
-(checks it first) + the subgraph handler already resolve a question anchored on an LER number — so
-single-shot does **not** dead-end. (The router must reliably *extract* the LER number the user types;
-see the router-vocab change in Phase 8, which also makes this robust at scale.)
+(The sev-4 `reactor-trip-or-scram` vs `safety-system-inoperable` tension is noted — a clean
+scram is a *designed* safe response — but not relitigated; severity is subjective by design and
+handled by the sensitivity check below rather than by tuning ordinals.)
 
-## Candidate presentation *[review]*
-A `Clarification` returns a short question + candidate LERs with distinguishing fields from the `:LER`
-node — **LER# · event date · title · system**. Details:
-- **Sort by `event_date` descending** so the shown candidates are the likely-intended ones.
-- **Cap ~5–8** (never triggers at N=3).
-- **On overflow, do NOT hide with "…and M more"** — hidden candidates are unreachable in single-shot.
-  Instead tell the user **how to narrow** (add a year, or use an LER#).
+## The ranked quantity: `observed_risk_contribution` *[renamed per review]*
+- `expected_severity(entity) = Σ_o P(o | entity) × severity(o)` — a mean over **ordinals
+  treated as interval data**, a standard demo abuse, stated as such.
+- `observed_risk_contribution(entity) = n_events(entity) × expected_severity(entity)`.
+- **The distribution is the honest object; the scalar is ranking convenience.** *[review]* Every
+  risk answer surfaces the **full outcome distribution + the modal/max class + `n_events`**,
+  e.g. *"expected_severity 4.2 — 3 of 5 events were loss-of-safety-function (within this
+  corpus)."*
+- **Severity sensitivity check** *[review]*: report whether the top-N ranking survives a **±1
+  perturbation** of the severity ordinals. If the top-3 flip under small changes, present the
+  ranking as **illustrative only** — this robustness note is worth more than getting the
+  ordinals "right."
 
-## Where it lives
-- `retrieve.py` — anchor→candidate resolution, the cardinality branch, a `Clarification`/`Outcome` type.
-- `answer.py` — a backstop instruction (decline + ask if evidence spans multiple distinct events for a
-  single-subject question).
-- `ask.py` — render clarifications.
-- `golden_eval.py` — ambiguity cases + the adversarial intent cases.
+## Architecture (pieces)
+1. **Outcome classes.** Batched LLM classification of ~971 Consequences → `outcome_class` +
+   `classifier_confidence`, stamped on the graph. **The classification prompt is versioned like
+   the extraction prompt** (a load-bearing model artifact). *[review]*
+2. **Classifier validation — REQUIRED before any downstream number is trusted.** *[review, new]*
+   Hand-label a **stratified ~40–60 Consequence sample**; measure accuracy + per-class
+   confusion; keep the labeled set as a regression check. Focus the hardest boundary:
+   `loss-of-safety-function` (5) vs `safety-system-inoperable` (4) = the single-train-vs-both
+   distinction the HPCI corpus lives on — smear it and every risk score is off.
+   **`classifier_confidence` GATES low-confidence nodes** into a flagged bucket, excluded from
+   the stats — not merely recorded.
+3. **Empirical statistics.** Per System/Component/Cause: `n_events` (distinct LERs), outcome
+   distribution `P(o|entity)`, `expected_severity`, `observed_risk_contribution` — **all counts
+   over distinct `ler_number`s.** Optionally condition the outcome distribution on reporting
+   criterion (to expose the selection artifact).
+4. **Most-probable path.** An aggregated transition graph **built from per-LER chains first**
+   (group each LER's `cause → outcome` locally, then sum across LERs), edges weighted by
+   observed conditional frequency (distinct events); most-probable `cause → outcome` path from a
+   seed system/component via `-log(prob)`. Pure Python — **no Neo4j GDS.**
+5. **Retriever intents.** `risk_ranking`, `likely_outcome` (`P(outcome | system/cause/
+   component)`), `probable_path` → new templates on the existing LLM router.
+6. **Answer layer.** Probabilities with **mandatory** framing: explicit denominator, "within
+   this corpus," "observed reportable-event frequency, not a certified rate," the
+   reporting-criterion mechanism where relevant, small-sample flags, and the full distribution
+   (not just the scalar).
+7. **Honesty framing** (non-negotiable) — see below.
 
-## Testing
-- **Now (N=3):** *"What caused HPCI inoperability?"* (no plant) → clarify among 3; *"…at Limerick"* → 1
-  → answer. This is a **mechanism test** (no-plant), *not* the realistic same-plant case — **don't
-  over-tune to it.** *[review]*
-- **At scale (Phase 8):** same-plant multi-event ambiguity becomes real; add those cases then.
+## Data-sparsity discipline *[review]*
+~6 cause categories over 833 events → **cause-level stats are solid**. But **component-level is
+structurally sparse** (many components appear once or twice), so most `P(o|component)` is
+single-event. Component-level risk is presented **only in aggregate or with `n` shown inline —
+never as a confident per-component probability.** Small-sample flag at `n < 5` (label, don't
+suppress).
 
-## Scope / non-goals
-Ambiguity is **structural** (candidate cardinality), not a confidence score on answer *content*. Keep
-it deterministic and robust.
+## Materialization discipline *[review]*
+Materialized hub stats go stale on any reload/extend (Phase 9 / baseline may reload). So:
+`risk.py --materialize` **recomputes from scratch, re-runnably**, and **every stat written to a
+node carries the `n_events` it was computed from**, so a stale stat is detectable rather than
+silently wrong.
 
----
+## Honesty framing (non-negotiable; named mechanisms) *[expanded per review]*
+Every number is an observed frequency over **reportable LER events in this 2020–2026 export**,
+denominator shown. Named in answers and `phase_7.md`:
+- **Corpus-selection circularity** — an HPCI-dense export makes HPCI look "risky"; it's
+  most-represented, not most-dangerous.
+- **Outcome = reporting criterion** — loss-of-safety-function is often the reporting *trigger*
+  (10 CFR 50.73(a)(2)(v)(D)), inflating severity for over-sampled systems.
+- **Not a true rate** — no exposure time / reactor-years; not comparable to a PRA failure rate.
+- **Ordinal severity treated as interval** — a demo convenience; the distribution is shown too.
+- **Component sparsity** — per-component numbers are illustrative, `n` always shown.
 
-# Phase 8 plan — scale-up to 835 LERs
+## Golden questions (structure + grounding + honesty, not exact numbers)
+- `RISK-RANK`, `LIKELY-OUTCOME`, `PROB-PATH`, `CAUSE→OUTCOME` — each with `n_events` + the full
+  distribution + the "within this corpus" framing.
+- **Honesty / negative golden** *[review, new]*: *"What's the failure rate of HPCI?"* → the
+  system must **decline the 'rate' framing** and return the observed reportable-event frequency
+  with its denominator, naming the selection bias — not a rate. Directly tests the
+  non-negotiable framing rather than trusting it.
+- Keep the existing 10/10 green.
 
-## Goal
-Run the trusted pipeline over 835 LERs (2020–2026), build the full graph, re-run + expand the golden
-questions. Shared input for Phase 7 and the baseline. **Baseline excluded** (capstone).
+## Implementation sequence
+1. Taxonomy + severity (editable data) in `src/risk.py`.
+2. Versioned classification prompt + outcome-classification batch → `outcome_class` +
+   `classifier_confidence`.
+3. **Classifier validation on the hand-labeled sample; gate on confidence — before any stats.**
+4. Stats layer (distinct-event counts) + `risk.py --materialize` (n_events-stamped, re-runnable).
+5. Most-probable path (per-LER-chains-first transition graph).
+6. Retriever intents + templates.
+7. Answer-layer framing + caveats.
+8. Golden additions (incl. the honesty golden) + re-run.
+9. `phase_7.md` + risk gates in `graph/queries.cypher`.
 
-## Steps
-1. **Build the fetch list.** `2020s_LERs.xlsx` → regex the `ML…` accession out of each "Accession #"
-   HTML cell → `accessions.txt`. **Dedup on LER number (docket, year, seq), keeping the latest
-   revision** — not on accession (see the dedup decision; protects aggregation counts). *[review]*
-2. **Fetch.** `python fetch_ler.py --from-file accessions.txt --out data/raw` (caches `.json`/`.txt`,
-   appends `manifest.csv`). ~835 ADAMS calls with backoff. **Expect some fetch failures; log them and
-   keep the run resumable** — the cache already skips fetched docs on re-run. *[review]*
-3. **Pipeline changes for scale** *(implementation decisions — see open items)*:
-   - **Prompt caching** — mark the shared system(schema)+few-shot block with `cache_control` in
-     `llm.py`.
-   - **Batch API** — restructure `pipeline.py` into *submit-all → collect → resolve* (Anthropic Message
-     Batches, 50% off, async ≤24h). **Mechanics *[review]*:** `custom_id = accession`; handle partial
-     per-request failures; reconcile fetched-count vs the 835 target before/after the run.
-   - **Router-vocab scaling** *[review]* — `GraphVocab.as_prompt()` currently lists **every** LER
-     (key — plant); at 835 that bloats every routing call and degrades routing. Keep only the small
-     controlled sets (systems ~50, cause categories ~6) in the router prompt; **resolve plants and
-     LER-numbers deterministically in the retriever** (Cypher `CONTAINS` / exact-match / an LER-number
-     regex), not via the LLM vocab list. Also underpins the clarify feature's LER-number re-ask.
-4. **Calibrate cost** on the first ~10 docs via `logs/tokens.csv`; confirm the ~$16–21 projection
-   (and, if desired, check `cache_read` vs `cache_creation`) before the full run.
-5. **Extract + harden.** Reference tables already cover plants/EIIS codes. Watch: parser edge cases on
-   new (recent, clean) docs; prompt generalization to new event types (tighten *only* on recurring
-   misses); revised/supplement LERs. Pipeline already retries on schema-invalid output; log & triage
-   failures (rough bar: investigate if >~10% fail, else drop the bad docs). Keep the **3-doc oracle as
-   the regression gate**; spot-check a sample of new docs. Keep the `source: oracle|pipeline` stamp
-   visible in answers — it matters more at 835 where one hand-marked doc sits among hundreds. *[review]*
-6. **Load the full graph.** Generalize `load_graph.py` `GRAPH_SOURCES` (currently hardcoded 3) to load
-   all `out/*.json` + the QC oracle; `--wipe --yes` for a clean build. Verify connectivity, hub
-   density, orphan rate, and that **same-plant ambiguity now exists** (for the clarify feature).
-7. **Re-run + expand the golden set.** MVP-now questions get richer; add broader-corpus golden
-   questions the events now support (**data-driven — decide after extraction**). Sanity-check vs source.
+## Cost / effort
+~$1–3 (classification batch) + a couple hours hand-labeling the ~40–60 validation sample; rest
+is local compute. ~3 days of build.
 
-## Gate
-Full graph built + connected; cross-document hubs dense; golden questions (incl. some broader ones)
-answered; 3-doc oracle regression still green; clarify feature exercises real same-plant ambiguity;
-extraction failure rate acceptable/triaged.
+## Open decisions — converged by the review
+- **Path = `cause → outcome`; do NOT type FailureModes** (reviewer: strongly agree — that is the
+  honest ceiling this data supports; typing per-LER failure modes doubles cost and
+  unvalidated-classifier risk on the noisiest axis).
+- **Severity:** editable data + a ±1 sensitivity check in the writeup; ordinals not relitigated.
+- **Small-sample:** flag `n < 5`, don't suppress; component-level only in aggregate / with `n`.
+- **Materialize:** yes, but re-runnable `--materialize` with `n_events` stamped per stat.
 
-## Cost
-~$16–21 (Sonnet-5 + cache + batch; cache may under-deliver in batch, batch-only ≈ $21). Calibrate on
-the first ~10 docs. Budget ~$30–50 with a re-run buffer. Confirm pricing at run time.
-
----
-
-# Open decisions
-
-**Resolved by the review** (baked in above): clarify UX = single-shot; candidate cap 5–8 with
-date-desc sort + narrow-guidance on overflow; dedup on LER number (latest revision); oracle
-extension declined.
-
-**Still open:**
-1. **Batch vs sequential** for the 835 run. Batch = 50% off + async (≤24h), restructures `pipeline.py`;
-   sequential = simpler, ~2× cost, ~1–2 h. *Recommend batch.* (Phase-8; not needed for the feature.)
-2. **Which broader golden questions to add** — data-driven; decide after seeing the extracted corpus.
-3. **Extraction failure bar** for triage — *suggest investigate if >~10% fail, else drop.*
-4. **`REVISES` edges** — only relevant if we choose to ingest superseded revisions (default: keep only
-   latest per LER number, so no `REVISES` needed).
+**The three things to get right before trusting any output** (review's insistence): (1) count
+distinct events, and build the transition graph from per-LER chains — not by traversing shared
+hubs; (2) validate the outcome classifier against the hand-labeled sample and gate on
+confidence; (3) frame the `n_events` axis as "observed contribution within this corpus" and name
+the reporting-criterion selection bias. Severity ordinals matter less — the distribution + the
+sensitivity check handle the subjectivity.

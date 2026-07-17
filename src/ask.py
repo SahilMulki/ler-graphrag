@@ -174,7 +174,8 @@ def _print_summary(results) -> int:
     npass = sum(1 for r in results if r[3])
     print("\n" + "=" * 78)
     print("SUMMARY")
-    for kind in ("showcase", "aggregation", "clarify", "intent", "scale", "negative"):
+    for kind in ("showcase", "xdoc", "aggregation", "payoff", "clarify", "intent",
+                 "risk", "honesty", "scale", "negative"):
         if by_kind[kind]:
             print(f"  {kind:12}: {pass_kind[kind]}/{by_kind[kind]} pass")
     print(f"  {'TOTAL':12}: {npass}/{len(results)} pass")

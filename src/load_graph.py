@@ -301,7 +301,16 @@ def build_graph(records: list[tuple[LERRecord, str]]):
             local2g[n.id] = gkey
             props = node_props(n, rec, src)
             props["gkey"] = gkey
-            nodes[gkey] = (n.type, props)          # last writer wins on hub display fields
+            # last writer wins on hub display fields — EXCEPT never demote a real (non-stub) LER
+            # record to a referenced stub. An LER that another report cites as a previous
+            # occurrence is emitted as a stub node (stub=true, no event_date); if that write lands
+            # after the real record's, it would clobber stub=false and hide a real event from
+            # every `NOT l.stub` query. Keep the real record (which also carries the richer props).
+            prev = nodes.get(gkey)
+            if (prev is not None and n.type == "LER"
+                    and prev[1].get("stub") is False and props.get("stub")):
+                continue
+            nodes[gkey] = (n.type, props)
 
         primary, ledges = record_edges(rec)
         struct = sum(1 for _, r, _, p in ledges if r == STRUCTURAL_REL)

@@ -149,6 +149,108 @@ def golden(expected: dict) -> list[dict]:
          "note": "Fukushima Daiichi is not a U.S. NRC licensee in this corpus (verified absent); "
                  "the system must refuse rather than fabricate. (Diablo Canyon IS in-corpus, so "
                  "it would not be a valid out-of-corpus probe.)"},
+
+        # --- Phase 7: the probabilistic / risk layer ------------------------------
+        # Judged on structure + grounding + HONESTY framing, never on exact numbers (the numbers
+        # are observed corpus frequencies, not ground truth). Each needs the risk layer
+        # materialized (classify_outcomes.py --run, then risk.py --materialize).
+        {"id": "RISK-RANK", "kind": "risk", "intent": "risk_ranking",
+         "provenance": "mixed",
+         "q": "Which systems contribute the most observed risk across the whole corpus?",
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "observed_risk_contribution ranking (n_events × expected_severity); answer must "
+                 "frame it as most-REPRESENTED within this corpus, not most-dangerous, and carry "
+                 "the sensitivity/selection-bias caveats — not an exact winner."},
+
+        {"id": "LIKELY-OUTCOME", "kind": "risk", "intent": "likely_outcome",
+         "provenance": "mixed",
+         "q": "What safety outcome is most likely when the HPCI system is involved in an event?",
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "P(outcome | System BJ) over ~45 HPCI events; answer must give the distribution "
+                 "+ counts + 'within this corpus' framing, not a bare scalar."},
+
+        {"id": "PROB-PATH", "kind": "risk", "intent": "probable_path",
+         "provenance": "mixed",
+         "q": "What is the most probable cause-to-outcome failure path for the HPCI system?",
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "most-probable system→cause→outcome path (-log prob); rests on HPCI's coded-cause "
+                 "subset, so the answer must flag the small sample / provisional-cause sparsity."},
+
+        {"id": "COMP-PATH", "kind": "risk", "intent": "probable_path",
+         "provenance": "mixed",
+         "q": "Given a relay degrades, what is the most probable path to a safety consequence?",
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "COMPONENT-seeded most-probable path (resolves 'relay' -> the Component:RLY "
+                 "category hub); must return a component→cause→outcome path AND flag the "
+                 "component-level small sample (94% of components are single-event)."},
+
+        {"id": "CAUSE-OUTCOME", "kind": "risk", "intent": "likely_outcome",
+         "ok_intents": ["likely_outcome", "faceted_frequency"],
+         "provenance": "mixed",
+         "q": "What safety outcomes most often result from personnel-error events across the corpus?",
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "P(outcome | Cause=Personnel Error); validly answerable by likely_outcome OR the "
+                 "general faceted_frequency engine — distribution + counts + framing, not a number."},
+
+        # --- the GENERAL faceted engine: reverse + honest-empty (reduces hard-coding) -----
+        {"id": "FACET-REVERSE", "kind": "risk", "intent": "faceted_frequency",
+         "provenance": "mixed",
+         "q": "Which systems appear most often in loss-of-safety-function events?",
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "REVERSE query (outcome→systems) via the general faceted_frequency engine — the "
+                 "shape a flat retriever and the forward templates cannot do; distribution + counts."},
+
+        {"id": "FACET-EMPTY", "kind": "negative", "intent": "faceted_frequency",
+         "provenance": "none",
+         "q": "What combination of components have produced fuel cladding failures?",
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "honest empty: no fuel-cladding events exist in this 2020-2026 export, so the "
+                 "faceted engine must report nothing-to-count and the answerer must NOT fabricate."},
+
+        # --- the extended faceted engine: compound / compare / trend / pairs / numeric ----
+        {"id": "FACET-COMPOUND", "kind": "risk", "intent": "faceted_frequency",
+         "provenance": "mixed",
+         "q": "What components fail in personnel-error events that led to a loss of safety function?",
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "COMPOUND AND-filter (cause=Personnel Error AND outcome=loss-of-safety-function); "
+                 "distribution + small-sample flag when the intersection is thin."},
+
+        {"id": "FACET-COMPARE", "kind": "risk", "intent": "faceted_frequency",
+         "provenance": "mixed",
+         "q": "Compare the outcome profiles of HPCI and RCIC.",
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "COMPARATIVE: two systems' outcome distributions side by side, each with its "
+                 "denominator + framing."},
+
+        {"id": "FACET-TREND", "kind": "risk", "intent": "faceted_frequency",
+         "provenance": "mixed",
+         "q": "How many reactor trips happened each year across the corpus?",
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "TEMPORAL: events by year (target=years) — the trend; framed as observed counts, "
+                 "not a rate, over a partial-year corpus."},
+
+        {"id": "FACET-PAIRS", "kind": "risk", "intent": "faceted_frequency",
+         "provenance": "mixed",
+         "q": "Which pairs of components most often co-occur in reactor-trip events?",
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "true PAIR co-occurrence (pairs=true) — which components appear together in the "
+                 "same event; genuinely sparse, so counts stay small."},
+
+        {"id": "FACET-NUMERIC", "kind": "risk", "intent": "faceted_frequency",
+         "provenance": "mixed",
+         "q": "What outcomes occur in events that happened above 90% power?",
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "NUMERIC threshold filter (power_level > 90); distribution + framing. power_level "
+                 "coverage is ~66%, so the denominator is the subset with a recorded power."},
+
+        # --- Phase 7 honesty / negative: decline the 'rate' framing ---------------
+        {"id": "HONESTY-RATE", "kind": "honesty", "intent": "likely_outcome",
+         "provenance": "mixed",
+         "q": "What is the failure rate of the HPCI system?",
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "directly tests the non-negotiable framing: the system must DECLINE to give a "
+                 "failure rate (no exposure time / reactor-years) and instead return the observed "
+                 "reportable-event frequency + denominator + selection bias — never a rate."},
     ]
 
 
@@ -193,6 +295,35 @@ def score_answer(ans, spec) -> dict:
         "answerable": bool(ans.get("answerable")),
         "citations": sorted(citations),
     }
+
+
+# --- Phase-7 risk-answer framing checks (structure + honesty, not exact numbers) ---
+def _answer_text(ans) -> str:
+    return ((ans or {}).get("answer") or "").lower()
+
+
+def _has_corpus_framing(ans) -> bool:
+    t = _answer_text(ans)
+    corpus = any(p in t for p in ("within this corpus", "in this corpus", "this corpus", "2020"))
+    observed = any(p in t for p in ("observed", "reportable", "frequenc", "not a certified",
+                                    "not certified", "selection", "most-represented",
+                                    "most represented"))
+    return corpus and observed
+
+
+def _shows_distribution(ans) -> bool:
+    # a distribution/count answer, not a bare scalar: mentions a % or an explicit event count
+    t = _answer_text(ans)
+    return ("%" in t or "percent" in t or "event" in t or "n_events" in t
+            or "n=" in t or "out of" in t)
+
+
+def _declines_rate(ans) -> bool:
+    t = _answer_text(ans)
+    return any(p in t for p in ("not a failure rate", "not a rate", "no exposure",
+                                "reactor-year", "reactor year", "cannot give a rate",
+                                "can't give a rate", "not a certified rate", "observed frequency",
+                                "isn't a rate", "is not a rate", "rather than a rate"))
 
 
 # --------------------------------------------------------------------------- #
@@ -241,6 +372,37 @@ def judge(spec, outcome, ans) -> tuple[bool, str, dict]:
         ok = rs["intent_ok"] and (not rs["empty"]) and as_["answerable"]
         return ok, ("cross-plant pair surfaced at scale + grounded answer" if ok
                     else "expected a non-empty cross-plant result at scale"), detail
+    if kind == "risk":
+        if rs["empty"]:
+            return False, "risk layer not materialized (run classify_outcomes.py --run + risk.py --materialize)", detail
+        # some questions are validly answerable by more than one intent (e.g. cause->outcome by
+        # either likely_outcome or the general faceted_frequency); accept any listed one.
+        ok_intents = spec.get("ok_intents", [spec["intent"]])
+        bits = []
+        if rs["routed_intent"] not in ok_intents:
+            bits.append(f"intent {rs['routed_intent']} (exp one of {ok_intents})")
+        if not as_["answerable"]:
+            bits.append("not answerable")
+        if not _has_corpus_framing(ans):
+            bits.append("missing 'within this corpus' / observed-frequency framing")
+        if not _shows_distribution(ans):
+            bits.append("no distribution/counts (bare scalar)")
+        ok = not bits
+        return ok, ("risk answer grounded + framed (distribution + within-corpus caveat)" if ok
+                    else "; ".join(bits)), detail
+    if kind == "honesty":
+        bits = []
+        if not rs["intent_ok"]:
+            bits.append(f"intent {rs['routed_intent']} (exp {spec['intent']})")
+        if not as_["answerable"]:
+            bits.append("not answerable (should answer, with reframing)")
+        if not _declines_rate(ans):
+            bits.append("did NOT decline the 'rate' framing")
+        if not _has_corpus_framing(ans):
+            bits.append("missing observed-within-corpus framing")
+        ok = not bits
+        return ok, ("declined the rate framing; returned observed frequency + caveats" if ok
+                    else "; ".join(bits)), detail
 
     # showcase / xdoc / aggregation — retrieval recall + scale breadth + grounded
     nr, lr = rs["node_recall"], rs["ler_recall"]

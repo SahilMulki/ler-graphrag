@@ -86,3 +86,51 @@ RETURN c.category AS cause_category, c.cause_code AS code,
 // ---------------------------------------------------------------------------
 MATCH (n:Entity) WHERE NOT (n)--() AND NOT n:RegulatoryReference AND NOT n.stub
 RETURN labels(n) AS labels, n.display_name AS name;
+
+// ---------------------------------------------------------------------------
+// 6. Phase 7 — risk layer  (run AFTER:  python src/classify_outcomes.py --run
+//    then  python src/risk.py --materialize).  All numbers are OBSERVED reportable-
+//    event frequencies WITHIN THIS CORPUS, not certified rates — see phase_7.md.
+// ---------------------------------------------------------------------------
+
+// 6a. GATE — every Consequence carries a controlled outcome_class + confidence
+//     (classify_outcomes.py stamped them). Distribution of the raw per-consequence class:
+MATCH (c:Consequence) WHERE c.outcome_class IS NOT NULL
+RETURN c.outcome_class AS outcome_class, count(*) AS consequences,
+       round(avg(c.classifier_confidence), 2) AS avg_conf ORDER BY consequences DESC;
+
+// 6b. confidence gate — how many consequences fall below the 0.60 stats gate (flagged, excluded)
+MATCH (c:Consequence) WHERE c.outcome_class IS NOT NULL
+RETURN sum(CASE WHEN c.classifier_confidence < 0.60 THEN 1 ELSE 0 END) AS gated_out,
+       count(*) AS total;
+
+// 6c. GATE — observed_risk_contribution ranking of Systems (materialized; ORC = n_events ×
+//     E[severity]). Reads the props risk.py --materialize stamped. n_events shown so a stale
+//     stat is detectable. Ranking is dominated by n_events (a corpus-selection artifact).
+MATCH (s:System) WHERE s.observed_risk_contribution IS NOT NULL
+RETURN s.eiis_code AS code, s.display_name AS system, s.n_events AS n_events,
+       s.n_events_classified AS n_classified, s.expected_severity AS E_sev,
+       s.observed_risk_contribution AS ORC, s.risk_small_sample AS small_sample
+ORDER BY ORC DESC LIMIT 15;
+
+// 6d. P(outcome | System BJ = HPCI) — the materialized outcome distribution (JSON) + its denom
+MATCH (s:System {eiis_code:'BJ'})
+RETURN s.display_name AS system, s.n_events AS n_events, s.n_events_classified AS n_classified,
+       s.expected_severity AS E_sev, s.outcome_dist_json AS distribution;
+
+// 6e. cause -> outcome layer, built per-LER (NOT through the shared hub): for each event, its
+//     coded (non-provisional) cause and its worst-severity outcome class, then grouped. This is
+//     the honest cause->outcome table the probable_path uses; provisional causes are excluded.
+MATCH (l:LER)-[:HAS_CAUSE {ler_number:l.key}]->(cause:Cause)
+WHERE NOT l.stub AND cause.category <> 'provisional'
+MATCH (l)-[:HAS_CAUSE {ler_number:l.key}]->(:Cause)<-[:CAUSED_BY {ler_number:l.key}]-()
+      -[:LEADS_TO*0.. {ler_number:l.key}]->(cons:Consequence)
+WHERE cons.outcome_class IS NOT NULL AND cons.classifier_confidence >= 0.60
+WITH l, cause.category AS cause, collect(DISTINCT cons.outcome_class) AS classes
+RETURN cause, count(DISTINCT l) AS events ORDER BY events DESC;
+
+// 6f. component-level sparsity check — most components appear in only 1-2 events, so per-component
+//     probabilities are never presented as confident (small_sample flagged at n<=5).
+MATCH (c:Component) WHERE c.n_events IS NOT NULL
+RETURN c.risk_small_sample AS small_sample, count(*) AS components
+ORDER BY small_sample;

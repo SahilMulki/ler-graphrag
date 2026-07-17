@@ -29,6 +29,7 @@ from dataclasses import dataclass, field
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+import risk
 from llm import LLM
 from load_graph import _connect
 
@@ -44,9 +45,11 @@ INTENTS = {
     "system_components":
         "components that failed in/on a given system across the corpus (needs a system)",
     "system_failure_modes":
-        "AGGREGATE: failure modes for a given system grouped ACROSS the corpus — "
-        "phrasings like 'group all events', 'most common failure mode', 'what failure "
-        "modes across all reports' (needs a system)",
+        "AGGREGATE: the TYPES of failure modes (what mechanically went wrong) for a given "
+        "system grouped ACROSS the corpus — 'group all events', 'most common failure mode', "
+        "'what failure modes across all reports', 'how does X fail'. This is about failure "
+        "MODES (kinds of failure), NOT probabilities/rates/outcomes (a 'failure RATE', 'how "
+        "often', or 'how likely' question is likely_outcome). Needs a system.",
     "mitigating_backups":
         "events where a redundant/backup safety system was available",
     "cause_distribution":
@@ -55,6 +58,38 @@ INTENTS = {
         "events attributed to personnel error / weak maintenance or procedure programs",
     "shared_component_cause":
         "events at different plants sharing BOTH a common component and a common cause",
+    "risk_ranking":
+        "PROBABILISTIC/RISK ranking: which systems or causes contribute the most observed risk "
+        "(how often × how severe) across the corpus — 'which systems are riskiest / most "
+        "significant', 'rank by risk', 'biggest risk contributors', 'highest observed risk'. An "
+        "aggregate ranking of the whole corpus, never a single event.",
+    "likely_outcome":
+        "PROBABILISTIC outcome distribution / RATE / LIKELIHOOD for a given system, cause, or "
+        "COMPONENT — 'what safety outcome is most likely / most probable when X fails', 'what "
+        "usually results from X', 'probability / chance of a reactor trip given X', 'how likely "
+        "is a loss of safety function for X', AND rate/frequency phrasings: 'failure RATE of X', "
+        "'how OFTEN does X fail'. Needs a system_code, cause_code, OR component; aggregates over "
+        "the corpus. About OUTCOMES/consequences and their probabilities/rates — NOT the types of "
+        "failure modes (system_failure_modes) and NOT cause categories (cause_distribution).",
+    "probable_path":
+        "the single MOST-PROBABLE cause→outcome path for a given system OR COMPONENT — 'most "
+        "likely failure path / sequence / progression for X', 'what is the most probable way X "
+        "fails and what results', 'given X degrades, what is the most probable path to a safety "
+        "consequence'. Needs a system_code OR a component. Probabilistic, aggregate over the "
+        "corpus.",
+    "faceted_frequency":
+        "GENERAL faceted query engine — use for any 'among the EVENTS matching some CONDITIONS, "
+        "count/compare/trend a FACET' shape the specific intents above do NOT cover. Covers: "
+        "REVERSE ('what causes/systems/components/plants are in events that RESULT IN outcome X or "
+        "consequence Y', 'what leads to loss of offsite power'); COMBINATION / co-occurrence and "
+        "PAIRS ('what components co-occur / which pairs of components appear together in reactor-trip "
+        "events'); COMPOUND conditions ('components in PERSONNEL-ERROR events that led to LOSS OF "
+        "FUNCTION'); plant counts; TEMPORAL trends ('reactor trips by year', 'is X rising'); NUMERIC "
+        "thresholds ('events above 90% power', 'outages over 24 hours'); CORRECTIVE ACTIONS / "
+        "resolutions ('how were X events resolved'); and COMPARISON ('compare HPCI vs RCIC outcome "
+        "profiles'). Anchors: target (systems|components|causes|outcomes|plants|corrective_actions|"
+        "years = WHAT TO COUNT); filters (a LIST of facet/value conditions, ALL required); pairs=true "
+        "for co-occurring pairs; compare (facet + values) for side-by-side. See the anchor rules below.",
     "subgraph":
         "a general neighborhood around one named entity (fallback)",
     "out_of_corpus":
@@ -65,6 +100,11 @@ INTENTS = {
 # ambiguous and must trigger a Clarification (not a silent guess). Aggregate intents
 # (system_components, cause_distribution, ...) are MEANT to span events -> exempt.
 SINGLE_SUBJECT_INTENTS = {"failure_chain"}
+
+# Phase-7 risk intents: their answers MUST carry the observed-frequency framing (denominator,
+# "within this corpus", the reporting-criterion selection bias, the full distribution, and
+# small-sample flags). answer.py enforces this via a mandatory backstop.
+RISK_INTENTS = {"risk_ranking", "likely_outcome", "probable_path", "faceted_frequency"}
 
 # Most candidates we list in a Clarification before telling the user to narrow instead.
 CANDIDATE_CAP = 8
@@ -162,7 +202,28 @@ Rules:
     validates it against the graph.
   - ler_key: an LER number the user typed, verbatim and formatted like "237-2025-003-00"
     (FREE TEXT). Extract it whenever the user gives one — this is how a user disambiguates.
-- Do NOT invent system/cause codes. Plant and LER-number anchors are resolved against the
+  - component: a COMPONENT the user names for a risk/likely_outcome/probable_path question, as
+    FREE TEXT (a component list is NOT provided) — e.g. "relay", "motor-operated valve",
+    "breaker", "service water pump", "battery charger". Extract the component noun the user
+    degrades/asks about. The retriever resolves it against the graph's component hubs. Only set
+    this when the question is about a component rather than a whole system.
+  - target: for faceted_frequency ONLY — WHAT TO COUNT: one of "systems", "components", "causes",
+    "outcomes", "plants", "corrective_actions", "years".
+  - filters: for faceted_frequency ONLY — a LIST of conditions, ALL of which must hold (AND). Each
+    is {{"facet": ..., "value": ..., "op": ...(optional)}}. facet is one of "outcome", "system",
+    "cause", "component", "consequence", "plant", "year", "power_level", "duration". value is the
+    value — an outcome phrase ("reactor trip", "loss of safety function"), a cause category, a
+    system/component/plant name, a year like "2024", a FREE-TEXT consequence phrase ("loss of
+    offsite power"), or a number. For "power_level" (a %) or "duration" (in hours) set "op" to one of
+    >= <= > < == and value to a number. Omit filters to count over all events. The 8 outcome
+    classes: loss-of-safety-function, safety-system-inoperable, reactor-trip-or-scram, esf-actuation,
+    containment-isolation, degraded-not-lost, ts-violation-only, other-or-no-safety-impact.
+  - pairs: for faceted_frequency ONLY — true when the user asks which PAIRS / combinations of the
+    target CO-OCCUR together, not just individual frequencies.
+  - compare: for faceted_frequency ONLY — {{"facet": ..., "values": [a, b, …]}} to show the target
+    distribution SIDE BY SIDE for two or more entities (e.g. compare HPCI vs RCIC → facet "system",
+    values ["HPCI","RCIC"]).
+- Do NOT invent system/cause codes. Plant, LER-number, and free-text anchors are resolved against the
   graph, so if the plant/LER is not in the corpus the retriever returns nothing and the
   answerer refuses — that is the intended behavior; you need not pre-check them.
 - Use "out_of_corpus" only when the question is clearly not about an in-corpus LER topic at
@@ -414,6 +475,250 @@ class GraphRetriever:
                         "Cross-plant events sharing a component and a cause:\n" + "\n".join(lines),
                         lers=[{"key": r["a"], "source": None} for r in rows]
                              + [{"key": r["b"], "source": None} for r in rows])
+
+    # -- risk templates (Phase 7) ------------------------------------------- #
+    # These read the stats materialize() stamped on the hub nodes; probable_path builds the
+    # transition graph live (a graph algorithm, not a single-node read). All frequencies are
+    # observed reportable-event counts within this corpus — see risk.OBSERVED_RISK_CAVEAT, which
+    # is embedded in the evidence so the grounded answer can't drop it.
+    @staticmethod
+    def _sys_mk(anchors) -> str | None:
+        code = (anchors.get("system_code") or "").strip()
+        if not code:
+            return None
+        if code.upper() == "ADS":
+            return "System:automatic-depressurization-system"
+        return f"System:{code}"
+
+    @staticmethod
+    def _resolve_component(s, name: str) -> tuple[str, str] | None:
+        """Free-text component name -> (match_key, display_name) of the best-matching materialized
+        Component hub (the most-represented hub whose name contains the query). Components are
+        fine-grained and 94% single-event, so this deliberately prefers the EIIS-code category hub
+        with the most events (e.g. 'relay' -> Component:RLY across many events)."""
+        name = (name or "").strip()
+        if not name:
+            return None
+        rows = list(s.run(
+            "MATCH (c:Component) WHERE c.n_events IS NOT NULL "
+            "  AND toLower(c.display_name) CONTAINS toLower($q) "
+            "RETURN c.match_key AS mk, c.display_name AS name ORDER BY c.n_events DESC LIMIT 1",
+            q=name))
+        return (rows[0]["mk"], rows[0]["name"]) if rows else None
+
+    def _seed_entity(self, s, anchors) -> tuple[str | None, str | None]:
+        """Resolve a risk-path/outcome seed to (match_key, kind) — a System (by code) or a
+        Component (by free-text name). System takes precedence when both are present."""
+        mk = self._sys_mk(anchors)
+        if mk:
+            return mk, "system"
+        comp = self._resolve_component(s, anchors.get("component") or "")
+        if comp:
+            return comp[0], "component"
+        return None, None
+
+    def _risk_unmaterialized(self, intent, anchors) -> Evidence:
+        return Evidence(intent, anchors,
+                        "(the risk layer has not been materialized yet — run "
+                        "`python src/classify_outcomes.py --run` then "
+                        "`python src/risk.py --materialize`)", empty=True)
+
+    @staticmethod
+    def _dist_lines(counts: dict, n: int, order_by_prob: bool = True) -> list[str]:
+        dist = risk.normalize(counts)
+        items = sorted(dist.items(), key=(lambda kv: -kv[1]) if order_by_prob
+                       else (lambda kv: -risk.SEVERITY[kv[0]]))
+        return [f"    {o:26} {p:5.0%}  ({counts.get(o, 0)} events)  [sev {risk.SEVERITY[o]}]"
+                for o, p in items]
+
+    def _t_risk_ranking(self, s, anchors) -> Evidence:
+        sysstats = risk.load_materialized_stats(s, "System")
+        if not sysstats:
+            return self._risk_unmaterialized("risk_ranking", anchors)
+        ranked = risk.rank_by_risk(sysstats, top_n=10)
+        sens = risk.ranking_sensitivity(sysstats, top_n=3)
+        cranked = risk.rank_by_risk(risk.load_materialized_stats(s, "Cause"), top_n=6)
+        lines = ["Observed risk-contribution ranking (ORC = n_events_classified × "
+                 "expected_severity) — WITHIN THIS CORPUS.", "",
+                 "Systems (top 10 by observed_risk_contribution):"]
+        lines += [f"  {i:2}. {st.line()}" for i, st in enumerate(ranked, 1)]
+        if cranked:
+            lines += ["", "Cause categories (by observed_risk_contribution):"]
+            lines += [f"  {i:2}. {st.line()}" for i, st in enumerate(cranked, 1)]
+        lines += ["", "  " + sens.summary(), "",
+                  "[note] " + risk.OBSERVED_RISK_CAVEAT,
+                  "[note] This ranking is dominated by n_events, a corpus-SELECTION artifact: a "
+                  "high rank means MOST-REPRESENTED in this 2020-2026 export, not most-dangerous."]
+        return Evidence("risk_ranking", anchors, "\n".join(lines),
+                        node_keys=[st.key for st in ranked], lers=[])
+
+    def _t_likely_outcome(self, s, anchors) -> Evidence:
+        mk = self._sys_mk(anchors)
+        etype, stats = None, None
+        sysall = risk.load_materialized_stats(s, "System")
+        if not sysall:
+            return self._risk_unmaterialized("likely_outcome", anchors)
+        if mk:
+            etype, stats = "system", sysall.get(mk)
+        elif anchors.get("cause_code"):
+            etype = "cause"
+            stats = next((v for v in risk.load_materialized_stats(s, "Cause").values()
+                          if v.code == anchors["cause_code"]), None)
+        elif anchors.get("component"):
+            comp = self._resolve_component(s, anchors["component"])
+            if comp:
+                etype, stats = "component", risk.load_materialized_stats(s, "Component").get(comp[0])
+        if stats is None:
+            return self._empty("likely_outcome", anchors)
+        corpus_counts, n_total, n_class = risk.corpus_outcome_distribution(s)
+        m = stats.modal
+        lines = [f"Observed outcome distribution for {stats.label} "
+                 f"[{stats.code or '—'}] — WITHIN THIS CORPUS ({etype}):",
+                 f"  n_events (reportable events involving it): {stats.n_events}",
+                 f"  n_classified (with a usable outcome): {stats.n_classified}  "
+                 f"(coverage {stats.coverage:.0%})",
+                 f"  expected_severity: {stats.expected_severity:.2f}  (ordinals 1-5 as interval)",
+                 f"  modal outcome: {m[0]} ({m[1]:.0%})" if m else "  modal outcome: —",
+                 f"  P(outcome | this {etype}) over {stats.n_classified} classified events:"]
+        lines += self._dist_lines(stats.counts, stats.n_classified)
+        lines += ["  corpus baseline P(outcome) over all "
+                  f"{n_class} classified events (for comparison):"]
+        lines += self._dist_lines(corpus_counts, n_class)
+        if stats.small_sample:
+            lines.append(f"  [small-sample] n_classified={stats.n_classified} "
+                         f"(≤{risk.SMALL_SAMPLE_N}) — illustrative, not a stable probability.")
+        lines += ["[note] " + risk.OBSERVED_RISK_CAVEAT]
+        return Evidence("likely_outcome", anchors, "\n".join(lines),
+                        node_keys=[stats.key], lers=[])
+
+    def _t_probable_path(self, s, anchors) -> Evidence:
+        if not risk.load_materialized_stats(s, "System"):
+            return self._risk_unmaterialized("probable_path", anchors)
+        seed_mk, kind = self._seed_entity(s, anchors)
+        if not seed_mk:
+            return self._empty("probable_path", anchors)          # needs a system or component
+        trans = risk.build_transitions(s)
+        label = trans.entity_label.get(seed_mk, seed_mk)
+        path = risk.most_probable_path(trans, seed_mk)
+        if path is None:
+            return Evidence("probable_path", anchors,
+                            f"No most-probable cause→outcome path is computable for {label} "
+                            f"({kind}): its events here have mostly provisional (uncoded) causes, "
+                            "so the cause layer is empty (~63% of corpus events have no coded root "
+                            "cause; most individual components appear in a single event).",
+                            node_keys=[seed_mk], lers=[])
+        basis = ("P(cause|component) over this component's coded-cause events"
+                 if kind == "component" else "P(cause|system) over this system's coded-cause events")
+        sparsity = ("\n[note] Component-level is sparse — 94% of components appear in a single "
+                    "event; treat this as illustrative of the technique." if kind == "component" else "")
+        text = (f"Most-probable failure path from {label} ({kind}) — WITHIN THIS CORPUS:\n  "
+                + path.render(label_of=trans.entity_label.get)
+                + f"\n\n  Basis: {basis}; P(outcome|cause) over that cause's events corpus-wide "
+                  "(distinct events).\n"
+                  "[note] Rests on the coded-cause subset (~63% of corpus events have a "
+                  "provisional/uncoded cause); illustrative of the technique, not a predictive "
+                  f"rate.{sparsity}\n[note] " + risk.OBSERVED_RISK_CAVEAT)
+        return Evidence("probable_path", anchors, text,
+                        node_keys=[seed_mk], lers=[])
+
+    def _t_faceted_frequency(self, s, anchors) -> Evidence:
+        # The GENERAL engine: "among events matching FILTERS, count / trend / compare a FACET." One
+        # primitive covers reverse, combination + true PAIRS, compound-AND, plant / year /
+        # corrective-action facets, numeric thresholds, and side-by-side comparison — no per-shape
+        # template. Everything counts DISTINCT events; the observed-frequency framing is embedded.
+        target = (anchors.get("target") or "outcomes").lower()
+        if target not in risk.FACETS:
+            target = "outcomes"
+        filters = list(anchors.get("filters") or [])
+        if anchors.get("filter_facet"):                 # back-compat: legacy single filter
+            filters.append({"facet": anchors["filter_facet"], "value": anchors.get("filter_value"),
+                            "op": anchors.get("filter_op")})
+        pairs = bool(anchors.get("pairs"))
+        compare = anchors.get("compare")
+        facets = risk.event_facets(s)
+
+        # --- comparative: two+ distributions side by side --------------------
+        if isinstance(compare, dict) and compare.get("facet") and compare.get("values"):
+            cmp = risk.compare_facets(facets, target, compare["facet"], compare["values"], filters)
+            if all(r["n_matched"] == 0 for r in cmp.values()):
+                return Evidence("faceted_frequency", anchors,
+                                f"No events match any of {compare['values']} for "
+                                f"{compare['facet']} in this corpus.", empty=True)
+            lines = [f"Side-by-side comparison of {target} — distinct events WITHIN THIS CORPUS:"]
+            lers = []
+            for val, r in cmp.items():
+                lines.append(f"\n  {compare['facet']} = {val}: {r['n_matched']} events")
+                for v, c in sorted(r["counts"].items(), key=lambda kv: -kv[1])[:8]:
+                    pct = f" ({c/r['n_matched']:.0%})" if r["n_matched"] else ""
+                    lines.append(f"    {c:3}{pct}  {v}")
+                lers += [{"key": f.ler, "source": None} for f in r["matched"][:10]]
+            lines += ["[note] " + risk.OBSERVED_RISK_CAVEAT]
+            return Evidence("faceted_frequency", anchors, "\n".join(lines), node_keys=[], lers=lers)
+
+        # --- single distribution / pairs / trend / listing ------------------
+        res = risk.faceted_frequency(facets, target, filters, pairs=pairs)
+        n = res["n_matched"]
+        if n == 0:                                       # honest empty (e.g. fuel cladding: absent)
+            return Evidence("faceted_frequency", anchors,
+                            f"No events in this corpus match {res['filter_desc']}, so there is "
+                            "nothing to count. (This 2020-2026 LER export may simply not contain "
+                            "that kind of event.)", empty=True)
+        lines = ["Faceted frequency — distinct events WITHIN THIS CORPUS.",
+                 f"  filter: {res['filter_desc']}  ({n} matching events)"]
+
+        if pairs and res["pairs"]:
+            ranked = sorted(res["pairs"].items(), key=lambda kv: -kv[1])
+            lines.append(f"  co-occurring {target} PAIRS (appearing together in the same event):")
+            for (a, b), c in ranked[:12]:
+                lines.append(f"    {c:3} event(s)   {a}  +  {b}")
+            if not any(c >= 2 for _, c in ranked):
+                lines.append("  [note] every pair co-occurs in only one event — no repeated "
+                             "combination at this corpus scale.")
+        elif target == "years":
+            import datetime as _dt
+            today = _dt.date.today()
+            frac = today.timetuple().tm_yday / 365.0
+            lines.append(f"  events by year (the trend; today is {today.isoformat()}):")
+            for y in sorted(res["counts"]):
+                note = ""
+                try:
+                    yi = int(y)
+                    if yi >= today.year:                # the system KNOWS the year isn't over
+                        note = (f"  (INCOMPLETE — {y} is not over yet; only ~{frac:.0%} of the year "
+                                "has elapsed, so this is a year-to-date partial count)")
+                    elif yi < 2020:
+                        note = "  (pre-2020 straggler — a supplement citing an older event; outside the 2020-2026 window)"
+                except ValueError:
+                    pass
+                lines.append(f"    {y}: {res['counts'][y]}{note}")
+            lines.append(f"  [note] Today is {today.isoformat()}, so {today.year} is only a "
+                         "year-to-date partial count and is NOT comparable to a full year. Even the "
+                         "latest complete years may be slightly under-counted due to LER reporting "
+                         "lag. Judge the trend only across the complete years.")
+        elif target == "corrective_actions":
+            lines.append(f"  {len(res['counts'])} distinct corrective actions across those events "
+                         "(per-event free text, mostly unique) — a sample of how they were resolved:")
+            for f in res["matched"][:10]:
+                for ca in sorted(f.corrective_actions)[:2]:
+                    lines.append(f"    {f.ler}: {ca[:90]}")
+        else:
+            ranked = sorted(res["counts"].items(), key=lambda kv: -kv[1])
+            lines.append(f"  count of {target} across those events (an event can involve several):")
+            for v, c in ranked[:15]:
+                lines.append(f"    {c:3}  ({c/n:.0%} of matched events)  {v}")
+            if len(ranked) > 15:
+                lines.append(f"    … and {len(ranked) - 15} more {target}.")
+            if target in ("components", "systems"):
+                lines.append("  sample matching events (the co-occurring set within each event):")
+                for f in res["matched"][:6]:
+                    vals = sorted(risk._facet_values(f, target))
+                    lines.append(f"    {f.ler} ({f.plant or '—'}): " + (", ".join(vals[:8]) or "—"))
+
+        if n <= risk.SMALL_SAMPLE_N:
+            lines.append(f"  [small-sample] only {n} matching events — illustrative, not a stable pattern.")
+        lines += ["[note] " + risk.OBSERVED_RISK_CAVEAT]
+        lers = [{"key": f.ler, "source": None} for f in res["matched"][:25]]
+        return Evidence("faceted_frequency", anchors, "\n".join(lines), node_keys=[], lers=lers)
 
     def _t_subgraph(self, s, anchors) -> Evidence:
         # generic fallback: anchor on a system, ler, or cause, expand 2 hops

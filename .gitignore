@@ -16,9 +16,17 @@ venv/
 # generated / fetched corpus data — regenerable, kept out of git to stay code-focused.
 #   re-fetch source docs with fetch_ler.py; re-extract records with pipeline_batch.py.
 # tracked on purpose: data/raw/manifest.csv, data/raw/fetch_list.csv (the parser reads it
-#   for the event-date fallback), data/raw/ground_truth/ (frozen oracle), data/raw/reference/.
+#   for the event-date fallback), data/raw/ground_truth/ (frozen oracle), data/raw/reference/,
+#   and out/risk/outcome_classes.json (the PAID Phase-7 classification result — kept so a fresh
+#   clone can restamp outcome_class onto the graph via classify_outcomes.py --restamp without
+#   re-running the ~$2 batch).
 # NOTE: .gitignore has no inline comments — a pattern and a trailing '# ...' would be
 # read as one literal pattern, so keep each pattern on its own bare line.
+# NOTE: to un-ignore a file under an ignored dir you must ignore with `out/*` (not `out/`) so
+# git still descends, then re-include each level — hence the four out/ lines below.
 data/raw/*.json
 data/raw/*.txt
-out/
+out/*
+!out/risk/
+out/risk/*
+!out/risk/outcome_classes.json

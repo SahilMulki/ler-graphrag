@@ -15,7 +15,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from llm import LLM
-from retrieve import Evidence, SINGLE_SUBJECT_INTENTS
+from retrieve import Evidence, RISK_INTENTS, SINGLE_SUBJECT_INTENTS
 
 ANSWER_SYSTEM = """You answer questions about U.S. NRC Licensee Event Reports (LERs) using
 ONLY the EVIDENCE provided (a subgraph retrieved from a knowledge graph). Return JSON only.
@@ -39,10 +39,31 @@ SINGLE_SUBJECT_BACKSTOP = (
     "LER, do NOT merge them or pick one — set answerable=false and ask the user to specify a "
     "single LER number.")
 
+# Non-negotiable framing for the Phase-7 risk intents. The numbers are observed reportable-event
+# frequencies within one selected corpus, not certified rates — the answer must say so, must give
+# the distribution (not just a scalar), must decline a "rate" framing, and must keep every caveat.
+RISK_BACKSTOP = (
+    "\n\nThis is a RISK / PROBABILITY question answered ONLY from observed corpus frequencies. You "
+    "MUST, in the `answer`:\n"
+    "- State explicitly that these are OBSERVED reportable-event frequencies WITHIN THIS CORPUS "
+    "(2020-2026 LERs), NOT certified failure rates or probabilities of failure.\n"
+    "- Give the actual distribution and the event counts / n_events from the EVIDENCE — never a "
+    "single bare scalar.\n"
+    "- If the user asked for a 'rate' (e.g. 'failure rate'), explicitly DECLINE to give a failure "
+    "rate: there is no exposure time / reactor-years here, so a rate is not computable; report the "
+    "observed frequency and its denominator instead.\n"
+    "- Preserve every [note] and [small-sample] caveat from the EVIDENCE, including the "
+    "reporting-criterion selection bias (loss-of-safety-function is often the reporting trigger, "
+    "which inflates severity) and the corpus-selection point (most-represented ≠ most-dangerous).\n"
+    "- Keep `citations` empty unless the EVIDENCE lists specific LER numbers. Set answerable=true "
+    "when the EVIDENCE contains stats (it is a valid, if caveated, answer).")
+
 
 def answer(question: str, ev: Evidence, llm: LLM | None = None) -> dict:
     llm = llm or LLM()
     backstop = SINGLE_SUBJECT_BACKSTOP if ev.intent in SINGLE_SUBJECT_INTENTS else ""
+    if ev.intent in RISK_INTENTS and not ev.empty:
+        backstop += RISK_BACKSTOP
     user = (f"QUESTION:\n{question}\n\n"
             f"EVIDENCE (retrieval intent = {ev.intent}):\n{ev.text}\n\n"
             f"Return the answer JSON.{backstop}")
