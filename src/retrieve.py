@@ -720,28 +720,54 @@ class GraphRetriever:
         lers = [{"key": f.ler, "source": None} for f in res["matched"][:25]]
         return Evidence("faceted_frequency", anchors, "\n".join(lines), node_keys=[], lers=lers)
 
+    def _ler_sources(self, s, keys) -> dict:
+        """Map LER key -> source (oracle|pipeline) for provenance tags on subgraph evidence."""
+        keys = [k for k in keys if k]
+        if not keys:
+            return {}
+        rows = s.run("MATCH (l:LER) WHERE l.key IN $keys "
+                     "RETURN l.key AS key, l.source AS source", keys=keys)
+        return {r["key"]: (r["source"] or "pipeline") for r in rows}
+
     def _t_subgraph(self, s, anchors) -> Evidence:
-        # generic fallback: anchor on a system, ler, or cause, expand 2 hops
-        seed_pred, params = None, {}
+        # generic fallback: anchor on a system, ler, or cause and expand 1-2 hops. Tracks the
+        # LER provenance of the neighborhood (every edge is stamped with its ler_number) so an
+        # LER-anchored lookup returns a GROUNDED, citable answer instead of an empty-provenance
+        # blob the answerer can only echo. For an LER seed the expansion is PINNED to that
+        # report's own edges (rel.ler_number = the anchor, or a structural edge with no
+        # ler_number) so it does not fan out through shared System/Cause/criterion hubs into
+        # unrelated events — the same discipline the failure_chain template uses.
+        seed_pred, params, pin = None, {}, ""
         if anchors.get("system_code"):
             seed_pred, params = self._sys_match(anchors)
             seed_pred = f"(a:System) WHERE {seed_pred}"
         elif anchors.get("ler_key"):
             seed_pred, params = "(a:LER {key:$k})", {"k": anchors["ler_key"]}
+            pin = ("WHERE all(rel IN relationships(p) "
+                   "WHERE rel.ler_number = $k OR rel.ler_number IS NULL) ")
         elif anchors.get("cause_code"):
             seed_pred, params = "(a:Cause {cause_code:$k})", {"k": anchors["cause_code"]}
         if not seed_pred:
             return self._empty("subgraph", anchors)
         rows = list(s.run(
-            f"MATCH {seed_pred} MATCH p=(a)-[*1..2]-(m) "
+            f"MATCH {seed_pred} MATCH p=(a)-[*1..2]-(m) {pin}"
             "RETURN DISTINCT a.display_name AS anchor, type(last(relationships(p))) AS rel, "
-            "  m.display_name AS neighbor, labels(m) AS labels LIMIT 60", **params))
+            "  m.display_name AS neighbor, m.match_key AS mk, labels(m) AS labels, "
+            "  [x IN relationships(p) | x.ler_number] AS ler_nums LIMIT 60", **params))
         if not rows:
             return self._empty("subgraph", anchors)
         lines = [f"  {r['anchor']} … {r['rel']} … {r['neighbor']} "
                  f"[{[l for l in r['labels'] if l != 'Entity'][0]}]" for r in rows]
+        node_keys = sorted({r["mk"] for r in rows if r["mk"]})
+        ler_nums = {ln for r in rows for ln in (r["ler_nums"] or []) if ln}
+        if anchors.get("ler_key"):
+            ler_nums.add(anchors["ler_key"])
+        prov = self._ler_sources(s, ler_nums)
         return Evidence("subgraph", anchors,
-                        f"Neighborhood of {rows[0]['anchor']}:\n" + "\n".join(lines))
+                        f"Neighborhood of {rows[0]['anchor']}:\n" + "\n".join(lines),
+                        node_keys=node_keys,
+                        lers=[{"key": k, "source": prov.get(k, "pipeline")}
+                              for k in sorted(ler_nums)])
 
     def _t_out_of_corpus(self, s, anchors) -> Evidence:
         return self._empty("out_of_corpus", anchors)

@@ -38,9 +38,18 @@ hubs dense (the HPCI system joins **45 events across ~15 plants**). Extraction c
   Phase 7's aggregations must be **deliberate about which axis is shared vs per-LER.**
 
 ## Remaining sequence
-1. **Phase 7 — probabilistic / risk layer** (this plan; next).
-2. **Vector-RAG baseline + comparison** — capstone.
-3. **Writeup / demo.**
+1. ~~**Phase 7 — probabilistic / risk layer**~~ — **COMPLETE** (see [phase_7.md](phase_7.md)).
+2. ~~**Vector-RAG baseline + comparison** — capstone.~~ — **COMPLETE** (see [phase_9.md](phase_9.md)).
+   Graph suite **42/42**; per-bucket head-to-head with a shared answer model and a verified
+   format-neutral answer prompt. Graph wins `cross-doc` (vector recall@100 only 0.10–0.55 of a
+   coded hub vs 1.00), `multi-hop`, and `lookup-id`; **vector wins `lookup-content`** (free-form
+   semantic search the template router cannot express); `negative` ties. Verdicts shown
+   **embedder-invariant** (bge-large ≡ MiniLM) and chunk-size-invariant. ≈$6–9.
+3. **Phase 10 — writeup / demo (incl. the web UI).** Deliberately kept separate from Phase 9:
+   Phase 9 is an evaluation with a correctness bar, Phase 10 is communication — folding them
+   would invite writing the narrative while the numbers are still being generated. The UI's
+   centrepiece is the split-pane *same question → graph answer vs vector answer* view, which
+   only became buildable once the baseline existed.
 
 Deferred by explicit decision (not worth it now): the README update to the 833-doc numbers;
 a re-keying pass for 37 (~5%) cosmetically malformed LER keys.

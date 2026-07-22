@@ -175,7 +175,7 @@ def _print_summary(results) -> int:
     print("\n" + "=" * 78)
     print("SUMMARY")
     for kind in ("showcase", "xdoc", "aggregation", "payoff", "clarify", "intent",
-                 "risk", "honesty", "scale", "negative"):
+                 "risk", "honesty", "scale", "negative", "lookup"):
         if by_kind[kind]:
             print(f"  {kind:12}: {pass_kind[kind]}/{by_kind[kind]} pass")
     print(f"  {'TOTAL':12}: {npass}/{len(results)} pass")

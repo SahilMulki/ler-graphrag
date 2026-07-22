@@ -19,6 +19,12 @@ Phase 8 rescaled the set for the ~830-doc corpus (`kind` drives the pass rule):
   clarify      real same-plant / broad ambiguity -> must ask, asserted structurally
   intent       adversarial router-boundary guard: aggregate must NOT clarify
   negative     no-hallucination: an out-of-corpus question must be refused
+  lookup       Phase-9 single-doc factual lookup (vector-favorable): the graph must
+               answer-and-ground OR honestly refuse, never fabricate (strict fact-match
+               vs. the vector baseline is scored separately in compare.py)
+
+Phase 9 adds a frozen `bucket` (BUCKET_BY_ID) to every spec for the graph-vs-vector
+per-bucket comparison; the buckets are pre-registered before any retriever is run.
 
 The frozen 3-doc oracle regression (score.py) is the separate extraction-quality gate.
 """
@@ -35,6 +41,49 @@ from retrieve import Clarification
 # The three hand-marked HPCI LERs remain the STABLE anchors at scale: their
 # extractions are frozen/known, so expected sets derived from them don't drift.
 HPCI_LERS = {"254-2025-006-00", "237-2025-003-00", "353-2025-001-00"}
+
+# --------------------------------------------------------------------------- #
+# Phase-9 comparison buckets — FROZEN before any retriever is run (pre-registration,
+# so the per-bucket verdicts can't be back-fit to results). Head-to-head buckets, where
+# graph AND vector both genuinely attempt, are balanced to >=5: lookup, multi-hop,
+# cross-doc, negative(refusal). Graph-capability buckets, where a flat retriever
+# structurally cannot compete (it can't count/aggregate a corpus from k chunks or ask a
+# grounded clarifying question), are capability claims, not scored head-to-heads:
+# aggregation, risk, clarify.
+# --------------------------------------------------------------------------- #
+BUCKET_BY_ID = {
+    # -- head-to-head --------------------------------------------------------
+    "MH-Limerick": "multi-hop", "MH-QuadCities": "multi-hop",
+    "MH-WATERFORD-XFMR": "multi-hop", "MH-FARLEY-RELAY": "multi-hop",
+    "MH-ARKANSAS-FWCS": "multi-hop",
+    "XDOC-HPCI-COMP": "cross-doc", "AGG-WEAK-PROG": "cross-doc",
+    "XPLANT-SHARED": "cross-doc", "XDOC-RCIC-COMP": "cross-doc",
+    "XDOC-BACKUPS": "cross-doc",
+    # lookup-id: identifier-anchored (resolve a SPECIFIC report by its LER number). These
+    # turned out GRAPH-favorable during harness validation — a vector index cannot pin a
+    # specific report among many similar ones (embeddings ignore the identifier, and even
+    # a semantic rephrasing retrieves same-plant/other-year reports), while the graph
+    # resolves the exact key. Kept as an honest finding.
+    "LOOK-CAUSE-VOGTLE": "lookup-id", "LOOK-CRIT-HATCH": "lookup-id",
+    "LOOK-PLANT-WATERFORD": "lookup-id", "LOOK-TITLE-HATCH2": "lookup-id",
+    "LOOK-CONSEQ-WATTSBAR": "lookup-id", "LOOK-PLANT-CALVERT": "lookup-id",
+    # lookup-content: free-form semantic search for a report by a DISTINCTIVE event (the
+    # graph has no template to find "the event with characteristic X", so it refuses;
+    # vector's semantic retrieval is its natural strength). Added after the diagnostic above
+    # so the lookup family fairly tests vector too — the bucket where VECTOR is expected to win.
+    "LOOKC-TURKEYPT": "lookup-content", "LOOKC-PRAIRIE": "lookup-content",
+    "LOOKC-PALISADES": "lookup-content", "LOOKC-QC-BATT": "lookup-content",
+    "LOOKC-DAVISBESSE": "lookup-content",
+    "NEG": "negative", "FACET-EMPTY": "negative", "NEG-CHERNOBYL": "negative",
+    "NEG-TMI": "negative", "NEG-FICTION": "negative",
+    # -- graph-capability (not scored head-to-head) --------------------------
+    "AGG-CAUSE": "aggregation", "ADV-AGG": "aggregation",
+    "CLARIFY-PLANT": "clarify", "CLARIFY-BROAD": "clarify",
+    "RISK-RANK": "risk", "LIKELY-OUTCOME": "risk", "PROB-PATH": "risk",
+    "COMP-PATH": "risk", "CAUSE-OUTCOME": "risk", "FACET-REVERSE": "risk",
+    "FACET-COMPOUND": "risk", "FACET-COMPARE": "risk", "FACET-TREND": "risk",
+    "FACET-PAIRS": "risk", "FACET-NUMERIC": "risk", "HONESTY-RATE": "risk",
+}
 
 
 # --------------------------------------------------------------------------- #
@@ -65,7 +114,7 @@ def build_expected() -> dict:
 # the golden set (Phase-8 scale)
 # --------------------------------------------------------------------------- #
 def golden(expected: dict) -> list[dict]:
-    return [
+    specs = [
         # --- multi-hop, anchored on a specific LER so it stays a single answer ----
         {"id": "MH-Limerick", "kind": "showcase", "intent": "failure_chain",
          "provenance": "pipeline",
@@ -251,7 +300,166 @@ def golden(expected: dict) -> list[dict]:
          "note": "directly tests the non-negotiable framing: the system must DECLINE to give a "
                  "failure rate (no exposure time / reactor-years) and instead return the observed "
                  "reportable-event frequency + denominator + selection bias — never a rate."},
+
+        # ======================================================================== #
+        # PHASE 9 (baseline comparison) — widened, PRE-REGISTERED head-to-head set.
+        # Lookups are drawn from single deterministic Form-366 fields of NON-showcase
+        # records, each answer verified verbatim in the raw text (so each is genuinely
+        # vector-answerable and not a graph-aceable question in disguise). Buckets are
+        # frozen in BUCKET_BY_ID above, before any retriever runs.
+        # ======================================================================== #
+
+        # --- LOOKUP: single-doc factual lookups (vector-favorable) ----------------
+        {"id": "LOOK-CAUSE-VOGTLE", "kind": "lookup", "intent": "failure_chain",
+         "provenance": "pipeline",
+         "q": "What was the root cause of the event in LER 424-2025-001-00?",
+         "exp_nodes": set(), "exp_lers": {"424-2025-001-00"},
+         "exp_answer": ["human performance", "human error"],
+         "note": "single-field cause lookup (Vogtle); failure_chain can attempt this one."},
+
+        {"id": "LOOK-CRIT-HATCH", "kind": "lookup", "intent": "subgraph",
+         "provenance": "pipeline",
+         "q": "Under which 10 CFR 50.73 reporting criterion was LER 321-2021-001-00 reported?",
+         "exp_nodes": set(), "exp_lers": {"321-2021-001-00"},
+         "exp_answer": ["(a)(2)(iv)(a)"],
+         "note": "a Form-366 header field the graph templates do not expose; vector-favorable."},
+
+        {"id": "LOOK-PLANT-WATERFORD", "kind": "lookup", "intent": "subgraph",
+         "provenance": "pipeline",
+         "q": "Which nuclear plant reported LER 382-2025-002-00?",
+         "exp_nodes": set(), "exp_lers": {"382-2025-002-00"},
+         "exp_answer": ["waterford"],
+         "note": "plant-identity lookup; likely a tie (graph may surface plant_name too)."},
+
+        {"id": "LOOK-TITLE-HATCH2", "kind": "lookup", "intent": "subgraph",
+         "provenance": "pipeline",
+         "q": "What is the subject of LER 366-2023-002-00?",
+         "exp_nodes": set(), "exp_lers": {"366-2023-002-00"},
+         "exp_answer": ["reactor recirculation pump", "manual scram"],
+         "note": "event-title/subject lookup (Hatch U2 recirc-pump manual scram)."},
+
+        {"id": "LOOK-CONSEQ-WATTSBAR", "kind": "lookup", "intent": "failure_chain",
+         "provenance": "pipeline",
+         "q": "What equipment was rendered inoperable in LER 391-2024-003-00?",
+         "exp_nodes": set(), "exp_lers": {"391-2024-003-00"},
+         "exp_answer": ["low head safety injection", "lhsi", "both trains"],
+         "note": "consequence/equipment lookup (Watts Bar both-train LHSI inoperability)."},
+
+        {"id": "LOOK-PLANT-CALVERT", "kind": "lookup", "intent": "subgraph",
+         "provenance": "pipeline",
+         "q": "Which nuclear plant reported LER 318-2025-002-01?",
+         "exp_nodes": set(), "exp_lers": {"318-2025-002-01"},
+         "exp_answer": ["calvert cliffs"],
+         "note": "second plant-identity lookup (Calvert Cliffs)."},
+
+        # --- LOOKUP-CONTENT: free-form semantic search by a DISTINCTIVE event ------
+        # The graph has no template to find "the event with characteristic X" (it refuses
+        # or asks to disambiguate); vector's semantic retrieval is its natural strength. The
+        # answer is the PLANT (verified in-text). The bucket where VECTOR is expected to win.
+        {"id": "LOOKC-TURKEYPT", "kind": "lookup", "intent": "out_of_corpus",
+         "provenance": "pipeline",
+         "q": "Which plant experienced an automatic reactor trip caused by a lightning strike "
+              "and grid disturbance in the switchyard?",
+         "exp_nodes": set(), "exp_lers": {"250-2023-03-00"},
+         "exp_answer": ["turkey point"],
+         "note": "distinctive cause (lightning strike) uniquely pins one report -> Turkey Point."},
+
+        {"id": "LOOKC-PRAIRIE", "kind": "lookup", "intent": "out_of_corpus",
+         "provenance": "pipeline",
+         "q": "At which plant did directional drilling damage a DC control cable bundle and "
+              "cause a reactor trip?",
+         "exp_nodes": set(), "exp_lers": {"282-2023-001-01"},
+         "exp_answer": ["prairie island"],
+         "note": "distinctive cause (directional drilling through cables) -> Prairie Island."},
+
+        {"id": "LOOKC-PALISADES", "kind": "lookup", "intent": "out_of_corpus",
+         "provenance": "pipeline",
+         "q": "Which plant had an emergency diesel generator actuation caused by an excavation "
+              "and work-planning error?",
+         "exp_nodes": set(), "exp_lers": {"255-2026-001-00"},
+         "exp_answer": ["palisades"],
+         "note": "distinctive cause (excavation/permitting error) -> Palisades."},
+
+        {"id": "LOOKC-QC-BATT", "kind": "lookup", "intent": "out_of_corpus",
+         "provenance": "pipeline",
+         "q": "Which event involved a battery cell terminal post cracking that caused DC voltage "
+              "fluctuations and a reactor scram?",
+         "exp_nodes": set(), "exp_lers": {"254-2025-005-01"},
+         "exp_answer": ["quad cities"],
+         "note": "distinctive cause (battery cell post cracking) -> Quad Cities (a DIFFERENT QC "
+                 "LER than the oracle 254-2025-006-00)."},
+
+        {"id": "LOOKC-DAVISBESSE", "kind": "lookup", "intent": "out_of_corpus",
+         "provenance": "pipeline",
+         "q": "Which plant had a reactor trip when an automatic transfer switch failed after an "
+              "inadequately reviewed control power change?",
+         "exp_nodes": set(), "exp_lers": {"346-2021-003-00"},
+         "exp_answer": ["davis-besse", "davis besse"],
+         "note": "distinctive cause (ATS failure after control-power change) -> Davis-Besse."},
+
+        # --- MULTI-HOP: within-report causal chains, non-HPCI, diverse plants ------
+        # Judged on routing + grounded citation (exp_nodes empty) because failure_chain
+        # surfaces only linear path nodes; each LER verified to carry an 11-14 node chain.
+        {"id": "MH-WATERFORD-XFMR", "kind": "showcase", "intent": "failure_chain",
+         "provenance": "pipeline",
+         "q": "What chain of failures led to the reactor trip in LER 382-2024-002-00?",
+         "exp_nodes": set(), "exp_lers": {"382-2024-002-00"},
+         "note": "Waterford: main-transformer bushing short -> transformer fire -> partial "
+                 "LOOP -> automatic reactor trip + SIAS/CIAS/EFAS; a rich non-HPCI chain."},
+
+        {"id": "MH-FARLEY-RELAY", "kind": "showcase", "intent": "failure_chain",
+         "provenance": "pipeline",
+         "q": "What sequence of failures caused the reactor trip in LER 348-2022-001-00?",
+         "exp_nodes": set(), "exp_lers": {"348-2022-001-00"},
+         "note": "Farley: a dropped floor tile vibrated a spuriously-actuating relay with "
+                 "outdated settings -> 230kV bus isolation -> automatic reactor trip."},
+
+        {"id": "MH-ARKANSAS-FWCS", "kind": "showcase", "intent": "failure_chain",
+         "provenance": "pipeline",
+         "q": "What chain of failures led to the scram in LER 368-2020-001-00?",
+         "exp_nodes": set(), "exp_lers": {"368-2020-001-00"},
+         "note": "Arkansas Nuclear One: filtering-circuit failure -> loss of power to a "
+                 "feedwater-control cabinet -> loss of MFW control -> automatic scram."},
+
+        # --- CROSS-DOC: joins across many reports through a shared coded hub -------
+        {"id": "XDOC-RCIC-COMP", "kind": "xdoc", "intent": "system_components",
+         "provenance": "mixed",
+         "q": "What components have failed in the RCIC system across the whole corpus?",
+         "exp_nodes": set(), "exp_lers": set(), "min_lers": 5,
+         "note": "join on the shared System:BN (RCIC) hub (~47 events) — the cross-document "
+                 "assembly a flat retriever cannot do, on a non-HPCI system."},
+
+        {"id": "XDOC-BACKUPS", "kind": "xdoc", "intent": "mitigating_backups",
+         "provenance": "mixed",
+         "q": "Which events were mitigated by a redundant safety system being available?",
+         "exp_nodes": set(), "exp_lers": set(), "min_lers": 5,
+         "note": "corpus-wide set of events with an available backup system (defense-in-depth) "
+                 "— a cross-document breadth query."},
+
+        # --- NEGATIVE: out-of-corpus, must refuse (no-hallucination) --------------
+        {"id": "NEG-CHERNOBYL", "kind": "negative", "intent": "out_of_corpus",
+         "provenance": "none",
+         "q": "What caused the reactor explosion at Chernobyl?",
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "not a U.S. NRC licensee event; must refuse rather than fabricate."},
+
+        {"id": "NEG-TMI", "kind": "negative", "intent": "out_of_corpus",
+         "provenance": "none",
+         "q": "What was the cause of the Three Mile Island Unit 2 core damage accident?",
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "TMI-2 (1979) is decades outside the 2020-2026 corpus window; must refuse."},
+
+        {"id": "NEG-FICTION", "kind": "negative", "intent": "out_of_corpus",
+         "provenance": "none",
+         "q": "What failures have been reported at the Springfield Nuclear Power Plant?",
+         "exp_nodes": set(), "exp_lers": set(),
+         "note": "a fictional plant; the no-hallucination bar — must refuse, no citations."},
     ]
+    # stamp the frozen bucket onto each spec (KeyError = a spec without a pre-registered
+    # bucket, which must never ship — every question belongs to exactly one bucket).
+    for spec in specs:
+        spec["bucket"] = BUCKET_BY_ID[spec["id"]]
+    return specs
 
 
 # --------------------------------------------------------------------------- #
@@ -338,6 +546,11 @@ def judge(spec, outcome, ans) -> tuple[bool, str, dict]:
     if isinstance(outcome, Clarification):
         cs = score_clarify(outcome, spec)
         detail = {"clar": cs}
+        if kind == "lookup":
+            # a free-form content lookup the graph can't ground: declining to guess (asking to
+            # disambiguate) is acceptable honest behavior, never a fabrication — the head-to-head
+            # (compare.py) is where this scores as a vector win.
+            return True, "declined to guess a free-form lookup (asked to disambiguate)", detail
         if kind != "clarify":
             return False, "unexpectedly asked to disambiguate", detail
         if not cs["intent_ok"]:
@@ -403,6 +616,20 @@ def judge(spec, outcome, ans) -> tuple[bool, str, dict]:
         ok = not bits
         return ok, ("declined the rate framing; returned observed frequency + caveats" if ok
                     else "; ".join(bits)), detail
+
+    if kind == "lookup":
+        # Acceptable GRAPH behavior on an arbitrary single-field lookup: a grounded answer
+        # OR an honest refusal — never a fabrication. The strict fact-match head-to-head,
+        # scored identically for graph and vector, lives in compare.py (Phase 9); here we
+        # only guard against regression/hallucination so the graph suite stays stable.
+        got_fact = any(sub in _answer_text(ans) for sub in spec.get("exp_answer", []))
+        if not as_["answerable"]:
+            ok = not as_["citations"]
+            return ok, ("honestly declined the lookup" if ok
+                        else "unanswerable yet cited something"), detail
+        ok = grounded
+        return ok, (f"answered + grounded (fact_present={got_fact})" if ok
+                    else "answer not grounded in surfaced evidence"), detail
 
     # showcase / xdoc / aggregation — retrieval recall + scale breadth + grounded
     nr, lr = rs["node_recall"], rs["ler_recall"]

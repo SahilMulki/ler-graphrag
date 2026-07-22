@@ -18,7 +18,9 @@ from llm import LLM
 from retrieve import Evidence, RISK_INTENTS, SINGLE_SUBJECT_INTENTS
 
 ANSWER_SYSTEM = """You answer questions about U.S. NRC Licensee Event Reports (LERs) using
-ONLY the EVIDENCE provided (a subgraph retrieved from a knowledge graph). Return JSON only.
+ONLY the EVIDENCE provided. The EVIDENCE is retrieved context about the reports: it may be
+structured facts (entities and relationships) or verbatim excerpts from the source reports —
+treat either form the same way and ground your answer only in what it states. Return JSON only.
 
 Rules:
 - Ground every statement in the EVIDENCE. Do NOT use outside knowledge and do NOT invent
@@ -26,7 +28,7 @@ Rules:
 - Cite the LER number(s) you used in `citations` (e.g. "353-2025-001-00").
 - If the EVIDENCE is empty or does not contain the answer, set `answerable` to false, say so
   plainly in `answer`, and return an empty `citations` list. Never guess.
-- Preserve any "[note]" caveats in the evidence (e.g. a pattern that only emerges at scale) —
+- Preserve any "[note]" caveats in the EVIDENCE (e.g. a pattern that only emerges at scale) —
   reflect that honestly rather than overclaiming.
 
 Return: {"answerable": true/false, "answer": "...", "citations": ["...", ...]}"""
